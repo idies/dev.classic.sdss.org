@@ -1,0 +1,429 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Author" content="Roy Gal">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>SDSS DR1 - Algorithms: Measures of flux and magnitudes</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<!-- Start page content -->
+
+<h1>Measures of flux and magnitudes</h1>
+
+<a name="top"></a>
+
+<p>This page provides detailed descriptions of various
+measures of magnitude and related outputs of the photometry
+pipelines. We also provide discussion of some methodology. For details
+of the Photo pipeline processing please read the <a
+href="./edrpaper.html#sw-photo">corresponding EDR paper section</a>. There
+are also separate pages describing the <a
+href="./flatfield.html">creation of flat-fields</a> and the <a
+href="./fluxcal.html">photometric flux calibration</a>.</p>
+
+<ul>
+  <li><a href="#asinh">The asinh magnitude</a> (<em>aka</em> luptitude)</li>
+  <li><a href="#mag_psf">The PSF Magnitude (<span class="eqn">psfMag</span>)</a></li>
+  <li><a href="#mag_fiber">The Fiber Magnitude (<span class="eqn">fiberMag</span>)</a></li>
+  <li><a href="#mag_petro">The Petrosian Magnitude (<span class="eqn">petroMag</span>)</a></li>
+  <li><a href="#mag_model">The Model Magnitude (<span class="eqn">deVMag,expMag,modelMag</span>)</a> <font color="red">Important caveat; please read!</font></li>
+  <li><a href="#reddening">The Reddening Correction (<span class="eqn">reddening</span>)</a></li>
+  <li><a href="#which_mags">Which Magnitude should I use?</a></li>
+  <li><a href="#photo_profile">Object Radial Profiles</a></li>
+</ul></span>
+<hr><p>
+
+<a name="asinh"></a> <br><p> <h3>The asinh magnitude</h3> <p>
+Magnitudes within the SDSS are expressed as inverse hyperbolic sine
+(or ``asinh'') magnitudes, described in detail by <a
+href="http://www.journals.uchicago.edu/AJ/journal/issues/v118n3/990094/990094.html"
+target="new">Lupton, Gunn, & Szalay (1999)</a>. They are sometimes
+referred to informally as <em>luptitudes</em> .  The transformation
+from linear flux measurements to asinh magnitudes is designed to be
+virtually identical to the standard astronomical magnitude at high
+signal-to-noise ratio, but to behave reasonably at low signal-to-noise
+ratio and even at negative values of flux, where the logarithm in the
+<a href="../glossary/index.html#mag_pogson">Pogson magnitude
+fails</a>.  This allows us to measure a flux even in the absence of a
+formal detection; we quote no upper limits in our photometry.  <br>
+The asinh magnitudes are characterized by a softening parameter
+<em>b</em>, the typical 1-sigma noise of the sky in a PSF aperture in
+1'' seeing.  The relation between detected flux <i>f</i> and asinh
+magnitude <em>m</em> is: <br><p>
+<em>m</em>=-(2.5/ln10)*[asinh((<em>f</em>/<em>f<sub>0</sub></em>)/2<em>b</em>)+ln(<em>b</em>)].<br><p>
+Here, <em>f<sub>0</sub></em> is given by the <em>classical</em> zero
+point of the magnitude scale, i.e., <em>f<sub>0</sub></em> is the flux
+of an object with <em>conventional</em> magnitude of zero.  The
+quantity <em>b</em> is measured relative to <em>f<sub>0</sub></em>,
+and thus is dimensionless; it is given in the <a
+href="./fluxcal.html#asinh_table">table of asinh softening
+parameters</a> (<a href="edr.tb21.html">Table 21 in the EDR paper</a>), along with the asinh
+magnitude associated with a zero flux object.  The table also lists
+the flux corresponding to 10<em>f<sub>0</sub></em>, above which the
+asinh magnitude and the traditional logarithmic magnitude differ by
+less than 1% in flux.</p>
+
+    
+<a name="mag_fiber"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<br><p>
+<h3>Fiber magnitudes</h3>
+The flux contained within the aperture of a <a href="../glossary/index.html#fiber">spectroscopic fiber</a>
+(3" in diameter) is calculated in each band and stored in <span class="eqn">
+fiberMag</span>. <br>
+
+Notes:<ul><li>For <a href="../glossary/index.html#child">children</a> of <a href="../glossary/index.html#deblend">deblended</a> galaxies, some of
+the pixels within a 1.5" radius may belong to other children; we now measure the flux of the parent at the position of the child; this properly reflects the amount of light which the spectrograph will see. This was not true in the <a href="../glossary/index.html#EDR">EDR</a>.
+<li>Images are now convolved to 2" seeing before fiberMags are measured. This also makes the fiber magnitudes closer to what is seen by the spectrograph. This was not true in the <a href="../glossary/index.html#EDR">EDR</a>. </ul> 
+
+<a name="mag_model"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<br><p>
+<h3>Model magnitudes</h3>
+<b>Important Note:</b>Comparing the model (i.e., exponential and de Vaucouleurs fits) and Petrosian magnitudes of bright galaxies shows a systematic offset of about 0.2 magnitudes (in the sense that the model magnitudes are brighter). This turns out to be due to a bug in the way the PSF was convolved with the models (this bug affected the model magnitudes even when they were fit only to the central 4.4" radius of each object). This caused problems for very small objects (i.e., close to being unresolved). The code forces model and PSF magnitudes of unresolved objects to be the same in the mean by application of an aperture correction, which then gets applied to all objects. <u>The net result is that the model magnitudes are fine for unresolved objects, but systematically offset for galaxies brighter than at least 20th mag. Therefore, model magnitudes should <em>NOT</em> be used.</u> See the <a href="#which_mags">section on which magnitudes to use</a> for workarounds.
+<br><p>
+Just as the <a href="#mag_psf">PSF magnitudes</a> are optimal measures of the fluxes of
+stars, the optimal measure of the flux of a galaxy would use a matched galaxy
+model.  With this in mind, the code fits two models to the
+two-dimensional image of each object in each band:<br><p>
+<b>1. a pure deVaucouleurs profile:</b><br>
+<b>I(r) = I<sub>0</sub>exp{-7.67[(r/r<sub>e</sub>)<sup>1/4</sup>]}</b>
+<br>
+(truncated beyond <em>7r<sub>e</sub></em> to smoothly go to zero at <em>8r<sub>e</sub></em>, and with some softening within <em>r=r<sub>e</sub>/50</em>. <br><p>
+<b>2. a pure exponential profile</b><br>
+<b>I(r) = I<sub>0</sub>exp(-1.68r/r<sub>e</sub>)</b><br>
+(truncated beyond <em>3r<sub>e</sub></em> to smoothly go to zero at <em>4r<sub>e</sub></em>.<br><p>
+
+Each model has an arbitrary axis ratio and position angle.  Although for large
+objects it is possible and even desirable to fit more complicated
+models (e.g., bulge plus disk), the computational expense to compute
+them is not justified for the majority of the detected
+objects.  The models are convolved
+with a double-Gaussian fit to the PSF, which is provided by <span class="eqn">psp</span>.
+Residuals between the
+double-Gaussian and the full KL PSF model are added on for just the
+central PSF component of the image.
+<br><p>
+These fitting procedures yield the quantities<br>
+<a name="modelfitpars"></a>
+<ul>
+<li><span class="eqn">r_deV</span> and 
+<span class="eqn"> r_exp</span>, 
+the effective radii of the models;</li>
+<li> <span class="eqn">ab_deV</span> and 
+<span class="eqn">ab_exp</span>, 
+the axis ratio of the best fit models;</li>
+<li> <span class="eqn">phi_deV</span>
+and <span class="eqn">phi_exp</span>, 
+the position angles of the ellipticity (in degrees East of North).</li>
+<li><span class="eqn"><a href="#dev">deV_L</a></span> and
+<span class="eqn"><a href="#exp">exp_L</a></span>, 
+the likelihoods associated with each model from the chi-squared fit;</li>
+<li><span class="eqn">deVMag</span> and 
+<span class="eqn">expMag</span>,
+the total magnitudes associated with each fit.</li>
+</ul>
+
+Note that these quantities correctly model the effects of the PSF.  
+Errors for each of the last two quantities (which
+are based only on photon statistics) are also reported.  We apply
+aperture corrections to make these model magnitudes equal the PSF
+magnitudes in the case of an unresolved object.
+<br><p>
+In order to measure unbiased colors of galaxies, we measure
+their flux through equivalent apertures in all bands. 
+We choose the model (exponential or
+deVaucouleurs) of higher likelihood in the <em>r</em> filter, and apply that model
+(i.e., allowing only the amplitude to vary) in the other bands
+after convolving with the appropriate PSF in each band.  The
+resulting magnitudes are termed 
+<span class="eqn">modelMag</span>.  
+The resulting estimate of galaxy color will be unbiased in the absence
+of color gradients.  Systematic differences from Petrosian colors are
+in fact often seen due to color gradients, in which case the concept
+of a global galaxy color is somewhat ambiguous.  For faint galaxies,
+the model colors have appreciably higher signal-to-noise ratio than do
+the Petrosian colors. 
+<br><p>
+Due to the way in which model fits are carried out, there is some weak
+discretization of model parameters, especially 
+<span class="eqn">r_exp</span> and 
+<span class="eqn">r_deV</span>. This is yet to be fixed. Two other issues (negative axis ratios, and bad model mags for bright objects) have been fixed since the EDR.
+<p>
+<b><em>Caveat</em></b>: At bright magnitudes (r &lt;~ 18), model magnitudes 
+may not be a robust means to select objects by flux.  
+For example, model magnitudes in <a href="../glossary/index.html#target">target</a> 
+and <a href="../glossary/index.html#best">best</a> 
+imaging may often differ significantly because
+a different type of profile (deVaucouleurs or exponential) was
+deemed the better fit in target vs. best.  
+Instead, to select samples by flux, one should typically use 
+<a href="#mag_petro">Petrosian magnitudes</a>
+for galaxies and <a href="#mag_psf">psf magnitudes</a>
+for stars and distant quasars.  However, model colors 
+are in general robust and may be used to select galaxy samples by color.
+Please also refer to the SDSS 
+<a href="./target.html">target selection algorithms</a> for examples.
+
+<a name="mag_petro"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<br><p>
+<h3>Petrosian magnitudes</h3>
+Stored as <span class="eqn">petroMag</span>. For galaxy photometry, measuring flux is more difficult than for
+stars, because galaxies do not all have the same radial surface
+brightness profile, and have no sharp edges.  In order to avoid
+biases, we wish to measure a constant fraction of the total light,
+independent of the position and distance of the object. To satisfy these
+requirements, the SDSS has adopted a modified form of the
+<a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1976ApJ...209L...1P&db_key=AST&high=3d6550d53612836" target="new">Petrosian (1976)</a> system, measuring galaxy fluxes within a circular
+aperture whose radius is defined by the shape of the azimuthally
+averaged light profile.
+<br><p>
+
+We define the ``Petrosian ratio'' <em>R<sub>P</sub></em> at a radius 
+<em>r</em> from
+the center of an object to be the ratio of the local surface
+brightness in an annulus at  <em>r</em> to the mean surface brightness within
+<em>r</em>, as described by <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v121n5/200548/200548.html" target="new">Blanton et al. 2001a</a>, <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v122n3/201019/201019.html" target="new">Yasuda et al. 2001</a>:<br>
+<img src="../shared_images/petroeq1.gif"><br clear="all"><p>
+where <em>I(r)</em> is the azimuthally averaged surface brightness profile. 
+<br><p>
+
+The Petrosian radius <b><em>r<sub>P</sub></em></b> is defined as the radius 
+at which
+<em>R<sub>P</sub>(r<sub>P</sub>)</em> equals some specified value 
+<em>R<sub>P,lim</sub></em>, set to 0.2 in our case. The
+Petrosian flux in any band is then defined as the flux within a
+certain number  <b><em>N<sub>P</sub></em></b> (equal to 2.0 in our case) of 
+<em>r</em> Petrosian radii:<br>
+<img src="../shared_images/petroeq2.gif"><br clear="all"><p>
+
+In the SDSS five-band photometry, the aperture in all bands is set by
+the profile of the galaxy in the <em>r</em> band alone.  This procedure 
+ensures that the color measured by comparing the Petrosian flux 
+<b><em>F<sub>P</sub></em></b> in different bands is measured through a 
+consistent aperture. 
+<br><p>
+The aperture <em>2r<sub>P</sub></em> is large enough to contain nearly all of
+ the flux for typical galaxy profiles, but small enough that the sky noise in
+<em>F<sub>P</sub></em> is small.  Thus, even substantial errors in 
+<em>r<sub>P</sub></em> cause only
+small errors in the Petrosian flux (typical statistical errors near
+the spectroscopic flux limit of <em>r ~17.7</em> are &lt; 5%),
+although these errors are correlated.  
+<br><p>
+The Petrosian radius in each band is the parameter <span class="eqn">petroRad</span>, and
+the Petrosian magnitude in each band (calculated, remember, using only
+<span class="eqn">petroRad</span> for the <em>r</em> band) is the parameter <span class="eqn">petroMag</span>.
+<br><p>
+In practice, there are a number of complications associated with this
+definition, because noise, substructure, and the finite size of
+objects can cause objects to have no Petrosian radius, or more than
+one. Those with more than one are flagged as <span class="eqn">MANYPETRO</span>; the
+largest one is used. 
+Those with none have <span class="eqn">NOPETRO</span> set.  Most commonly, these objects
+are faint (<em>r &gt; 20.5</em> or so); the 
+Petrosian ratio becomes unmeasurable before dropping to the limiting
+value of 0.2; 
+these have <span class="eqn">PETROFAINT</span> set and have
+their ``Petrosian radii'' set to the default value of the larger
+of 3" or the outermost measured point in the radial profile.
+Finally, a galaxy with a bright stellar nucleus, such as a Seyfert
+galaxy, can have a Petrosian radius set by the nucleus alone; in this
+case, the Petrosian flux misses most of the extended light of the
+object.  This happens quite rarely, but one dramatic example in the
+EDR data is the Seyfert galaxy NGC 7603 = Arp 092, at RA(2000) =
+23:18:56.6, Dec(2000) = +00:14:38. 
+<br><p>
+How well does the Petrosian magnitude perform as a reliable and
+complete measure of galaxy flux? Theoretically, the Petrosian
+magnitudes defined here should recover essentially all of the flux of
+an exponential galaxy profile and about 80% of the flux for a de
+Vaucouleurs profile. As shown by Blanton et al. (2001a), this fraction is
+fairly constant with axis ratio, while as galaxies become smaller (due
+to worse seeing or greater distance) the fraction of light recovered
+becomes closer to that fraction measured for a typical PSF, about 95%
+in the case of the SDSS. This implies that the fraction of flux
+measured for exponential profiles decreases while the fraction of flux
+measured for deVaucouleurs profiles increases as a function of
+distance. However, for galaxies in the spectroscopic sample
+(<em>r&lt;17.7</em>), these effects are small; 
+the Petrosian radius measured by <span class="eqn">frames</span> is extraordinarily constant
+in physical size as a function of redshift.
+
+<a name="mag_psf"></a>
+<p><br><a href="#top"><img src="../shared_images/backtotop.gif" border=0></a>
+<br><p>
+<h3>PSF magnitudes</h3>
+Stored as <span class="eqn">psfMag</span>. For isolated stars, which are well-described by the point spread function 
+(PSF), the optimal
+measure of the total flux is determined by fitting a PSF model to the
+object.  In practice, we do this by sync-shifting the image of a star
+so that it is exactly centered on a pixel, and then fitting a Gaussian
+model of the PSF to it.  This fit is carried out on the local PSF KL
+model at each position as well; the difference
+between the two is then a local aperture correction, which gives a
+corrected PSF magnitude.  Finally, we use bright stars to determine a
+further aperture correction to a radius of 7.4'' as a function of
+seeing, and apply this to each frame based on its seeing.  This involved
+procedure is necessary to take into account the full variation of the
+PSF across the field,
+including the low signal-to-noise ratio wings.  Empirically, this
+reduces the seeing-dependence of the photometry to below 0.02 mag for
+seeing as poor as 2''.  The resulting magnitude is stored in the
+quantity <span class="eqn">psfMag</span>.  The flag <span class="eqn">PSF_FLUX_INTERP</span> warns that the PSF photometry might be suspect.
+The flag <span class="eqn">BAD_COUNTS_ERROR</span> warns that because of interpolated
+pixels, the error may be under-estimated.
+<br><p>
+<a name="reddening"></a>
+<a href="#top"><img src="../shared_images/backtotop.gif" border=0></a><br><p>
+
+<h3>The Reddening Correction</h3>
+Reddening corrections in magnitudes at the position of each object,
+<span class="eqn">reddening</span>, are computed following Schlegel, Finkbeiner & Davis (1998).  These
+corrections are <em>not</em> applied to the magnitudes in the 
+databases.
+Conversions from <em>E(B-V)</em> to total extinction <em>A<sub>lambda</sub></em>, assuming a
+<em>z=0</em> elliptical galaxy spectral energy distribution, are
+tabulated in Table 22 of the EDR Paper.
+<br><p>
+<a name="which_mags"></a>
+<a href="#top"><img src="../shared_images/backtotop.gif" border=0></a><br><p>
+
+<h3>Which Magnitude should I use?</h3> Faced with this array of
+different magnitude measurements to choose from, which one is
+appropriate in which circumstances? We cannot give any guarantees of
+what is appropriate for the science <em>you</em> want to do, but here
+we present some examples, where we use the general guideline that one
+usually wants to maximize some combination of signal-to-noise ratio,
+fraction of the total flux included, and freedom from systematic
+variations with observing conditions and distance. We note that due to the <a href="#mag_model">problem with model magnitudes</a>, the following caveats should be observed:
+<ul>
+ <li>Colors derived from model magnitudes are almost completely
+insensitive to the bug.  Model magnitudes remain the optimal
+quantities to use for the colors of extended objects, especially at
+the faint end. </li>
+
+ <li>For photometry of unresolved sources, one should use PSF
+ magnitudes. </li>
+
+ <li>For photometry of resolved sources, one should use Petrosian
+magnitudes, especially at the bright end. </li>
+
+ <li>The scale sizes derived from the model fits are systematically
+wrong.  For exponential fits, the effective radii are systematically
+0.15" too large in the present code (almost independent of r_e
+itself), while for the de Vaucouleurs fits, they are roughly 25% too
+large (almost independent of r_e itself, for r_e > 2 arcsec).  These
+correction factors depend on seeing to some level, of course.</li>
+</ul>
+Again, it is worth emphasizing that the model magnitudes in DR1 are
+appreciably better than those used in the EDR.  We are reprocessing
+all the DR1 data with a version of the photometric pipeline that
+addresses this remaining bug, and will release the results to the
+public through this website as soon as they are ready.
+<br><p>
+<u>Example magnitude usage</u><br>
+ <ul> <li>
+<b>Photometry of Bright Stars</b>: If the objects are bright enough,
+add up all the flux from the profile <span
+class="eqn">profMean</span> and generate a large aperture
+magnitude.  We recommend using the first 7 annuli.  <li> <b>Photometry
+of Distant Quasars</b>: These will be unresolved, and therefore have
+images consistent with the PSF.  For this reason, <span
+class="eqn">psfMag</span> is unbiased and optimal.  <li> <b>Colors
+of Stars</b>: Again, these objects are unresolved, and <span
+class="eqn">psfMag</span> is the optimal
+ measure of their brightness. 
+<li> <b>Photometry of Nearby Galaxies</b>: Galaxies bright enough to
+be included in our spectroscopic sample have relatively high
+signal-to-noise ratio measurements of their Petrosian magnitudes. Since
+these magnitudes are model-independent and yield a large fraction of
+the total flux, roughly constant with redshift, 
+<span class="eqn">petroMag</span>
+is the measurement of choice for such objects. In fact, the noise
+properties of Petrosian magnitudes remain good to <em>r=20</em> 
+or so. 
+<li> <b>Photometry of Distant Galaxies</b>: For the faintest galaxies,
+estimates of the Petrosian magnitudes become very noisy. Under these
+conditions, the 
+<span class="eqn">modelMag</span> is usually 
+a more reliable estimate of the
+galaxy flux.  In addition, these magnitudes account for the effects of local
+seeing and thus are less dependent on local seeing variations.  This
+property also is desirable for the faintest, smallest objects.  The
+model <em>colors</em> for galaxies are also unbiased, as mentioned above. 
+</ul>
+Of course, it would <em>not</em> be appropriate to study the evolution of 
+galaxies and their colors by using Petrosian magnitudes for bright 
+galaxies, and model magnitudes for faint galaxies. 
+<br><p>
+Finally, we note that azimuthally-averaged radial profiles are also
+provided, as described <a href="#photo_profile">below</a>, and can easily be used to create
+circular aperture magnitudes of any desired type. For instance, to
+study a large dynamic range of galaxy fluxes, one could measure
+alternative Petrosian magnitudes with parameters tuned
+such that the Petrosian flux includes a small fraction of the total
+flux, but yields higher signal-to-noise ratio measurements at faint
+magnitudes.
+<br><p>
+
+<a name="photo_profile"></a>
+<a href="#top"><img src="../shared_images/backtotop.gif" border=0></a><br><p>
+
+<h3>Radial Profiles</h3>
+The <span class="eqn"> frames</span> pipeline extracts an azimuthally-averaged radial
+surface brightness profile. In the catalogs, it is given as the
+average surface brightness in a series of annuli.  This quantity is in 
+units of
+``maggies'' per square arcsec, where a <em>maggie</em> is a linear
+measure of flux; one maggie has an AB magnitude of 0 (thus a surface
+brightness of 20 mag/square arcsec corresponds to 10<sup>-8</sup> maggies
+per square arcsec).  The number of annuli for which there is a
+measurable signal is listed as <span class="eqn"> nprof</span>, the mean surface
+brightness is listed as <span class="eqn"> profMean</span>, and the error is listed as
+<span class="eqn"> profErr</span>.  This error includes both photon noise, and the
+small-scale ``bumpiness'' in the counts as a function of azimuthal
+angle.
+<br><p>
+When converting the <span class="eqn"> profMean</span> values to a local surface
+brightness, it is not the best approach to assign the mean
+surface brightness to some radius within the annulus and then linearly
+interpolate between radial bins.  Do not use smoothing
+splines, as they will not go through the points in the cumulative
+profile and thus (obviously) will not conserve flux. What <span class="eqn"> frames</span>
+does, e.g., in determining the Petrosian ratio, is to fit a taut spline to the
+<em>cumulative</em> profile and then differentiate that spline fit,
+after transforming both the radii and cumulative profiles with asinh
+functions.  We recommend doing the same here.
+<br>
+The annuli used are:
+<table border=0>
+<tr><th>Aperture</th><th>Radius (pixels)</th><th>Radius (arcsec)</th><th>Area (pixels)</th></tr>
+<tr><td>1</td><td>0.56</td><td>0.23</td><td>1</td></tr>
+<tr><td>2</td><td>1.69</td><td>0.68</td><td>9</td></tr>
+<tr><td>3</td><td>2.58</td><td>1.03</td><td>21</td></tr>
+<tr><td>4</td><td>4.41</td><td>1.76</td><td>61</td></tr>
+<tr><td>5</td><td>7.51</td><td>3.00</td><td>177</td></tr>
+<tr><td>6</td><td>11.58</td><td>4.63</td><td>421</td></tr>
+<tr><td>7</td><td>18.58</td><td>7.43</td><td>1085</td></tr>
+<tr><td>8</td><td>28.55</td><td>11.42</td><td>2561</td></tr>
+<tr><td>9</td><td>45.50</td><td>18.20</td><td>6505</td></tr>
+<tr><td>10</td><td>70.15</td><td>28.20</td><td>15619</td></tr>
+<tr><td>11</td><td>110.50</td><td>44.21</td><td>38381</td></tr>
+<tr><td>12</td><td>172.50</td><td>69.00</td><td>93475</td></tr>
+<tr><td>13</td><td>269.50</td><td>107.81</td><td>228207</td></tr>
+<tr><td>14</td><td>420.50</td><td>168.20</td><td>555525</td></tr>
+<tr><td>15</td><td>657.50</td><td>263.00</td><td>1358149</td></tr>
+</table><br><p>
+<a href="#top"><img src="../shared_images/backtotop.gif" border=0></a><br><p>
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Tue May 27 14:49:01 CDT 2003
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

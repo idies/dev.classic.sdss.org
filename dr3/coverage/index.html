@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Sky coverage - SDSS DR3</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Sky coverage</h1>
+
+<p>The DR3 contains that part of the SDSS imaging and spectroscopy
+taken through July 2003. Here we give coverage plots and the detailed
+<a href="#tables">coverage tables</a> from which they were
+constructed. Further below, we outline the <a href="#future">future
+sky coverage of SDSS</a>.  The survey terms are explained in the
+sections on <a href="#imaging">imaging coverage</a> and <a
+href="#spectro">spectroscopic coverage</a> below.</p>
+
+<!-- <p>The quickest way to check whether SDSS data are available for a -->
+<!-- list of objects is the <a href="http://das.sdss.org/DR1-cgi-bin/FOOT">DR1 footprint -->
+<!-- server</a>. You can also use the <a href="http://das.sdss.org/auxcgi/dr1/fc">SDSS finding -->
+<!-- chart</a> to check the survey coverage. -->
+
+<p>For data interfaces, see the <a href="../access/index.html">data
+access</a> page.</p>
+
+<table>
+  <tr>
+    <td><strong>Equatorial</strong></td>
+    <td><a href="../dr3photo_big.gif"><img
+	src="../dr3photo.gif" alt="imaging"
+	 align="top"></a></td>
+    <td><a href="../dr3spectro_big.gif"><img
+	src="../dr3spectro.gif" alt ="spectroscopy" align="top"></a></td>
+  </tr>
+  <tr align="center">
+    <td></td>
+    <td><a href="../dr3photo_big.gif">Imaging</a> <a href="../dr3photo.ps">(ps)</a></td>
+    <td><a href="../dr3spectro_big.gif">Spectroscopy</a> <a href="../dr3spectro.ps">(ps)</a></td>
+  </tr>
+  <tr>
+    <td><strong>Galactic</strong></td>
+    <td><a href="../dr3photogal_big.gif"><img
+	src="../dr3photogal.gif" alt="imaging coverage"
+	width="272" align="top"></a></td>
+    <td><a href="../dr3spectrogal_big.gif"><img
+	src="../dr3spectrogal.gif" alt ="spectroscopy coverage" width="272" align="top"></a></td>
+  </tr>
+  <tr align="center">
+    <td></td>
+    <td><a href="../dr3photogal_big.gif">Imaging</a> <a href="../dr3photogal.ps">(ps)</a></td>
+    <td><a href="../dr3spectrogal_big.gif">Spectroscopy</a> <a href="../dr3spectrogal.ps">(ps)</a></td>
+  </tr>
+</table>
+
+<a name="tables"></a><h2>Coverage tables</h2>
+
+<p>For reference, the coverage tables describe the sky coverage in
+terms of survey coordinates. To translate the sky coverage into
+celestial coordinates, please refer to the <a
+href="../products/general/edr_html/node26.html#SECTION00032200000000000000">coordinates
+section of the EDR paper</a> and the description below.</p>
+
+<p><strong>Note:</strong> The coverage tables, and a number of other
+files we distribute, are given as <a
+href="../data/parfiles.html">ASCII parameter (.par) files</a>.</p>
+
+<table border="1">
+  <tr>
+    <th>SDSS entire survey</th>
+    <td><a href="./atStripeDef.par">atStripeDef.par</a> (survey coordinates)</td>
+  </tr>
+  <tr>
+    <th>Best</th>
+    <td><a href="./tsChunk.dr3.best.par">tsChunk.dr3.best.par</a> (great circle
+	coordinates) - see <a href="#targetbest"><em>Target</em> and
+	<em>Best</em></a> below</td>
+  </tr>
+  <tr>
+    <th>Target</th>
+    <td><a href="./tsChunk.dr3.target.par">tsChunk.dr3.target.par</a> (great circle
+	coordinates) - see <a href="#targetbest"><em>Target</em> and
+	<em>Best</em></a> below</td>
+  </tr>
+  <tr>
+    <th>Spectroscopy</th>
+    <td><a href="./dr3spectro.par">dr3spectro.par</a> (plate
+	centers by plate number and MJD of observation)</td>
+  </tr>
+</table>
+
+<p>Note also the list of <a href="./holes.html">list of quality
+"holes"</a> (small areas of bad seeing etc.) and <a
+href="./missingdata.html">missing data</a>, the <a
+href="./camcoldiffs.html">list of fields which are missing only
+apparently</a> (e.g., data from different runs were used in target and
+best) and the <a href="./targetvbest.html">list of differences in sky
+coverage between target and best</a>.</p>
+
+<a name="imaging"></a><h2>Imaging coverage: stripes, runs, reruns</h2>
+
+<p>The survey coverage is defined in <a
+href="../glossary/index.html#survey_coords">survey
+coordinates</a>, as described in the <a
+href="../products/general/edr_html/node26.html#SECTION00032200000000000000">coordinates
+section of the EDR paper</a>. For detailed astrometry please see the
+following <a href="./runs_with_different_node.html">note about parts
+of the survey which have a slightly different survey coordinate system
+from the rest</a>.</p>
+
+<a name="stripe"></a>
+<h3><em>Stripes</em></h3>
+
+<p>The imaging survey scans the sky along great circles, which are
+circles of constant survey latitude <em>eta</em>. Scans are obtained
+along <em>stripes</em> spaced 2.5&deg; in survey latitude. Each stripe
+has an integer stripe number <em>n</em> such that the inclination of a
+stripe with respect to the celestial equator is -25&deg; + 2.5&deg;
+&times; <em>n</em>.  The boundaries of the region eventually to be
+surveyed by the SDSS are defined in terms of survey longitude
+<em>lambda</em> in <a
+href="./atStripeDef.par">atStripeDef.par</a>.</p>
+
+<a name="runs"></a>
+<h3><em>Runs</em> cover <em>strips</em>, two <em>strips</em> cover a <em>stripe</em></h3>
+
+<p>An imaging <em>run</em> designates a continuous scan of the imaging
+telescope along a stripe. The survey camera's focal plane has six
+columns of CCDs, so that a single run consists of six <em>camera
+columns (camcols)</em> (see the <a
+href="../instruments/index.html">instrument descriptions</a>). The
+camera columns have a gap which is filled by an offset second run.  The
+six <em>camcols</em> taken together are called a <em>strip</em>. Thus
+to completely cover the two <em>strips</em> making up one
+<em>stripe</em>, at least two <em>runs</em> are required. The imaging
+data reduction is done on a run-by-run basis, hence the imaging data in our <a
+href="../data/index.html">Data Archive</a> are accessible by run
+number.
+
+<h3>Great circle coordinates</h3>
+
+<p>Every stripe has its own <a
+href="../glossary/index.html#great_circle_coords">great circle
+coordinate system</a>. The coordinate along a great circle is called
+<em><a href="../glossary/index.html#mu">mu</a></em>. The range of data
+actually obtained for a given <em>stripe</em> is reported in terms of
+a range in great circle <em>mu</em> along that <em>stripe</em> as
+<span class=".eqn">startMu</span> and <span class=".eqn">endMu</span>
+in the coverage tables above.  Both <span class=".eqn">startMu</span>
+and <span class=".eqn">endMu</span> are given in integer
+arcseconds.</p>
+
+<p>The calibrated object lists are accessible in the archive by stripe
+number and startMu on that stripe.</p>
+
+<p>For historical reasons, DR1 contained both photometric and
+spectroscopic data which lay outside the official survey limits, i.e.,
+the <em>startMu/endMu</em> for some runs extend beyond the
+<em>lambda</em> limits for the <em>stripes</em> they cover. Since DR3,
+only the <code>target</code> data in those areas are still marked
+non-primary, but the <code>best</code> data <em>are</em> primary. Please
+refer to this <a href="./data_outside_survey.html">note about DR3 data
+outside the SDSS survey area</a> for details on how to retrieve
+these.</p>
+
+<h3>Fields</h3>
+
+<p>A <em>run</em> is divided into images 2048 pix &times; 1361 pix
+which are called <em>fields</em>. Each field then has the first 128
+rows of the following field attached to it, so that all survey images
+actually have a size of 2048 pix &times; 1489 pix.</p>
+
+<p>Object detection, photometry and classification are done field by
+field.  In particular, the <a
+href="../products/catalogs/index.html">calibrated object lists</a> and
+survey <a href="../products/images/index.html">images</a> are
+distributed separately for each field. To account for the overlap, object
+detection is not performed on the first 64 rows or the last 64 rows of
+each corrected frame.</p>
+
+<p><strong>Note</strong> that one therefore should use only objects in
+the <a href="../glossary/index.html#primary">"primary"</a> area of
+each survey field, in order to avoid duplicate area and duplicate
+object detections. Near the center of a stripe, the primary area will
+be the full 2048 pix &times; 1361 pix, but frames overlap near the
+ends of stripes, reducing the primary area there. Please refer to how
+<a href="../products/catalogs/flags.html#status"> "primary" is set in
+the "status" flag of an object</a> and please also see the details of
+<a href="../algorithms/resolve.html"> how overlapping areas are
+resolved</a>. The primary area of each field is recorded as entry
+<code>stripeArea</code> in the <a
+href="../dm/flatFiles/tsField.html">tsField*.fit</a> file</p>
+
+
+<h3>Reruns</h3>
+
+<p>Every time we (re)process our imaging data, we assign the outputs a
+new <em>rerun</em> number. <strong>Thus, a rerun does not imply
+re-observation, but is simply a re-reduction of the same run.</strong>
+The re-reduction can use more recent software or calibrations than a
+previous rerun, or both.  Across runs, the rerun is an arbitrary
+index, so the same rerun of different runs does not have to be
+produced with the same software or calibrations.</p>
+
+<a name="targetbest"></a>
+<h3><em>Target</em> and <em>Best</em></h3>
+
+We publish two <em>reruns</em> for each <em>run</em>
+contained in DR3:
+<ol>
+  <li>A <em>target</em> rerun, which is the reduction used to select
+      targets for the spectroscopic survey. This is referred to as
+      <strong>skyVersion = 0</strong>. All <em>target</em> reruns in
+      DR3 have <var>rerun &lt; 20</var>.
+  </li>
+  <li>A <em>best</em> rerun, which is the best available
+      reduction. This is usually a different rerun from the
+      <em>target</em> version, since our photometric pipelines have
+      been evolving. The <em>best</em> rerun is referred to as
+      <strong>skyVersion = 1</strong>. All DR3 <em>best</em> reruns
+      have <var>rerun &gt;=</var>40.</li>
+</ol>
+
+There is one coverage table each for the target and best version. The
+tables contain the following information:
+<ul>
+  <li>The survey area on the sky, given as a <em>stripe number</em>
+      and a range for the <em>mu</em> coordinate (<code>startmu</code>
+      &lt;= <em>mu</em> &lt;= <code>endmu</code>).  These were used
+      to create the plots above.</li>
+  <li>The <em>runs</em> and <em>reruns</em> and the range of
+      <em>fields</em> which cover the given area.  This is the
+      information needed to find data for a given part of the sky in
+      the <a href="../data/index.html">Data archive</a>.</li>
+</ul>
+
+Notes
+<ul>
+  <li>In general, the <em>target</em> and <em>best</em> version of a
+particular region of the sky come from the same run. However, there
+are some exceptions which are explained in the <a
+href="./targetvbest.html">list of runs differing for target and
+best</a>.</li>
+  <li>If it seems that other data are missing from some run, look at
+      the <a href="./camcoldiffs.html">list of fields which are meant
+      to be missing</a>.</li>
+</ul>
+
+<a name="spectro"></a><h2>Spectroscopy</h2>
+
+The spectrograph's 640 fibers are distributed on a plug plate of
+roughly 3&deg; diameter (7 square degree area) projected on
+sky. Spectroscopic coverage is given in terms of the plate centers.
+Plates are identified by a unique number assigned during targetting
+and the MJD on which they were observed, to distinguish
+re-observations of the same plate.
+
+<a name="future"></a>
+<h2>Future sky coverage of SDSS</h2>
+
+<div class="fig">
+<a href="futurel.ps"><img alt="Future SDSS sky coverage" width="500px"
+src="futurel.jpg"></a>
+<p style="width:600px">Current and anticipated sky coverage of SDSS
+(Aitoff projection of equatorial coordinates as above, but centered at
+RA=120).</p>
+</div>
+
+<p>The plot above shows the current and anticipated sky coverage of
+the spectroscopic survey (also see the <a
+href="http://www.sdss.org/science/DRschedule.html">SDSS data release
+schedule)</a>. The solid outline shows the original survey ellipse in
+the North Galactic Cap as defined <a href="#tables">above</a>.  Dark
+areas show the coverage of DR3. Light areas show
+spectroscopic sky coverage expected at the end of the currently funded
+survey in June 2005 (to be relased in full in 2006). As DR3 includes
+only data collected up through June 2003, data for part of the light areas
+are alrady in hand.  The imaging survey leads the spectroscopic survey
+and will therefore not leave a gap in the sky coverage of the North
+Galactic Cap.  Filling the gap in the spectroscopic survey is
+contingent upon the availability of funding for survey operations
+beyond June 2005.</p>
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Fri Oct  1 13:43:33 CDT 2004
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

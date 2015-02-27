@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>About SEGUE - SDSS DR6</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>About SEGUE</h1>
+
+<p>The <em>Sloan Extension for Galactic Understanding and
+Exploration</em> (<a href="http://segue.uchicago.edu">SEGUE</a>) is
+mining the stellar content of the Milky Way in order to create a
+detailed 3-dimensional map of the Galaxy. SEGUE will ultimately obtain
+spectra of 240,000 stars in the disk and spheroid, revealing the age,
+composition and phase space distribution of stars within the various
+Galactic components. These stellar excavations will provide essential
+clues for understanding the structure, formation and evolution of our
+Galaxy.  The SEGUE project, scheduled to run through June 30, 2008, is
+releasing data to the public as part of SDSS-II DR6.  This initial
+SEGUE data release consists of imaging of approximately 1166 square
+degree of lower Galactic latitude sky (most with <var>b</var> &lt; 35
+degrees), with this <a
+href="../seguephotogal_big.gif">SEGUE Imaging
+Footprint</a>.  Additionally, approximately 100,000 SEGUE
+spectra on 169 plates (with this <a
+href="../seguespectrogal_big.gif">SEGUE
+Spectroscopic Footprint</a>) are available.  Note that SEGUE obtains
+its spectroscopic target positions from both the Legacy <a
+href="../dr6photogal_big.gif">SDSS Imaging Footprint</a> and the
+new, lower latitude SEGUE Imaging.</p>
+
+<p>SEGUE is not a full sky spectroscopic survey, but rather it
+sparse-samples the Galaxy in about directions separated by about 10 to
+20 degrees on the sky with a pair of spectroscopic plates of area 7
+square degrees, obtaining approximately 1100 science spectra toward
+each of approximately 200 sightlines by survey's end (spectra toward
+about 80 of these sightlines are available with DR6).  We offer a page
+showing the <a href="http://segue.uchicago.edu/skycoverage.html">
+current status of the SEGUE survey</a>, and a page allowing to <a
+href="http://segue.uchicago.edu/segueplatelist.html">browse the 100,000
+SEGUE spectra</a>.</p>
+
+<p>There is a page describing the <a
+href="http://segue.uchicago.edu/seguescience.html">science goals of
+SEGUE</a> and a <a
+href="http://segue.uchicago.edu/seguedocuments.html">white paper
+describing the SEGUE project</a>.</p>
+
+<p>New for DR6 is the first release, in SQL searchable database form,
+of estimates of stellar atmospheric parameters, including metallicity,
+effective temperature and surface gravity along with radial velocity
+and stellar classification information for each star.  These
+quantities are tabulated and fully searchable (via SQL) in the <a
+href="../products/spectra/spectroparameters.html">sppParams</a> table
+of the DR6 CAS database.  Line indicies for common species are also
+tabulated for all stars in <a
+href="../products/spectra/spectrolineindices.html">sppLines</a>.</p>
+
+<p>An introduction to the SEGUE spectra is given at <a
+href="http://segue.uchicago.edu/getstarted.html">http://segue.sdss.org/getstarted.html</a>. There
+are also <a href="http://segue.uchicago.edu/targetsel.html">notes on
+the Target Selection for SEGUE</a>.</p>
+
+<h2>Important note about linking SEGUE imaging and spectra in the CAS</h2>
+
+<p>The SEGUE spectra count as <a
+href="../products/spectra/special.html">special-plate</a> spectra in
+the CAS and are <strong>not</strong> considered to be
+&quot;scienceprimary&quot;. Therefore, they are <em>not</em> linked to the
+photometry in the usual way, e.g., they do not appear in the object
+browser's default view like galaxy, quasar and stellar spectra from
+the legacy survey. Moreover, all SEGUE spectra are in the
+<code>BESTDR6</code> database, while most of the SEGUE imaging is in
+the <code>SEGUEDR6</code> database of the CAS, so that linking imaging
+and spectroscopy data requires special care. See the <a
+href="http://segue.uchicago.edu/getstarted.html#ex4">SEGUE sample SQL
+query for instructions on joining SEGUE imaging and
+spectroscopy</a>.</p>
+
+
+<hr>
+Last modified on $Date: 2007/07/12 19:24:45 $ (UT)
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

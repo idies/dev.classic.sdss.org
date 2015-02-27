@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+     
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     
+  <link rel="stylesheet" type="text/css" href="../includes/sdss.css"><title>Algorithms: Spectrophotometry - SDSS DR2</title></head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+ 
+<h1>Algorithms - Spectrophotometry</h1>
+
+<p>Because the SDSS spectra are obtained through 3-arcsecond fibers
+during non-photometric observing conditions, special techniques must
+be employed to spectrophotometrically calibrate the data.  There have
+been three substantial improvements to the algorithms which
+photometrically calibrate the spectra (1) improved matching of
+observed standard stars to models; (2) tying the spectrophotometry
+directly to the r-band fiber magnitudes measured by the most recent
+version of the photometric pipeline; and (3) no longer using the
+&quot;smear&quot; exposures. A separate <a
+href="../products/spectra/spectrophotometry.html">spectrophotometric
+quality</a> page describes how we quantify these improvements.</p>
+
+<h2>Analysis of spectroscopic standard stars</h2>
+
+<p> On each spectroscopic plate, 16 objects are targeted as
+spectroscopic standards.  These objects are color-selected to be F8
+subdwarfs, similar in spectral type to the SDSS primary standard BD+17
+4708.</p>
+
+<div class="fig">
+<img src="stdstar_colors.jpg" alt="standard star colors" width="576" height="360">
+<p style="width:600px;text-align:justify">The color selection of the
+SDSS standard stars. Red points represent stars selected as
+spectroscopic standards. (Most are flux standards; the very blue stars
+in the right hand plot are"hot standards"used for telluric absorption
+correction.)</p>
+</div>
+
+<p>The flux calibration of the spectra is handled by the Spectro2d
+pipeline.  It is performed separately for each of the 2 spectrographs,
+hence each half-<a href="../glossary/index.html#P">plate</a> has its
+own calibration. In the EDR and DR1 Spectro2d calibration
+pipelines, fluxing was achieved by <em>assuming</em> that the mean
+spectrum of the stars on each half-plate was equivalent to a synthetic
+composite F8 subdwarf spectrum from <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1998PASP..110..863P">Pickles
+(1998)</a>.  In the reductions included in DR2, the spectrum of each
+standard star is spectrally typed by comparing with a grid of
+theoretical spectra generated from Kurucz model atmospheres <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1992IAUS..149..225K">(Kurucz
+1992)</a> using the spectral synthesis code SPECTRUM (<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1994AJ....107..742G">Gray
+&amp; Corbally 1994</a>; <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2001AJ....121.2159G">Gray,
+Graham, &amp; Hoyt 2001</a>).  The flux calibration vector is derived
+from the average ratio of each star (after correcting for Galactic
+reddening) and its best-fit model. Since the red and blue halves of
+the spectra are imaged onto separate CCDs, separate red and blue flux
+calibration vectors are produced. These will resemble the throughput
+curves under photometric conditions. Finally, the red and blue halves
+of each spectrum on each exposure are multiplied by the appropriate
+flux calibration vector. The spectra are then combined with bad pixel
+rejection and rebinned to a constant dispersion.</p>
+
+<div class="fig">
+<img src="throughput.jpg" alt="throughput plot" width="507" height="384">
+
+<p style="width:530px;text-align:justify">Throughput curves for the
+red and blue channels on the two SDSS spectrographs.</p>
+</div>
+
+<h3>Note about galactic extinction correction</h3>
+
+<!--#include virtual="../products/spectra/galextinction.html"-->
+
+<h2>Improved Comparison to Fiber Magnitudes</h2>
+
+<p>The second update in the pipeline is relatively minor: We now
+compute the absolute calibration by tying the <var>r</var>-band fluxes of the
+standard star spectra to the fiber magnitudes output by the latest
+version of the photometric pipeline.  The latest version now corrects
+fiber magnitudes to a constant seeing of 2&quot;, and includes the
+contribution of flux from overlapping objects in the fiber aperture;
+these changes greatly improve the overall data consistency.</p>
+
+<h2>Smears</h2>
+
+<p>The third update to the spectroscopic pipeline is that we no longer
+use the &quot;smear&quot; observations in our calibration.  As the EDR
+paper describes, &quot;smear&quot; observations are low
+signal-to-noise ratio (S/N) spectroscopic exposures made through an
+effective 5.5&quot; by 9&quot; aperture, aligned with the parallactic
+angle.  Smears were designed to account for object light excluded from
+the 3&quot; fiber due to seeing, atmospheric refraction and object
+extent.  However, extensive experiments comparing photometry and
+spectrophotometry calibrated with and without smear observations have
+shown that the smear correction provides improvements only for point
+sources (stars and quasars) with very high S/N.  For extended sources
+(galaxies) the spectrum obtained in the 3&quot; fiber aperture is
+calibrated to have the total flux and spectral shape of the light in
+the smear aperture.  This is undesirable, for example, if the fiber
+samples the bulge of a galaxy, but the smear aperture includes much of
+its disk: For extended sources, the effect of the smears was to give a
+systematic offset between spectroscopic and fiber magnitudes of up to
+a magnitude; with the DR2 reductions, this trend is gone.  Finally,
+smear exposures were not carried out for one reason or another for
+roughly 1/3 of the plates in DR2.  For this reason, we do <em>not</em>
+apply the smear correction to the data in DR2.</p>
+
+<p>To the extent that all point sources are centered in the fibers in
+the same way as are the standards, our flux calibration scheme
+corrects the spectra for losses due to atmospheric refraction without the use of
+smears.  Extended sources are likely to be slightly over-corrected
+for atmospheric refraction.  However, most galaxies are quite
+centrally concentrated and more closely resemble point sources than
+uniform extended sources.  In the mean, this overcorrection makes the
+<var>g-r</var> color of the galaxy spectra too red by ~1%.</p>
+ 
+<hr><!-- hhmts start -->Last modified: Mon Mar 15 00:30:20 CST 2004
+<!-- hhmts end -->
+  <!--#include virtual="../includes/footer.html"--> <br>
+ <br>
+<br>
+</body></html>

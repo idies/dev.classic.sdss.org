@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>SDSS DR1 - Data products: Spectra</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Spectra</h1>
+Up: <a href="../index.html">Data Products</a> Sections: <a
+href="../general/index.html">General</a> - <a
+href="../images/index.html">Images</a> - <a
+href="../catalogs/index.html">Object lists</a> - Spectra - <a
+href="../tiling/index.html">Tiling</a>
+
+<h2>About spectroscopic samples</h2>
+
+<p>The spectroscopic survey is predominantly a survey for</p>
+<ul>
+  <li>Bright galaxies, the "main" sample, with Petrosian <var>r</var>-band
+    magnitude &lt; 17.77 (see this <a href="./pieplot.ps">pie plot
+      showing the redshift distribution of 78275 DR1 galaxies with
+      -15&deg; &lt; DEC &lt; 20&deg;</a>).</li>
+  <li>Luminous Red Galaxies (LRGs) with Petrosian <var>r</var>-band magnitude
+    down to 19.5 (see this <a href="./zdist.ps">redshift distribution
+      of DR1 "main" galaxies and LRGs</a>), and</li>
+  <li>Quasars, targetting  quasar candidates as faint as <var>i &lt;
+      20.2</var> (see this <a href="./qsozdist.ps">DR1 quasar
+      redshift distribution</a>).</li>
+</ul>
+
+<p>There is also a large number of spectra of stars. Brown dwarfs, ROSAT and
+FIRST counterparts are targetted as well. Refer to the <a
+href="../general/target_quality.html">target selection quality</a> or <a
+href="../../algorithms/target.html">target selection algorithm</a> for
+details about the spectroscopic survey targets.</p>
+
+<h2>Getting and using spectra</h2>
+
+<p>The spectra distributed by the SDSS have been sky subtracted,
+corrected for telluric absorption (which effectively also corrects for
+galactic extinction; see <a href="#extinct">extinction note</a>
+below), and <a
+href="../../algorithms/spectrophotometry.html">spectrophotometrically
+calibrated</a> by the Spectro2d pipeline.  Spectral classification,
+redshift determination, and emission and absorption line measurements
+are carried out by the Spectro1d pipeline. The <a
+href="../../algorithms/index.html">algorithms page</a> contains
+details about spectroscopic data processing.</p>
+
+<p>The Data Archive Server provides the same spectrum in two
+files:</p>
+<ul>
+  <li>Spectro2d <a
+    href="../../dm/flatFiles/spPlate.html"><code>spPlate*.fits</code></a>: all calibrated spectra from a single plate,
+    without any parameters or continuum fits.</li>
+  <li>Spectro1d <a
+      href="../../dm/flatFiles/spSpec.html"><code>spSpec*.fits</code></a>:
+      multiple fits extensions (images and tables) with the calibrated
+      spectrum, a continuum-subtracted spectrum, and all measured parameters
+      (redshift, line fits, derived quantities). See <a
+      href="./read_spSpec.html">how to read an spSpec file</a>.</li>
+</ul>
+
+<p>The <a href="../../access/">data access</a> page contains various
+query forms to get spectra by coordinates, or to search for spectra by
+redshift, object magnitude, color etc., and to retrieve them from the
+archive. The quickest way to search spectra is the <a
+href="http://das.sdss.org/DR1-cgi-bin/SQS">Spectro Query Server</a> form.</p>
+
+<p><strong>Caveat</strong> for using SDSS-measured redshifts: Only 1%
+of the objects have an "unknown" classification. The redshifts of all
+but a few tenths of a percent of the remainder are believed to be
+correct. <strong>To identify the few objects with unreliable
+redshifts, be sure to consider the confidence we have assigned to each
+redshift (<code>z_conf</code> in the <a
+href="../../dm/flatFiles/spSpec.html">spSpec*.fits primary header</a>,
+and the status of the redshift measurement <a
+href="../../dm/flatFiles/spSpec.html#zstatus"><code>zStatus</code></a>
+and <a
+href="../../dm/flatFiles/spSpec.html#zwarning"><code>zWarnin</code></a>,
+which may have failed.</strong></p>
+
+<h3> Imaging information associated with each spectrum</h3>
+
+<p> Very often one wishes to obtain all the SDSS photometric (imaging
+camera) data associated with each spectrum.  One can obtain this
+information most easily for nearly all plates through the <a
+href="http://das.sdss.org/DR1-cgi-bin/SQS">SQS</a> interface by
+selecting imaging parameters to return with your selected spectra.
+There are also available, for those who prefer working with the full
+fits files of spectra and imaging catalogs, a special set of files
+(<code>spObj-*.fit</code>) containing a bundled version of the
+spectroscopic data and all the corresponding imaging data. These files
+are available via the <a
+href="http://das.sdss.org/DR1-cgi-bin/DAS">DAS</a> by requesting the
+data product <code>tsObjFromMap (or spObj)</code> for the plates you
+wish. To get these files in bulk for the entire survey, see <a
+href="./getspectra.html">getting SDSS spectra and corresponding
+imaging data</a>.</p>
+
+<p>One caveat is (see below) is that a few plates in DR1 target objects
+beyond the <a href="../../coverage/atStripeDef.par">survey limits</a>
+for a particular survey stripe.  Their corresponding imaging 
+data is not available via a SQS query and thus is most easily 
+available through the <code>spObj-*.fit</code> files, which are available
+for all plates.</p>
+
+
+
+<h2>Quality of spectra</h2>
+
+<ul>
+  <li><a href="./snmagplate.html">spectroscopic signal-to-noise as
+      function of magnitude</a></li>
+  <li><a href="./spectrophotometry.html">Details about the quality of
+      spectrophotometry</a></li>
+</ul>
+
+    
+<h2>About the spectra</h2>
+
+<p>For details about the spectrographs, see the <a
+href="../../instruments/spectrographs/index.html">spectrograph
+page</a>.</p>
+
+<table border="1">
+  <tr>
+    <td>Plate diameter</td><td>3 degrees</td>
+  </tr><tr>
+    <td>Fiber diameter</td><td>3 arcsec</td>
+  </tr><tr>
+    <td>Wavelength coverage</td><td>3800 - 9200 &Aring;</td>
+  </tr><tr>
+    <td>Wavelength calibration</td><td>better than 10 km/s</td>
+  </tr><tr>
+    <td>Wavelength reference</td><td>heliocentric <a href="vacwavelength.html">vacuum wavelengths</a></td>
+  </tr><tr>
+    <td>Binning</td><td>log-lambda, 69 km/s per pixel</td>
+  </tr><tr>
+    <td>Resolution</td><td>1850 to 2200; value for each spectrum in <a href="../../dm/flatFiles/spPlate.html">spPlate*.fits</a></td>
+  </tr><tr>
+    <td>Flux Units </td><td>10<sup>-17</sup> erg/s/cm<sup>2</sup>/&Aring;</td>
+  </tr>
+</table>
+
+<h3>Further details</h3>
+
+<ul>
+  <li>Error and mask arrays are available (see the <a
+    href="../../dm/flatFiles/spPlate.html">data model</a>.)
+      The sky spectrum
+    subtracted from each object spectrum is not currently available.<br>
+  </li>
+  <li>Spectroscopic observations are undertaken in non-photometric conditions
+      when the imaging camera is not in use. At least three
+      fifteen-minute exposures are taken until the cumulative mean S/N
+      per pixel exceeds 4 for a fiducial fiber magnitude of
+      <var>g</var> = 20.2 and <var>i </var>= 19.9.
+  </li>
+  <li>We provide the <a
+      href="../../algorithms/spectemplates/index.html">cross-correlation
+      templates</a> used to obtain <a
+      href="../../algorithms/redshift_type.html#xcorz">cross-correlation
+      redshifts</a>.</li>
+</ul>
+
+<h2>Caveats</h2>
+
+<h3>Redshift status</h3>
+
+<p> Only 1% of the objects have an "unknown" classification. The
+redshifts of all but a few tenths of a percent of the remainder are
+believed to be correct. <strong>To identify the few objects with
+unreliable redshifts, be sure to consider the confidence we have
+assigned to each redshift (<code>z_conf</code> in the <a
+href="../../dm/flatFiles/spSpec.html">spSpec*.fits primary header</a>,
+and the status of the redshift measurement <a
+href="../../dm/flatFiles/spSpec.html#zstatus"><code>zStatus</code></a>
+and <a
+href="../../dm/flatFiles/spSpec.html#zwarning"><code>zWarnin</code></a>,
+which may have failed.</strong><!-- See <a
+href="XXXmissinglinkXXX">spectroscopy documentation on --> <!--
+redshift confidence</a> (link to be added). --></p>
+
+<a name="extinct"></a>
+<h3>Extinction correction</h3>
+
+<p>Spectra are reddening-corrected and flux-calibrated using reddening
+and spectrophotometric standards. This is done under the assumption
+that the reddening to the spectrophotometric and reddening stars is
+appropriate for every object in the plate (i.e., that the reddening is
+uniform on the scale of the plate). The standard stars are behind most
+of the Galactic dust causing the Galactic extinction. Therefore,
+independently of the precision of our spectrophotometry, this
+procedure effectively removes not only telluric, but also the
+plate-averaged Galactic extinction. However, although the Galactic
+dust is known to vary across a spectroscopic plate (3 degree
+field-of-view), no attempt is made to correct for this.</p>
+
+<p>Thus, although there is not much Galactic extinction in the survey
+area, applying a further Galactic reddening correction to
+extragalactic spectra based on extinction maps will artificially both
+increase the flux and make the spectrum bluer, introducing systematic
+errors.  Users should <strong>not</strong> apply any reddening
+correction to extragalactic spectra. Conversely, nearby stars have
+incorrectly been dereddened by this procedure.</p>
+
+<h3>Night sky emission lines</h3>
+
+<p>Beware of night sky emission lines in spectra at 5577&Aring;, 6300&Aring;, and
+6363&Aring; which may occasionally be very strong.</p>
+
+<h3>Unmapped fibers</h3>
+
+<p>In a few cases, the fiber mapping failed which identifies which fiber has
+been plugged into which hole. When this happens for two or more objects on
+the sample plate, there is the possibility of wrong matches between spectra
+and photometric objects. There should be no more than a handful of
+these cases; we are working on the compilation of a list.</p>
+
+<h3>Velocity dispersion measurements</h3>
+
+<p>The velocity dispersion measurements distributed with SDSS spectra use
+template spectra convolved to a maximum sigma of 420 km/s. Therefore,
+velocity dispersion sigma &gt; 420 km/s are not reliable and must not be
+used. There is a <a href="./test_vdisp_1d_20.ps">postscript file showing the
+quality of velocity dispersion error estimates</a>.</p>
+
+<p></p>
+
+<p>We recommend the user to not use SDSS velocity dispersion measurements
+for:</p>
+<ul>
+  <li>spectra with S/N &lt; 10</li>
+  <li>velocity dispersion estimates smaller than about 70 km s<sup>-1</sup>
+    given the typical S/N and the instrumental resolution of the SDSS
+  spectra</li>
+</ul>
+
+<p>Also note that the velocity dispersion measurements are not corrected to a
+standard relative circular aperture.</p>
+
+<p>See the <a href="../../algorithms/veldisp.html">velocity dispersion
+algorithm</a> for details.</p>
+
+<a name="bonusplates"></a>
+<h3>"Bonus" plates beyond the survey limits</h3>
+
+<p>A few plates in DR1 target objects beyond the <a
+href=../../coverage/atStripeDef.par>survey limits</a> for a particular
+survey stripe, stripe 10 (see <a
+href="../../coverage/index.html">survey coverage page</a>).  These
+plate/MJD combinations are:</p>
+
+<table border="1">
+  <tr>
+    <th>Plate</th><th>MJD</th>
+  </tr>
+  <tr>
+    <td>343</td><td>51692 (straddles stripe limits)</td></td>
+  </tr><tr>
+    <td>344</td><td>51693</td>
+  </tr><tr>
+    <td>345</td><td>51690</td>
+  </tr><tr>
+    <td>346</td><td>51693</td>
+  </tr><tr>
+    <td>348</td><td>51671</td>
+  </tr><tr>
+    <td>364</td><td>52000</td>
+</table>
+
+<p>Their corresponding imaging data is not available via a regular SQS query 
+(which only contains imaging information on <code>PRIMARY</code> objects within
+the survey limits) and thus is most easily available through 
+the <code>spObj-*.fit</code> files, which are available
+for all plates.  These files are available via
+the <a href="http://das.sdss.org/DR1-cgi-bin/DAS">DAS</a> by requesting the
+data product <code>tsObjFromMap (or spObj)</code> for the plates you wish.
+They are also available for bulk <a href="../../data/rsync.html">rsync</a> or
+<a href="http://wget.sunsite.dk">wget</a> download 
+via <a href="http://das.sdss.org/DR1/data/">DAS through 
+http </a> (in <code>spectro/ss_SPRERUN/PLATE/spObj-*</code>).</p>
+
+<a name="rverrors"></a>
+<h3>Radial velocity accuracy of stellar redshifts in DR1</h3>
+
+<p>Spectra for approximately 17,600 Galactic stars of all common spectral
+types are available with DR1.  Radial velocities (RVs) are stored as
+redshifts (multiply by the speed of light to get the RV in km/s) and 
+were measured by cross-correlation to a set of stellar
+templates.  Also tablulated are measures of individual common spectral
+absorption and emission lines, such as Ca II K (3933), the Balmer
+series of Hydrogen, and Na (5896), and the offsets of these individual
+lines from their vacuum rest wavelengths may be also used to may be
+used to estimate a radial velocity (lines are tabulated with a
+significance indicator, nSigma, and generally speaking, only lines
+above a threshold, such as nSigma &gt; 7, should be considered
+reliable). The resolution of the spectrographs
+(1800 &lt; R &lt; 2250) suggests that radial velocities should be
+measurable with one errors of about 8 km/s for objects
+with reasonable S/N in the SDSS.  The current DR1 dispersion solutions
+for individual objects have been demonstrated to be good to better
+than 5 km/s, including correction for such effects as
+flexure of the telescope.  This dispersion error has been determined
+by examining multiple observations of the same astrophysical object on
+a variety of plates under a variety of observing conditions and
+showing that RVs were reproducible to this accuracy.</p>
+
+<p>The DR1 templates used for stellar RVs have shifts due to
+zeropointing and (low) signal-to-noise problems with the templates
+themselves.  <strong>This introduces systematic errors</strong> in
+addition to possible dispersion errors, depending on spectral type.
+The templates used for DR2 and beyond will be corrected for these
+zeropoint errors.  The error as a function of template are given
+below, along with the identity of the actual template star (which may
+be examined).  The 'Template Number' for any spectrum may be found
+under the keyword 'BESTTEMP' in the PDU header of a SDSS
+<code>spSpec-$mjd-$plate-$fiberid.fit file</code>.  A better estimate of the true
+RV of a particular object may be found by RV(true) = cz(tabulated)+
+RVshift(below).  Estimates for White Dwarf and M,L,T star Radial
+velocities are not accurately quoted for DR1.  Interested scientists
+are encouraged to compute their own RVs off of the extracted spectra,
+keeping in mind that the wavelengths measured of individual lines
+measured are on a vacuum system.</p>
+
+<p>
+<table border="1"> 
+  <tr>
+    <th>Template number</th><th>Sp Type</th><th>Plate</th><th>MJD</th><th>FiberID</th><th>RVshift</th><th>Note</th>
+  </tr>
+  <tr>
+    <td> 1</td><td>sdO</td><td>593</td><td>52026</td><td>265</td><td> +21</td><td></td>
+  </tr><tr>
+    <td> 2</td><td>sdB</td><td>301</wd><td>51942</td><td>431</td><td> +13</td><td></td>
+  </tr><tr>
+    <td> 3</td><td>sdOB</td><td>282</td><td>51658</td><td>110</td><td> -59</td><td></td>
+  </tr><tr>
+    <td> 4</td><td>BHB</td><td>290</td><td>51941</td><td>301</td><td> -170</td><td>Bi-modal RVshift</td>
+  </tr><tr>
+    <td> 5</td><td>A</td><td>300</td><td>51666</td><td>128</td><td> -22</td><td></td>
+  </tr><tr>
+    <td> 6</td><td>early F</td><td>289</td><td>51990</td><td>5</td><td> -23</td><td>color dependent RVshift</td>
+  </tr><tr>
+    <td> 7</td><td>early G</td><td>306</td><td>51637</td><td>295</td><td> -13</td><td></td>
+  </tr><tr>
+    <td> 8</td><td>late F</td><td>273</td><td>51957</td><td>304</td><td> +7</td><td></td>
+  </tr><tr>
+    <td> 9</td><td>G</td><td>310</td><td>51990</td><td>356</td><td> +1.5</td><td></td>
+  </tr><tr>
+    <td> 10</td><td>G/K</td><td>396</td><td>51816</td><td>605</td><td> -5</td><td>color dependent</td>
+  </tr><tr>
+    <td> 11</td><td>early M</td><td>402</td><td>51793</td><td>204</td><td> +28</td><td></td>
+  </tr><tr>
+    <td> 12</td><td>M</td><td>367</td><td>51997</td><td>593</td><td> -5</td><td></td>
+  </tr><tr>
+</table>
+
+
+<p>
+<hr>
+<!-- hhmts start -->Last modified: Thu Mar  4 14:16:17 CST 2004
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

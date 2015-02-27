@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Algorithms: Astrometry - SDSS DR3</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<!-- Start page content -->
+<h1>Algorithms: Astrometry</h1>
+
+<p>A detailed description of the astrometric calibration is given in
+<a href="http://www.journals.uchicago.edu/AJ/journal/issues/v125n3/202156/202156.html">Pier et al. (2003)</a>
+(AJ, or <a href="http://xxx.lanl.gov/abs/astro-ph/0211375">astro-ph/0211375</a>).
+Portions of that discussion are summarized here, and
+on the <a href="../products/general/astrometry.html">astrometry quality overview
+page</a>.</p>
+
+<p>
+The <var>r</var> photometric CCDs serve as the astrometric reference CCDs for the SDSS.
+That is, the positions for SDSS objects are based on the <var>r</var> centroids and
+calibrations.  The <var>r</var> CCDs are calibrated by matching up bright stars detected
+by SDSS with existing astrometric reference catalogs.  One of two reduction
+strategies is employed, depending on the coverage of the astrometric catalogs:
+
+<ol>
+<li> Whenever possible, stars detected on the <var>r</var> CCDs are matched
+     directly with stars in the 
+     <a href="http://ad.usno.navy.mil/ucac/">United States Naval Observatory CCD
+     Astrograph Catalog</a>
+     (UCAC, <a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2000AJ....120.2131Z">Zacharias et al. 2000</a>), an (eventually)
+     all-sky astrometric catalog with a precision of 70 mas at its catalog
+     limit of <var>r</var>= 16, and systematic errors of less than 30 mas.
+     There are approximately 2 - 3 magnituds of overlay between UCAC and
+     unsaturated stars on the <var>r</var> CCDs.  The astrometric CCDs
+     are not used.  For DR2/DR3, stripes 9-13, 76, 82, and 86 used UCAC.
+<li> If a scan is not covered by the current version of UCAC, then it is
+     reduced against Tycho-2
+     (<a href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2000A%26A...355L..27H">Hog et al. 2000</a>), an all-sky astrometric catalog
+     with a median precision of 70 mas at its catalog limit of
+     V<sub>T</sub> = 11.5, and
+     systematic errors of less than 1 mas.  All Tycho-2 stars are saturated
+     on the <var>r</var> CCDs; however there are about 3.5 magnitudes of overlap between
+     bright unsaturated stars on the astrometric CCDs and the faint end of
+     Tycho-2 ( 8 &lt; <var>r</var> &lt; 11.5), and about 3 magnitudes of overlap between bright
+     unsaturated stars on the <var>r</var> CCDs and faint stars on the astrometric CCDs
+     (14 &lt; <var>r</var> &lt; 17).  The overlap stars in common to
+    the astrometric and <var>r</var> CCDs
+     are used to map detections of Tycho-2 stars on the astrometric CCDs onto
+     the <var>r</var> CCDs.  For DR2/DR3, stripes 30-43 used Tycho-2.
+</ol>
+
+The <var>r</var> CCDs are therefore calibrated directly against the
+primary astrometric reference catalog.  FRAMES uses the astrometric
+calibrations to match up detections of the same object observed in the
+other four filters.  The accuracy of the relative astrometry between
+filters can thus significantly impact FRAMES, in particular the
+deblending of overlapping objects, photometry based on the same
+aperture in different filters, and detection of moving objects.  To
+minimize the errors in the relative astrometry between filters, the
+<var>u</var>, <var>g</var>, <var>i</var>, and <var>z</var> CCDs are
+calibrated against the <var>r</var> CCDs.  <p> Each drift scan is
+processed separately.  All six camera columns are processed in a
+single reduction.  In brief, stars detected on the <var>r</var> CCDs
+if calibrating against UCAC, or stars detected on the astrometric CCDs
+transformed to <var>r</var> coordinates if calibrating against
+Tycho-2, are matched to catalog stars.  Transformations from
+<var>r</var> pixel coordinates to catalog mean place (CMP) celestial
+coordinates are derived using a running-means least-squares fit to a
+focal plane model, using all six <var>r</var> CCDs together to solve
+for both the telescope tracking and the <var>r</var> CCDs' focal plane
+offsets, rotations, and scales, combined with smoothing spline fits to
+the intermediate residuals.  These transformations, comprising the
+calibrations for the <var>r</var> CCDs, are then applied to the stars
+detected on the <var>r</var> CCDs, converting them to CMP coordinates
+and creating a catalog of secondary astrometric standards.  Stars
+detected on the <var>u</var>, <var>g</var>, <var>i</var>, and
+<var>z</var> CCDs are then matched to this secondary catalog, and a
+similar fitting procedure (each CCD is fitted separately) is used to
+derive transformations from the pixel coordinates for the other
+photometric CCDs to CMP celestial coordinates, comprising the
+calibrations for the <var>u</var>, <var>g</var>, <var>i</var>, and
+<var>z</var> CCDs.  <p> Notes: At the edges of pixels, the quantities
+<em>objc_rowc</em> and <em>objc_colc</em> take integer values.
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Fri Mar  5 16:48:59 CST 2004
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>About DR3 - SDSS DR3</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>The SDSS Data Release 3 (DR3)</h1>
+
+<h2>Contents</h2>
+
+<ul>
+  <li><a href="#dr3cont">What DR3 contains</a></li>
+  <li><a href="#imcaveat">Caveats for imaging data</a></li>
+  <li><a href="#speccaveat">Caveats for spectroscopic data</a></li>
+  <li><a href="#dr3temp">Advanced features not yet available in DR3</a></li>
+</ul>
+      
+<a name="dr3cont"></a>
+<h2>What DR3 contains</h2>
+
+<p>The DR3 imaging data cover 5282 square degrees, and include
+information on roughly 141 million objects.  The DR3 spectroscopic data
+include data from 826 plates of 640 spectra each, and cover 4188
+square degrees.</p>
+
+<p>The DR3 footprint is defined by all non-repeating survey-quality
+imaging runs within the a priori defined elliptical survey area in the
+Nothern Galactic Cap, and three stripes in the Southern Galactic Cap
+obtained prior to 1 July 2003, and the spectroscopy associated with
+that area obtained before that date.  In fact, 34 square degrees of
+imaging data in the Nothern Galactic Cap lie outside this ellipse.
+While the DR3 scans do not repeat a given area of sky, they do overlap
+to some extent, and the data in the overlaps are included in earlier
+releases as well. The sky coverage of the imaging and spectroscopic
+data that make up DR3 are given on the <a
+href="../coverage/index.html">coverage page</a>.  The natural unit of
+imaging data is a run; the DR3 contains data from 162 runs in the best
+database, and 164 runs in the target database.</p>
+
+<p>A total of 183 square degrees of sky are different runs between target
+and best, the majority along the Equatorial Stripe in the Fall sky.</p>
+
+<p>Except for the sky coverage, the pipelines and databases are
+identical in DR3 and DR2.  Thus, DR3 is a proper superset of DR2.  The
+DR2 included reprocessing of all data included in DR1, and those data
+in EDR that pass our data-quality criteria for the official
+survey.  For details about what changed from DR1 to DR2, please refer
+to <a href="http://www.sdss.org/DR2/start/aboutdr2.html">About DR2</a>
+on the DR2 web site.</p>
+
+<a name="imcaveat"></a>
+<h2>Imaging caveats</h2>
+
+<h3>Red leak to the <var>u</var> filter and very red objects</h3>
+
+<!--#include virtual="../products/images/u_redleak.html"-->
+
+<h3>Bias in sky determination</h3>
+
+<!--#include virtual="../products/images/u_sky.html"-->
+
+<h3>Zeropoint of the photometric system</h3>
+
+<!--#include virtual="../algorithms/sdssab.html"-->
+
+<h3>Holes in the imaging data</h3>
+
+<p>About 0.4% of the DR4 imaging footprint area (about 750 out of
+200,000 fields, or 10/square degree) for DR3 are marked as
+<em>holes</em>.  These are indicated in the CAS by setting
+<code>quality=5 (HOLE)</code> in the <code>tsField</code> file and
+<code>field</code> table and given in the <a
+href="../coverage/holes.html">list of quality holes</a>, which
+contains further details about the holes and quality flags, including
+a information about a new (for DR3) table in the CAS which allows
+one to query for quality information about each field of data.</p>
+
+<h3>Problems with one <var>u</var> chip</h3>
+
+<p>The <var>u</var> chip in the third column of the camera is read out
+on two amplifiers.  On occasion, electronic problems on this chip
+caused one of the two amplifiers to fail, meaning that half the chip
+has no detected objects on it.  This was a problem for only two of the
+105 imaging runs included in DR3: run 2190, which includes a total of
+360 frames in two separate contiguous pieces on strip 12N (centered
+roughly at delta = +5 degrees in the North Galactic Cap; NGC), and run
+2189, which includes 76 frames on stripe 36N near the northern
+boundary of the contiguous area in the NGC.  The relevant frames are
+flagged as bad in the <code>quality</code> flag; in addition,
+individual objects in this region have the <var>u</var> band flagged
+as <code>NOTCHECKED_CENTER</code> (or, for objects which straddle the
+boundary between the two amplifiers, <code>LOCAL_EDGE</code>).  <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123.2945R">Richards
+et al (2002)</a> describe how the quasar selection algorithm handles
+such data; the net effect is that no quasars are selected by the
+<var>ugri</var> branch of the algorithm for these data.</p>
+
+<a name="speccaveat"></a>
+<h2>Spectroscopy caveats</h2>
+
+<h3>Note about galactic extinction correction</h3>
+
+<!--#include virtual="../products/spectra/galextinction.html"-->
+
+
+<h3>Problematic plates</h3>
+
+<p>A small number of plates suffered from a variety of minor problems
+affecting the quality of the spectrophotometry (but not of
+redshifts). See the list under <a
+href="../products/spectra/index.html#badplates">Plates with
+problematic spectrophotometry</a> on the data products page for
+spectra.</p>
+
+<h3>Mismatches between the spectroscopic and imaging data</h3>
+
+<p>For various reasons, a total of 663 spectroscopic objects do not
+have a counterpart in the <code>best</code> object catalogs, 0.2% of
+the total. See the caveat about <a
+href="../products/spectra/index.html#specphotmismatch">mismatches
+between spectra and images</a> on the data products page for spectra.</p>
+
+<!-- Waiting for PR 5904: <h2>Stetson photometry</h2> -->
+
+<a name="dr3temp"></a>
+<h2>Advanced features not yet available in DR3</h2>
+
+<p>There are a number of advanced features or data products that are
+not yet available in DR3, but will be in the near future.</p>
+
+<ul>
+  <li><strong>Photometric redshifts for galaxies</strong> The DR1 <a
+      href="../access/index.html#CAS">Catalog Archive Server</a> had a
+  table with photometric redshifts for galaxies, including galaxies
+      fainter than those in the spectroscopic survey. The redshifts
+      still need to be computed and loaded into the database for DR3.</li>
+  <li><strong>Coverage masks</strong> Detailed coverage masks which
+      will allow large-scale structure resarchers to easily calculate
+      power spectrum and related quantities are in preparation.</li>
+  <li><strong>IQS/SQS</strong> The <a
+      href="http://skyserver.sdss.org/dr3/en/tools/search/IQS.asp">Imaging
+Query Server (IQS)</a> and <a
+href="http://skyserver.sdss.org/dr3/en/tools/search/SQS.asp">Spectro
+      Query Server (SQS)</a> form interfaces have been re-enginered to
+      use a faster database.  They currently do not provide a direct
+      link to the <a href="http://das.sdss.org/DR3-cgi-bin/DAS">DAS data
+      download form</a>; users need to save .csv files with the
+      necessary information and upload these by hand to the DAS form.</li>
+</ul>
+
+<hr>
+<!-- hhmts start -->Last modified: Fri Oct  1 13:54:57 CDT 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

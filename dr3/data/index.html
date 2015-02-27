@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>DAS structure - SDSS DR3</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Data Archive Server structure and contents</h1>
+
+<p>The Data Archive Server (DAS) is a file system containing all
+survey data products. It is accessible via</p>
+<ul>
+  <li>http at <a
+      href="http://das.sdss.org/DR3/data/">http://das.sdss.org/DR3/data</a>
+  </li>
+  <li><a href="./rsync.html">rsync</a> at <code>rsync://dr3@rsync.sdss.org/DR3</code> with
+      password <code>dr3</code>.</li>
+</ul>
+
+<p>This page mirrors the directory structure of the DAS, explaining
+which files are found where. It links to the "data model" descriptions
+of individual files. Directory names link to the http location, but
+the <code>rsync</code> server uses the same directory
+structure. For more details, see the <a
+href="../dm/flatFiles/DIRS.html">data model for directories</a>.</p>
+
+<p>The root directory contains a number of <a
+href="./parfiles.html">ASCII parameter files</a> with names
+<code>fileList-*.par</code>. These contain lists of all files in the
+archive with a CRC checksum for each, and of all files which are
+"missing" from the archive (i.e., you may expect to find these, but
+they do not exist).</p>
+
+<a name="imaging"></a>
+<ul><li><a href="http://das.sdss.org/DR3/data/imaging/">/DR3/data/imaging</a></li></ul>
+
+<p>The root directory for imaging. It contains two kinds of
+subdirectories: two <code>inchunk</code> directories containing the <a
+href="../products/catalogs/">calibrated object lists</a>, and one
+directory for each <a href="../glossary/index.html#run">run</a>/<a
+href="../glossary/index.html#rerun">rerun</a> pair
+containing the remaining imaging data.</p>
+
+<h3>inchunk directories</h3>
+
+<ul><li><a href="http://das.sdss.org/DR3/data/imaging/inchunk_best/">/DR3/data/imaging/inchunk_best</a></li></ul>
+
+<p><strong>Download this directory to obtain the complete imaging
+catalogues with the best available data and reductions.</strong> Be
+sure to read the caveats on the <a
+href="../products/catalogs/">calibrated object lists</a> page.</p>
+
+<p>The imaging is done along great circles. A unique covering of the
+sky is ensured by dividing these great circles into <a
+href="../glossary/index.html#chunk">chunks</a>. Calibrated object
+lists for each chunk are stored in subdirectories with names
+<pre>stripeNN_muMMMMMM_S</pre> where <code>NN</code> is the <a
+href="../coverage/index.html#stripe">stripe number</a>,
+<code>MMMMMM</code> is the starting <a
+href="../glossary/index.html#mu">mu</a> coordinate for that chunk, and
+the <strong>skyVersion</strong> <code>S=1</code> for the "best"
+version.</p>
+
+<ul><li><a
+href="http://das.sdss.org/DR3/data/imaging/inchunk_target/">/DR3/data/imaging/inchunk_target</a></li></ul>
+
+<p><strong>Download this directory to obtain the complete imaging
+catalogues as used to run target selection for the spectroscopic
+survey.</strong> Be sure to read the caveats on the <a
+href="../products/catalogs/">calibrated object lists</a> page.</p>
+
+
+<p>Subdirectories as in <code>inchunk_best</code>. For "target" data,
+the <strong>skyVersion</strong> <code>S = 0</code>.</p>
+
+<ul><li>/DR3/data/imaging/inchunk_XX/stripeNN_muMMMMMM_S</li></ul>
+
+<p>E.g. <a
+href="http://das.sdss.org/DR3/data/imaging/inchunk_best/stripe09_mu615000_1/">/DR3/data/imaging/inchunk_best/stripe09_mu615000_1</a>.
+These directories contain the following</p>
+<ul>
+  <li>Files</li>
+      <ul>
+	<li><a
+	    href="../dm/flatFiles/tsChunk.html"><code>tsChunk*.par</code></a>: 
+	    <a href="./parfiles.html">ASCII parameter file</a>
+	    describing which imaging <a
+	    href="../coverage/index.html#runs">runs, reruns and fields</a> cover
+	    this chunk.
+	</li>
+	<li><a
+	    href="../dm/flatFiles/tsTargets.html"><code>tsTargets*.fit</code></a>:
+	    Lists all spectroscopic targets selected from a given
+	    chunk. For "best", this lists the targets we would like
+	    observe if the spectroscopic survey started now. For
+	    "target", lists the actually selected targets.
+	</li>
+      </ul>
+  </li>
+  <li>Subdirectories
+      <ul>
+	<li>Six subdirectories (1-6), one per camera column, containing
+	    object lists as <code>tsObj*.fit</code> and
+	    <code>tsField*.fit</code> files.</li>
+	<li><code>mask</code> subdirectory containing <a
+	    href="../products/images/use_masks.html">csv imaging
+	    masks</a>. <strong>Note</strong> that the csv masks are
+	    generated from the <code>fpM</code> files, which are
+	    stored in the corresponding run/rerun directory (see
+	    below).</li>
+      </ul>
+  </li>
+</ul>
+
+<h3>run/rerun directories</h3>
+
+<p>These directories have names of the form</p>
+
+<ul><li>/DR2/data/imaging/RRRR/EE/</li></ul>
+
+<p>where RRRR is the <a href="../glossary/index.html#run">run</a>
+number and EE is the <a href="../glossary/index.html#rerun">rerun</a>
+number, eg. <a
+href="http://das.sdss.org/DR2/data/imaging/1336/21/">/DR2/data/imaging/1336/21</a>.</p>
+
+<p>Each run/rerun directory contains the two types of subdirectories.</p>
+<ul>
+  <li>Directories which contain only files:
+      <ul>
+	<li><code>astrom</code> -- results of the astrom pipeline</li>
+	<li><code>nfcalib</code> -- results of photometric
+	    calibration</li>
+	<li><code>logs</code> -- <a
+	    href="../dm/flatFiles/opBC.html">opBC*.par</a> files
+	    listing bad columns for this imaging run</li>
+      </ul>
+  </li>
+  <li>Directories with one subdirectory per <a
+      href="../glossary/index.html#camcol">camera column</a> (1-6),
+      containing the bulk of the imaging data:
+      <ul>
+	<li><code>corr</code> -- corrected frames <a
+	    href="../dm/flatFiles/fpC.html"><code>fpC*.fit.gz</code></a>,
+	    ie. <strong>reduced survey images</strong></li>
+	<li><a name="zoom"></a><code>Zoom</code> -- <a
+	    href="../dm/flatFiles/Zoom.html">fpC*.jpeg</a> images of the
+	    sky in various zoom levels</li>
+	<li><code>objcs</code> -- further outputs of photometric pipeline:
+	    <ul>
+	      <li><a href="../dm/flatFiles/fpAtlas.html">fpAtlas*.fit</a> -- 
+		  set of pixels belonging to each object in the
+		  calibrated object list (corresponding tsObj
+		  file). See <a
+		  href="../products/images/read_atlas.html">how to
+		  read an atlas image</a></li>
+	      <li><a href="../dm/flatFiles/fpBIN.html">fpBIN*.fit</a> -- 
+		  2x2 and 4x4 binned versions of corrected frames (fpC)
+		  after objects detected on original frame have been subtracted </li>
+	      <li><a href="../dm/flatFiles/fpM.html">fpM*.fit</a> --  full masks
+		  with saturated pixels etc. See <a
+		  href="../products/images/read_mask.html">how to read
+		  fpM masks</a>. These form the basis for the <a
+		  href="../products/images/use_masks.html">csv imaging
+		  masks</a> (see above).</li>
+	      <li><a href="../dm/flatFiles/fpObjc.html">fpObjc*.fit</a> -- 
+		  object lists in counts and pixels (these become the
+		  tsObj files after photometric calibration and
+		  conversion of scales in pixels to arcseconds, among others)</li>
+	      <li><a
+		  href="../dm/flatFiles/fpFieldStat.html">fpFieldStat*.fit</a> -- 
+		  statistics of photometric pipeline processing for a
+		  single field. Basis for tsField files.</li>
+	      <li><a
+		  href="../dm/flatFiles/psField.html">psField*.fit</a> -- 
+		  Prelimary photometric calibration, as well as final
+		  point-spread-function fit, for a single field. Use
+		  these to <a
+		  href="../products/images/read_psf.html">reconstruct
+		  the PSF at any position</a>.</li>
+	    </ul>
+	</li>
+      </ul>
+  </li>
+</ul>
+
+<a name="spectro"></a>
+<h2>Spectroscopic data</h2>
+
+<ul><li><a href="http://das.sdss.org/DR2/data/spectro/2d_23/">/DR2/data/spectro/2d_23/</a></li></ul>
+
+<p><code>spectro2d</code> pipeline output, produced by rerun 20 of the
+spectro pipelines: the calibrated spectra. Contains one directory per
+plate with name </p>
+
+<ul><li><code>/DR2/data/spectro/2d_23/PPPP</code></li></ul>
+
+<p>where PPPP is the plate number (eg. <a
+href="http://das.sdss.org/DR2/data/spectro/2d_23/0644/">/DR2/data/spectro/2d_23/0644</a>). Each
+directory contains one <a
+href="../dm/flatFiles/spPlate.html">spPlate*.fit</a> file with all
+640 calibrated spectra for that plate.</p>
+
+<ul><li><a href="http://das.sdss.org/DR2/data/spectro/1d_23/">/DR2/data/spectro/1d_23</a></li></ul>
+
+<p>Calibrated spectra (including gif and ps plots) and
+classifications, redshifts, and other measured parameters (line fits,
+velocity dispersions, line indices). Contains one directory per
+plate with name </p>
+
+<ul><li><code>/DR2/data/spectro/1d_23/PPPP</code></li></ul>
+<p>where PPPP is the plate number (eg. <a
+href="http://das.sdss.org/DR2/data/spectro/1d_23/0644/">/DR2/data/spectro/1d_23/0644</a>).
+Each directory contains two subdirectories:</p>
+<ul>
+  <li><code>1d</code> -- contains 640 <a
+      href="../dm/flatFiles/spSpec.html">spSpec*.fit</a> files,
+      one per spectrum, containing the spectrum and all derived parameters.</li>
+  <li><code>gif</code> -- contains gif and ps plots of each spectrum,
+      with line annotations</li>
+</ul>
+
+<h2>Spectra + imaging</h2>
+
+<ul>
+  <li><a
+    href="http://das.sdss.org/DR3/data/spectro/ss_23/">/DR3/data/spectro/ss_23</a></li>
+<li><a
+    href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/">/DR3/data/spectro/ss_tar_23</a></li>
+</ul>
+
+<p>See separate page about <a
+href="../products/spectra/getspectra.html">getting spectra in bulk</a>.</p>
+
+<hr>
+
+<!-- hhmts start -->Last modified: Thu Apr  8 13:37:13 CDT 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

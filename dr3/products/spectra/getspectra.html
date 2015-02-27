@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Data products: Getting Spectra - SDSS DR3</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Getting all spectra and corresponding imaging data</h1>
+
+<p><a href="./index.html">Back to Spectra</a></p>
+
+<p>For your convenience, we publish a variant of the DR3 spectroscopic
+data set which has all spectra and corresponding object lists entries
+and atlas images. It consists of the following set of file for each
+plate of 640 fibers:</p>
+
+<ul>
+  <li><code>spDiag-$mjd-$plate.par</code>: the spectro1d summary</li>
+  <li><code>spSpec-$mjd-$plate-$fiber.fit</code>: the catalog of spectral lines per spectrum</li>
+  <li><code>spPlate-$plate-$mjd.fits</code>: the image of reduced spectra (1 spectrum per row)</li>
+  <li><code>plPlugMapM-$plate-$mjd-$mapping.par</code>: the mapping of targets to fibers</li>
+  <li><code>spObj-$plate-$mjd-$rerun.fit</code>: joined tsObj and spDiag and
+      plPlugMap data for all fibers, hdu 1 = best, hdu 2 = target
+      (these are called <code>tsObjFromMap</code> on the <a
+      href="http://das.sdss.org/DR3-cgi-bin/DAS">DAS download form</a>)</li>
+  <li><code>spAtlas-$plate-$mjd-$fiber.fit</code>: best and target atlas images for all 5 colors for all fibers</li>
+</ul>
+
+<p>The data model for a <a
+href="../../dm/flatFiles/spObj.html"><code>spObj-*.fit</code></a> file
+is nearly the same as that for a <a
+href="../../dm/flatFiles/tsObj.html"><code>tsObj</code></a> file,
+except that a <code>tsObj</code> file contains all imaging information
+for all objects (bright and faint) in a particular 0.033
+sq. deg. imaging field, while a <code>spObj</code> file contains all
+imaging information for all fibers on a particular spectroscopic
+plate, with an area of 7 sq. deg. spanning many imaging fields.</p>
+
+<p>You can access these files, as well as catalogs of just the
+redshifts, in bulk at the following locations:</p>
+
+<h3>The full set of plates</h3>
+<ul>
+  <li>one subdirectory per plate: <a
+      href="http://das.sdss.org/DR3/data/spectro/ss_23/">http://das.sdss.org/DR3/data/spectro/ss_23</a><br />
+      An example of what is in these directories:
+      <a href="http://das.sdss.org/DR3/data/spectro/ss_23/0666/">plate 666</a></li>
+  <li>one tar.gz file of ~85MB per plate: <a
+      href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/">http://das.sdss.org/DR3/data/spectro/ss_tar_23</a>
+      <br /><strong>We recommend to use these.</strong> Most easily
+      retrieved using
+      <a href="http://www.gnu.org/software/wget/wget.html">wget</a>
+      or <a href="../../data/rsync.html">rsync</a>, with the
+      following command:
+      <pre>rsync -vtrLPR rsync://dr3@rsync.sdss.org/DR3/spectro/ss_tar_23/ ./</pre>
+      The password is <code>dr3</code>. Also see our <a
+      href="../../data/rsync.html">rsync help page</a>.
+  </li>
+</ul>
+
+<h3>Just the redshifts</h3>
+There are separate catalogs by spectroscopic classification,
+the gzipped tarballs are subdivided in to the DR1+DR2 subsets
+(suffix -DR2.fit.gz) and the DR3 incremental objects (suffix -DR3.fit.gz).
+
+<h4>Galaxies</h4>
+<ul>
+  <li>All objects classified as galaxies:
+      <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/gals-DR2.fit.gz"> gals-DR2.fit.gz</a>, 524M (DR1+DR2) <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/gals-dr3.fit.gz"> gals-DR3.fit.gz</a>, +241M (DR3 increment)
+  </li>
+  <li>Object from the <a
+      href="../../glossary/index.html#tilable">tiled samples</a>
+      <ul>
+	<li>Main galaxy sample: <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/main_gals-DR2.fit.gz">main_gals-DR2.fit.gz</a>, 438M <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/main_gals-DR3.fit.gz">main_gals-DR3.fit.gz</a>, +202M (DR3 increment)</li>
+	<li>Luminous Red Galaxies (LRGs): <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/main_lrgs-DR2.fit.gz"> main_lrgs-DR2.fit.gz</a>, 49.3M
+	      <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/main_lrgs-DR3.fit.gz"> main_lrgs-DR3.fit.gz</a>, +23.7M</li>
+      </ul>
+  </li>
+</ul>
+
+<h4>Quasars</h4>
+<ul>
+  <li>All objects classified as quasars:<a
+      href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/qsos-DR2.fit.gz"> qsos-DR2.fit.gz</a>, 73M <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/qsos-DR3.fit.gz"> qsos-DR3.fit.gz</a>, +30M</li>
+  <li>Objects targeted as main survey quasars:
+      <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/main_qsos-DR2.fit.gz"> main_qsos-DR2.fit.gz</a>, 44M
+      <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/main_qsos-DR3.fit.gz"> main_qsos-DR3.fit.gz</a>, +20M
+  </li>
+</ul>
+	    
+<p><strong>Note</strong> that there is a vetted <a
+href="../value_added/qsocat_dr3.html">DR3 quasar
+catalog presented by Schneider et al. 2005</a>. The
+information contained in that catalog
+supersedes the information contained in all other data
+sources. <strong>We strongly recommend</strong>
+cross-checking the list given here against the Schneider
+et al. catalog.  Future data releases will incorporate the
+information from the vetted quasar catalogs.</p>
+
+<h4>Stars</h4>
+
+<p>Objects classified as stars <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/stars-DR2.fit.gz">stars-DR2.fit.gz</a>, 98M <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/stars-DR3.fit.gz">stars-DR3.fit.gz</a>, +46M</p>
+      
+<h4>Unknown and sky fibers</h4>
+
+<p>Objects whose type could not be identified, and sky fibers used to
+perform sky subtraction from the spectra: 
+<a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/unks-DR2.fit.gz"> unks-DR2.fit.gz</a>, 28M <a href="http://das.sdss.org/DR3/data/spectro/ss_tar_23/unks-DR3.fit.gz"> unks-DR3.fit.gz</a>, 13M</p>
+
+<h4>What about objects not observed due to fiber collisions?</h4>
+
+<p>
+You will want the <a href="../tiling/index.html">tiling
+information</a>.</lp>
+
+<hr>
+<!-- hhmts start -->Last modified: Thu Apr 15 10:29:15 CDT 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

@@ -1,0 +1,17 @@
+<ul>
+  <li> For photometry of resolved sources, one should use Petrosian
+      magnitudes, especially at the bright end.  </li>
+  <li> For photometry of unresolved sources, one should use PSF
+      magnitudes.  </li>
+  <li> Colors derived from model magnitudes are almost completely
+      insensitive to the bug. Model magnitudes remain the optimal
+      quantities to use for the colors of extended objects, especially at
+      the faint end.  </li>
+  <li> The scale sizes derived from the model fits
+      are systematically wrong.  For exponential fits, the effective radii
+      are systematically too large by 0.15" in the present code
+      (almost independent of r_e itself), while for the de Vaucouleurs
+      fits, they are roughly 25% too large (almost independent of r_e
+      itself, for r_e &gt; 2 arcsec). These correction factors depend
+      on seeing to some level.</li>
+</ul>

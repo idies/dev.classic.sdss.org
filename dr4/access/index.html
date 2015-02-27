@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR4 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR4 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR4 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Data access - SDSS DR4</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Tools for data access</h1>
+
+<p>DR4 data are distributed via the <a href="#CAS">Catalog Archive
+Server (CAS)</a>, an SQL database with fast search capabilities, and
+the <a href="#DAS">Data Archive Server (DAS)</a>, a collection of fits
+images and tables containing the outputs of the imaging and
+spectroscopic reduction pipelines. In addition, the SDSS collaboration
+has created catalogs and other data products based on public survey
+data that we link from our <a href="../products/value_added/index.html">Value
+Added Data Products</a> page.</p>
+
+<a name="CAS"></a>
+<h2>Catalog Archive Server (CAS) Search</h2>
+
+<h3>Web interfaces</h3>
+
+<table border="1">
+  <tbody valign="top">
+  <tr>
+    <td><a href="http://cas.sdss.org/astrodr4/">Catalog Archive Server
+     (CAS)</a></td>
+    <td>The Catalog Archive Server offers efficient search tools for
+	querying the imaging and spectro catalogs from SDSS.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/tools/search/SQS.asp">Spectro&nbsp;Query&nbsp;Server</a></td>
+    <td>Search spectra by
+	position, or by spectral or photometric parameters. Retrieve survey
+	files.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/tools/search/IQS.asp">Imaging&nbsp;Query&nbsp;Server</a></td>
+    <td>Search photometry catalog by position or by photometric
+	parameters. Retrieve survey files.
+	</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/tools/crossid/speclist.asp">SpecList</a></td>
+    <td>Upload plate,MJD,fiber list as part of a SQL query</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/tools/crossid/upload.asp">Imaging cross-ID</a></td>
+    <td>Find SDSS matches for a list of objects.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/tools/search/sql.asp">SQL search</a></td>
+    <td>Directly search the database using your own SQL queries (also see
+	<a href="http://cas.sdss.org/astrodr4/en/help/">skyserver help pages</a>).</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://casjobs.sdss.org/casjobs">CasJobs</a></td>
+    <td>Use this batch job server for direct SQL searches of the
+	database with generous timeout setting. Share result sets with your
+	collaborators.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/tools/chart/navi.asp">Navigate</a></td>
+    <td>Point and click on SDSS images.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/tools/chart/chart.asp">Finding charts</a></td>
+    <td>Generate jpeg finding charts from SDSS images.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/tools/chart/list.asp">Image lists</a></td>
+    <td>Get jpeg cutouts of SDSS imaging for object lists with link to
+	finding chart. Option to generate object list from SQL
+	query.</td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Query clients</h3>
+
+<p>In addition to using the web interfaces above, you can directly
+connect to the database server to perform  your own SQL queries using
+these clients.</p>
+
+<table border="1">
+  <tbody valign="top">
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/help/download/sdssQA/default.asp">sdssQA</a></td>
+    <td>Provides GUI to edit and submit SQL queries</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://cas.sdss.org/astrodr4/en/help/download/sqlcl/default.asp">sqlcl</a></td>
+    <td><a href="http://www.python.org">python</a> script to submit
+	SQL queries from the command-line</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://www.astro.princeton.edu/~rhl/skyserver/">skyserver.el</a></td>
+    <td>Submit SQL queries from an emacs buffer</td>
+  </tr>
+  </tbody>
+</table>
+
+<a name="DAS"></a>
+<h2>Data Archive Server (DAS)</h2>
+
+<p>The DAS
+contains</p>
+<ul>
+  <li><strong>images of the night sky</strong> ("corrected frames")
+      in fits and jpeg format</li>
+  <li><strong>calibrated object lists</strong> with photometric
+      parameters as fits binary tables</li>
+  <li><strong>reduced spectra and spectral parameters</strong> as fits
+      binary tables and ps/gif plots</li>
+</ul>
+
+<p>Files and directories within the DAS are designated by survey
+identifiers of the desired data:
+<strong>run/rerun/camcol/field</strong> for imaging;
+<strong>plate/MJD/fiberID</strong> for spectroscopy. The easiest way to
+obtain this designation is by one of the query forms provided. The DAS is
+described in detail on the <a href="../data/index.html">DAS structure
+and contents</a> page.</p>
+
+<h3>Search</h3>
+<table border="1">
+  <tbody valign="top">
+  <tr><td> <a href="http://das.sdss.org/DR4-cgi-bin/FOOT">FOOT DR4</a></td> 
+  <td>Check whether coordinate is in DR4 for arbitrary
+      (list of) RA,DECs; if so, retrieve
+      run,rerun,camcol,field,rowc,colc </td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Retrieve</h3>
+<table border="1">
+  <tbody valign="top">
+  
+  <tr>
+    <td><a href="http://das.sdss.org/DR4-cgi-bin/DAS">DAS&nbsp;retrieval&nbsp;form</a></td>
+    <td>Use query forms above to obtain
+	survey designation of required data to be uploaded here.
+	Small result sets will be
+	returned as .tar or .zip archive; larger sets can be
+	downloaded using http or rsync (see <a
+	href="../data/rsync.html">rsync help</a>). The <a
+	href="../coverage/index.html">coverage page</a> explains runs,
+	reruns etc.
+    </td>
+  </tr>
+  <tr>
+    <td><a href="http://das.sdss.org/DR4/data/">http&nbsp;access&nbsp;to&nbsp;DAS</a></td>
+
+    <td>Recommended method for creating new whole or partial mirrors
+    and individually selecting specific files. Use your web browser or
+    other http clients like 
+<a href="http://www.gnu.org/software/wget/wget.html"><code>wget</code></a>.
+
+<br>Recommended options for
+	<code>wget</code> to mirror entire directories:<br>
+	<code>--no-host-directories -l inf -r -np --continue</code>
+    </td>
+  </tr>
+  <tr>
+    <td>rsync&nbsp;server</td>
+    <td>Recommended method to updating existing mirrors. The rsync URL is
+	<code>rsync://dr4@rsync.sdss.org/DR4</code>. See the <a
+	href="../data/rsync.html">rsync help</a> page.</td>
+  </tr>
+<tr>
+  <td><a href="../products/spectra/getspectra.html">Spectra in bulk</a></td>
+  <td>Get all spectroscopic data, or redshift lists by object type (galaxies, quasars, stars)</td>
+</tr>
+  </tbody>
+</table>
+
+<hr />
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+<!-- hhmts start -->Last modified: Wed Jun 29 17:23:14 CDT 2005
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+  </body>
+</html>

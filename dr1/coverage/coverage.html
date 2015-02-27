@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Sky coverage - SDSS DR1</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Sky coverage</h1>
+
+<p>The DR1 contains that part of the SDSS imaging and spectroscopy taken before <font
+color="red">such and such a date</font> satisfying the survey quality
+requirements <font color="red">do we have a link to
+those?</font>. Here we give coverage plots and the detailed <a
+href="#tables">coverage tables</a> from which they were
+constructed. The survey terms are explained in the sections on <a
+href="#imaging">imaging coverage</a> and <a
+href="#spectro">spectroscopic coverage</a> below.</p>
+
+Also check the <a href="/~iraf/dr1/fc">SDSS finding chart</a> for
+survey coverage.
+
+<table>
+  <tr>
+    <td><strong>Equatorial</strong><br />
+	Imaging (shaded) and<br /> spectroscopy (circled)
+    </td>
+    <td><a href="../All_coverage_dr1.gif"><img src="../All_coverage_dr1.gif"
+	alt="DR1 coverage" width="200" align="top" /></a></td>
+    <td><a href="../North_coverage_dr1.gif"><img
+	src="../North_coverage_dr1.gif" alt="DR1 coverage north"
+	width="200" align="top"></a></td>
+    <td><a href="../South_coverage_dr1.gif"><img
+	src="../South_coverage_dr1.gif" alt ="DR1 coverage south" width="200" align="top"></a></td>
+  </tr>
+  <tr align="center">
+    <td></td>
+    <td><a href="../All_coverage_dr1.gif">Complete</a> <a href="../All_coverage_dr1.ps">(ps)</a></td>
+    <td><a href="../North_coverage_dr1.gif">North only</a> <a href="../North_coverage_dr1.ps">(ps)</a></td>
+    <td><a href="../South_coverage_dr1.gif">South only</a> <a href="../South_coverage_dr1.ps">(ps)</a></td>
+  </tr>
+  <tr>
+    <td><strong>Galactic</strong>
+    <td><a href="../DR1-im-Best.gif"><img src="../DR1-im-Best.gif"
+	alt="DR1 best photometry coverage" width="200" align="top" /></a></td>
+    <td><a href="../DR1-im-Target.gif"><img
+	src="../DR1-im-Best.gif" alt="DR1 targetted coverage"
+	width="200" align="top"></a></td>
+    <td><a href="../DR1-spec.gif"><img
+	src="../DR1-spec.gif" alt ="DR1 spectroscopy coverage" width="200" align="top"></a></td>
+  </tr>
+  <tr align="center">
+    <td></td>
+    <td><a href="../DR1-im-Best.gif">Best</a> <a href="../DR1-im-Best.ps">(ps)</a></td>
+    <td><a href="../DR1-im-Target.gif">Targetted</a> <a href="../DR1-im-Target.ps">(ps)</a></td>
+    <td><a href="../DR1-spec.gif">Spectroscopy</a> <a href="../DR1-spec.ps">(ps)</a></td>
+  </tr>
+</table>
+
+<a name="tables"></a><h2>Coverage tables</h2>
+
+<table border="1">
+  <tr>
+    <th>Best</th>
+    <th>Target</th>
+    <th>Spectroscopy</th>
+  </tr>
+  <tr>
+    <td><a href="./tsChunk.dr1best.par">par file</a></td>
+    <td><a href="./tsChunk.dr1targ.par">par file</a></td>
+    <td><a href="./plateradec.dr1spectro.par">par file</a></td>
+  </tr>
+</table>
+
+Note also the list of <a href="./holes.html">list of quality
+"holes"</a> and <a href="./Dr1MissingData.html">missing data</a>.
+
+<a name="imaging"></a><h2>Imaging coverage: stripes, runs, reruns</h2>
+
+<p>Since the imaging survey scans along great circles on the sky, the
+survey coverage is defined in <a
+href="../glossary/glossary_alpha.html#great_circle_coords">great
+circle coordinates</a>.  Great circles are labelled by an integer
+stripe number <em>n</em> such that the inclination of a stripe with
+respect to the celestial equator is -25&deg; + 2.5&deg; &times;
+<em>n</em>. The coordinate along a stripe is called <em><a
+href="../glossary/glossary_alpha.html#mu">mu</a></em>.  The DR1
+coverage is therefore defined in terms of stripe number and
+<em>mu</em>.</p>
+
+<p>An imaging <em>run</em> designates a continuous scan of the imaging
+telescope along a stripe. Since the camera's focal plane is not
+completely filled with CCDs (see the <a
+href="../instruments/index.html">instrument descriptions</a>), at
+least two runs are required to completely cover one <em>stripe</em>.
+A single run's contribution is called a <em>strip</em>. The imaging
+data reduction is done on a run-by-run basis, hence the data in our <a
+href="../data/index.html">Data Archive</a> are accessible by run
+number.  A <em>run</em> is divided into images 2048 pix &times; 1489
+pix which are called <em>fields</em>.  Object detection, photometry
+and classification is done field by field.</p>
+
+<p>Every time we (re)process our imaging data, we assign the outputs a
+new <em>rerun</em> number. Across runs, this is an arbitrary index, so
+the same rerun of different runs does not have to be produced with the
+same software or calibrations.</p>
+
+We publish two <em>reruns</em> for each <em>run</em>
+contained in DR1:
+<ol>
+  <li>A <em>target</em> rerun, which is the reduction used to select
+      targets for the spectroscopic survey. This is referred to as
+      <code>skyVersion = 0</code>.</li>
+  <li>A <em>best</em> rerun, which is the best available
+      reduction. This is usually a different rerun from the
+      <em>target</em> version, since our photometric pipelines have
+      been evolving. The <em>best</em> rerun is referred to as
+      <code>skyVersion = 1</code>.</li>
+</ol>
+
+There is one coverage table each for the target and best version. The
+tables contain the following information:
+<ul>
+  <li>The survey area on the sky, given as a <em>stripe number</em>
+      and a range for the <em>mu</em> coordinate (<code>startmu</code>
+      &lt;= <em>mu</em> &lt;= <code>endmu</code>).  These were used
+      to create the plots above.</li>
+  <li>The <em>runs</em> and <em>reruns</em> and the range of
+      <em>fields</em> which cover the given area.  This is the
+      information needed to find data for a given part of the sky in
+      the <a href="../data/index.html">Data archive</a>.</li>
+</ul>
+
+Notes
+<ul>
+  <li>In general, the <em>target</em> and <em>best</em> version of a
+particular region of the sky come from the same run. However, there
+are some exceptions which are explained in the <a
+href="./targetvbest.html">list of runs differing for target and
+best</a>.</li>
+  <li>If it seems that other data are missing from some run, look at
+      the <a href="./camcoldiffs.html">list of fields which are meant
+      to be missing</a>.</li>
+</ul>
+
+<a name="spectro"></a><h2>Spectroscopy</h2>
+
+The spectrograph's 640 fibers are distributed on a plug plate of
+roughly 7&deg; diameter projected on sky. Spectroscopic coverage is
+given in terms of the plate centers.  Plates are identified by a
+unique number assigned during targetting and the MJD on which they
+were observed, to distinguish re-observations of the same plate.
+
+The file above defines the DR1 spectroscopic coverage. There is an
+ASCII <a href="./spectrosummary.txt">plate summary</a> listing all
+plates together with the numbers of objects of various categories
+found.
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Mon Mar  3 15:23:53 CST 2003
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

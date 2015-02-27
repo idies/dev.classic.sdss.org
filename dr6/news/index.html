@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>News - SDSS DR6</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<!-- Start page content -->
+<h1>News and updates</h1>
+
+<h2> Bug in synthetic magnitudes of spectra: mag_0,mag_1,mag_2 --> u,g,r (not g,
+r,i) </h2>
+
+        There is a bug in the tabulating of synthetic magnitudes of objects
+        based on their integrated, flux calibrated spectra convolved with
+        the SDSS filter curves.  In the CAS table specObjAll (and its subset
+        table specObj), the three quantities: mag_0, mag_1, and mag_2
+        are intended to be the synthetic g, r, and i band magnitudes
+        of each object.  In fact, in DR6 they are the 
+        u, g, and r band synthetic magnitudes.  The wavelength
+        coverage of the u band (centered on 3551 Angstroms) does 
+        not overlap (except at the few percent level) the wavelength coverage
+        of the spectrographs (which start at about 3800 Angstroms), and
+        the synthetic u band is only a very rough estimate.  Thus, the 
+        i synthetic magnitude is not directly available in the DR6 
+        CAS database.  
+
+        <p>
+ If you currently need access to the i band synthetic magnitude, 
+        they are currently only available in the DR6 DAS:  
+
+        You may find them in HDU# 7 of the spPlate-$plate-$mjd.fits
+        file in the form of a 640x5 (row x col) size image extension
+	table containing the u,g,r,i,z synthetic magnitudes for 
+	all 640 objects with spectra, in fiber number order 
+	(i.e. the first 5 numbers are for the ugriz synthetic mags 
+	for the object at fiber#1, etc).
+
+        You may download the full spPlate-$plate-$mjd.fits file from 
+        the DAS and extract this 'imaging region' from HDU#7 to access 
+        these numbers.
+
+        The u and z synthetic magnitudes are generally not to be used since,
+        as mentioned above, the overlap of the wavelength coverage of the
+        spectrographs with these filter bandpasses is minimal.
+
+        <p>
+        Note that the DR5 CAS has correct g,r,i synthetic values 
+        in mag_0,mag_1,mag_2, however, an older version of the 
+        spectroscopic pipeline was used to process these data 
+        and the handling of reddening is different.
+ Also note that the synthetic magnitude values may need an 
+        AB correction applied to put them onto the SDSS gri system.
+
+        <p>
+
+        The spSpec-$mjd-$plate-$fiber.fit files have header keywords
+        MAG_G, MAG_R, MAG_I which are intended to be the same as
+        mag_0, mag_1, mag_2 in the specObjAll table of the CAS.
+        These synthetic numbers are also 'shifted by one filter'
+        in DR6, thus, they actually are
+        synthetic mags u, g and r (instead of g,r, and i) respectively.
+
+        <p>
+        Please note this bug.
+
+        It will be corrected for the DR7 release of the
+        DAS and CAS.
+	<p>
+
+<h2>DR6 paper in print</h2>
+
+<p>The DR6 paper (<a
+href="http://adsabs.harvard.edu/abs/2008ApJS..175..297A">Adelman-McCarthy,
+J.K. et al. 2008, ApJS, 175, 297-313</a>) has appeared in print.</p>
+
+<h2>Old &quot;news&quot;</h2>
+
+<h3>Proper motions update announcement.</h3>
+ <p> <a href="http://www.sdss.org/dr6/products/catalogs/index.html#propermot">Proper motions are not correct.</a>
+
+
+<h3>Bug in SEGUE primTarget flag</h3>
+            <p> <a href="http://www.sdss.org/dr6/products/spectra/index.html#primtarget">PrimTarget flag in SEGUE plates is trunctated in the CAS</a>
+
+<h3>SDSS-III announced</h3>
+
+<p>A new collaboration based on the legacy of SDSS and SDSS-II has
+been formed to pursue a number of new science goals. See the <a
+href="http://www.sdss3.org">SDSS-III web site at www.sdss3.org</a>.</p>
+
+<h3>Patch applied to DR6</h3>
+ This patch, applied the week of Aug 27,2007, corrects several
+  bugs in the database.
+The list of patches to DR6 is as follows:
+
+<ol>
+	<li> 6 segments in Stripe 36 had a bug in their
+	startMu/endMu, resulting in ~1500 duplicate primary
+	objects in the main database.  This has been corrected,
+	and the previously duplicate primaries have been made 
+	secondary.
+
+	<li> The 'Propermotions' table has been incremented for BESTDR6 from
+	DR5 to the full DR6 dataset.  Additionally, propermotions have
+	been added for a large number of objects which previously
+	had been missed because they were targeted as galaxies (but turned
+	out to be stars).  Additionally, propermotions have
+	been added for Segue imaging to the SEGUEDR6 database context
+	in a parallel propermotions table.
+	Note that all these propermotions have been
+	're-zeropointed' from their USNO-B source by matching to 	
+	the SDSS positions for objects with zero proper motion (distant
+	galaxies and quasars), and thus are of overall higher accuracy than
+	those in the 'USNO' table. 
+
+	<li> The 'Match' and 'MatchHead' tables in the CAS,
+	which connects duplicate measurements of the
+	same physical object on the sky, observed at
+	different times (for instance, objects in the overlap
+	between scanlines), were incompletely populated prior 
+	to Aug 31, 2007.  They have now been updated.
+
+	<li> The sppParams table incorrectly computed the derived
+	parameter velgal (the velocity of a star in
+	the Galactic frame of reference, subtracting out
+	the suns motion of (v_x,v_y,v_z) = (7,224,10) km/s
+	prior to Aug 31, 2007.  The table is now correct.
+	The velgal velocities now also reflect the 7.3 km/s offset 
+	determined by absolute reference to known globular clusters
+	and other Radial velocity standards. The best
+	radial velocity for stars in the DR6 dataset is the 
+	'rva' value in the sppParams table.  It is reliable when
+	the rvaerr is strictly > 0.
+
+	<li> A view (subset) of the sppParams table, called 'spbsparams'
+	has been generated for easy access to Galaxy spectral parameters,
+	including redshift (along with redshift confidence) and 
+	velocity dispersion (measured two different ways).  These
+	parameters are available on a plate-by-plate basis
+	in the DAS as part of the spZbest* binary FITS tables, and on a
+	fiber-by-fiber basis in the spSpec* FITS spectra as header
+	keywords, but they are gathered here in a SQL searchable table.
+
+	<li> Documentation has been updated on matching photometry to
+	spectroscopy on the <a href=http://segue.uchicago.edu/getstarted.html>SEGUE</a>
+	website.  Magnitudes in the sppParams table are 'PSF target' magnitudes,
+	the best available at the time an object was targetted for
+	spectroscopic followup.  Since then, the imaging data for
+	an object may be remeasured (recorded as the best photometry).
+	Finally, ubercal photometry is also available for many
+	objects.
+
+	<li> The prepackaged tarballs of spectra, organized by object
+	category (galaxy, qso, star, etc), are now available again,
+	and include updates for <a href="../products/spectra/getspectra.html">DR6</a>.
+
+</ol>
+		
+
+
+
+
+<h3>DR6 is available</h3>
+
+<p><a href="../start/aboutdr6.html">About DR6</a> explains what is
+new in DR6.</p>
+
+<h3>SEGUE spectroscopic parameters available</h3>
+
+<p>DR6 includes a slew of new SEGUE data, including new <a
+href="../products/spectra/spectroparameters.html">stellar atmospheric
+parameters ([Fe/H], log g, Teff)</a> and <a
+href="../products/spectra/spectrolineindices.html">line indices</a> in
+the CAS BESTDR6 database. See <a href="../start/aboutsegue.html">About
+SEGUE</a>.</p>
+
+<h3>DRsup - Data Release Supplemental - is available </h3>
+
+<p>DRsup contains additional SEGUE, M31/Perseus and stripe 82 imaging.  <a
+href="../start/aboutdrsup.html">About DRsup</a> explains what DRsup is
+and how to get it.</p>
+
+<h3>SDSS acknowledgements updated</h3>
+
+<p>The SDSS has entered a second phase of funding and operations, <a
+href="http://www.sdss.org/news/releases/20050711.sdssII.html">SDSS-II</a>,
+with new participating institutions. Please use the <a
+href="../coverage/credits.html">updated SDSS acknowledgement</a>
+statement in your publications using SDSS data.</p>
+
+<p>DAS hardware is up and healthy.</p>
+
+
+
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar 31 17:06:47 CEST 2008
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

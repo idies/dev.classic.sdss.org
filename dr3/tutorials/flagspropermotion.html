@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorial: Getting Flags and Proper Motion for a List of 
+Targets- SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorial: Getting Flags and Proper Motion for a List of 
+Targets</h1>
+
+<p>The following procedure outlines how to use the DAS Imaging Query Server 
+(IQS) to obtain flags and proper motion for a list of targets.</p>
+<p><b><font size="4">Procedure</font></b></p>
+<ol class="tut">
+  <li>Access the <a
+      href="http://skyserver.sdss.org/dr3/en/tools/search/IQS.asp">SDSS
+      Imaging Query Server (IQS)</a>.</li>
+  <li>Select whether you want html output to look at the results in
+      your browser, or csv output to save them to a file which you can
+      later upload to the Data Archive Server to retrieve images or spectra.</li>
+  <li>In the Imaging parameters window, select the list of parameters you want. 
+      They are listed by alphabetical order. The list and some explanations are 
+      given in <a href="../dm/flatFiles/tsObj.html"> the tsObj file description
+      </a>. Flags are described 
+      in <a href="../products/catalogs/flags.html">the photometric flags page</a>. You can select 
+      one block of contiguous items by using the usual shift-click, or
+      non-contiguous itmes using ctrl-click.</li>
+  <li>Select <a
+      href="../glossary/index.html#target"><code>Target</code></a> imaging
+      to get and query on the imaging parameters used for the spectroscopy
+      (positions, selection,...). Select <a
+      href="../glossary/index.html#best"><code>Best</code></a> to get
+      and select on the imaging parameters corresponding to the most
+      recent observations and runs of the photometric pipeline.</li>
+  <li>Select for which filters you would like to download images. If
+      you are just looking for catalog information, and not actual images, <a
+      href="../glossary/index.html#tsobj">tsObj</a> files, etc., you can
+      leave these unchecked.</li>
+  <li>In the &quot;Position Constraints&quot; panel you can search a rectangular area, a 
+      circular area (Cone Search), or for the closest object only
+      (Proximity Search). For the Proximity Search, your upload file (or the
+      window containing the coordinates) must have as the first line
+      &quot;ra,dec,sep&quot;, and the separation must be specified in
+      arcseconds (max 10). If you specify both an upload file and give
+      coordinates in the window, the upload file will be used.</li>
+  <li>In the &quot;Imaging Constraints&quot; you can place constraints
+      based on magnitudes, colors or flags.</li>
+  <li>Submit your query</li>
+</ol>
+
+<p>To get fits images, e.g., of your targets, proceed to the
+<a href="http://das.sdss.org/DR3-cgi-bin/DAS">DAS web form </a>and:</p>
+<ol class="tut">
+  <li>Select the products and files you want to download - fpC for
+      fits images (<i>Step 1 on the form</i>)</li>
+  <li>You just performed step 2 above.</li>
+  <li>Upload the result.csv file returned by the IQS here under Step 3.</li>
+  <li>Select your download format - you will be forced to use rsync
+      when retrieving 10 or more files (<i>Step 4 on the form</i>)</li>
+  <li>Submit your query.</li>
+</ol>
+<!-- commented out for now until IQS offers a download link again -->
+<!-- <p>Once you get the page with the results presented in a table, you can proceed to:</p> -->
+<!-- <ul> -->
+<!--   <li>download the results as an ASCII comma-separated table</li> -->
+<!--   <li>download the results as a FITS table</li> -->
+<!--   <li>proceed to the data archive server to get images, catalogues, and more  -->
+<!--   files (see below)</li> -->
+<!--   <li>proceed to the FOOT web form to get small JPEG images (limited to a maximum of 10 at a time)</li> -->
+<!-- </ul> -->
+<!-- <p><br> -->
+<!-- If you choose to get more information on your targets, proceed to the -->
+<!-- <a href="http://das.sdss.org/DR1-cgi-bin/DAS">DAS web form </a>and:</p> -->
+<!-- <ol> -->
+<!--   <li>Select the products and files you want to download (<i>Step 1 on the form</i>)</li> -->
+<!--   <li>Skip steps 2 and 3 on the form (these have already been taken care of by  -->
+<!--   using your first query's results)</li> -->
+<!--   <li>Select your format (<i>Step 4 on the form</i>)</li> -->
+<!--   <li>Submit your query.</li> -->
+<!-- </ol> -->
+<hr>
+<!-- hhmts start -->Last modified: Sun Mar 14 22:33:59 CST 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+
+</html>

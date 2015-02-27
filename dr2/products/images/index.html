@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: Images - SDSS DR2</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Images</h1>
+Up: <a href="../index.html">Data Products</a> Sections: Images - <a
+href="../catalogs/index.html">Object lists</a> - <a
+href="../spectra/index.html">Spectra</a> - <a
+href="../tiling/index.html">Tiling</a>
+
+<h2>Getting and using images</h2>
+
+<p>The Data Archive Server provides the survey images, called
+"corrected frames", as <code>fpC*.fits</code> files. See the <a
+href="../../dm/flatFiles/fpC.html">fpC data model</a>.</p>
+
+<p>The <a href="../../access/index.html#CAS">Catalog Archive
+Server</a> serves 3-color jpeg images generated from the <var>g, r,
+i</var> images as finding charts, cutouts for object lists and for
+point-and-click navigation of the sky.</p>
+
+<p>The <a href="../../access/">data access</a> page contains various
+query forms to get images by coordinates, or to search for
+objects from the imaging and spectroscopic catalogs by redshift,
+object magnitude, color etc., and to retrieve the corresponding
+data from the archive.</p>
+
+<p>There is a separate set of <a
+href="../../dm/flatFiles/fpAtlas.html"><code>fpAtlas*.fits</code></a>
+files, containing the "postage-stamp" images for individual objects
+from the <a href="../catalogs/index.html">photometric object
+lists</a>. See <a href="read_atlas.html">how to read an atlas
+image</a>.</p>
+
+<ul>
+  <li>We provide a tutorial describing <a
+      href="../../tutorials/retrieveFITS.html">how to retrieve
+      fits images for a set of objects</a>. </li>
+  <li><a href="read_psf.html">How to reconstruct the PSF at an arbitrary
+      position in a frame</a></li>
+  <li><a href="read_mask.html">How to read image masks</a>
+      (These are the full binary mask files provided by the imaging
+       pipeline; we also provide an alternate set of processed 
+       mask files, see below, which may be more useful or
+       convenient for your science application.)</li>
+  <li><a href="../../algorithms/fluxcal.html#counts2mag">How to
+      apply the photometric calibration</a> to images, which are
+      in counts.
+  </li>
+  <li><a
+      href="../general/astrometry.html#calibrationEquations">How
+      to apply the astrometric calibration (beyond the WCS in the
+      fits files)</a>
+  </li>
+  <li>SDSS provides image masks listing "bad" regions of the sky (pixels
+      affected by saturation, bright stars, satellite trails, bad seeing,
+      or with locally unacceptably bad data). Look at the <a
+      href="../../algorithms/masks.html">image mask creation algorithm</a>
+      to understand their creation, and the <a
+      href="./use_masks.html">image mask instructions for use</a> for
+      details on the file format and location.
+  </li>
+</ul>
+<!--    <li><h3>Supplementary info:</h3> -->
+<!--      <ol> -->
+<!--        <li>How to reconstruct the sky that we subtracted <font color="red"> RHL! -->
+<!--          see PR <a -->
+<!--          href="http://www.astro.princeton.edu/cgi-bin/gnatsweb.pl?cmd=view&amp;database=sdss&amp;pr=4399">PR -->
+<!--          4399</a></font></li> -->
+<!--      </ol> -->
+<!--    </li> -->
+
+<h2>Caveats</h2>
+<ul>
+  <li><h4>Bad CCD columns</h4> Some chips have bad CCD columns
+      which get interpolated over by the photometric pipeline, leading
+      to noticeably correlated noise. The bad columns for each run are
+      currently available in <a
+      href="../../dm/flatFiles/opBC.html">opBC*.par</a> files (which
+      are <a href="../../data/parfiles.html">ASCII parameter files</a>).  These files can be
+      found on the Data Archive Server in the <code>logs</code>
+      subdirectory of each <code>run/rerun</code> directory (e.g., <a
+      href="http://das.sdss.org/DR1/data/imaging/1740/21/logs/">http://das.sdss.org/DR1/data/imaging/1740/21/logs/</a>
+      <!-- XXX PR 5105 - RHL commented that these are in the fpM files, but there
+      is no instruction anywhere on how to read those! --></li>
+  <li><h4>Very red objects</h4>
+      <!--#include virtual="./u_redleak.html"-->
+  </li>
+  <li><h4>u-band sky</h4>
+      <!--#include virtual="./u_sky.html"-->
+  </li>
+</ul>
+
+<!-- end page content-->
+
+
+<p></p>
+<hr>
+<!-- hhmts start -->Last modified: Thu Mar  4 20:35:54 CST 2004
+<!-- hhmts end -->
+ <!--#include virtual="../../includes/footer_layer3.html"-->
+</p>
+</body>
+</html>

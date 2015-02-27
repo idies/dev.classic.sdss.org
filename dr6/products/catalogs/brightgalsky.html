@@ -1,0 +1,76 @@
+<p>Because of scattered light (see the <a
+href="../algorithms/edrpaper.html">EDR paper</a> [<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123..485S">Stoughton
+et al. 2002</a>]), the background sky in the SDSS images is
+non-uniform on arc-minute scales.  The photometric pipeline determines
+the median sky value within each 100&quot; square on a grid with
+50&quot; spacing, and bilinearly interpolates this sky value to each
+pixel.  This biases the sky bright near large extended galaxies, and
+as was already reported in the DR4 paper and <a
+href="http://adsabs.harvard.edu/abs/2005MNRAS.361.1287M">(Mandelbaum
+et al.  2005)</a>, causes a systematic decrease in the number density
+of faint objects near bright galaxies. In addition, it also strongly
+affects the photometry of the bright galaxies themselves, as has been
+reported by <a
+href="http://adsabs.harvard.edu/abs/2007ApJ...662..808L">Lauer et
+al. (2007)</a>, <a
+href="http://adsabs.harvard.edu/abs/2007AJ....133.1741B">Bernardi et
+al. (2007)</a>, and <a
+href="http://adsabs.harvard.edu/abs/2007ApJ...660.1186L">Lisker et
+al. (2007)</a>.</p>
+
+<p>We have quantified this effect by adding simulated galaxies (with
+exponential or de Vaucouleurs) profiles to SDSS images. The simulated
+galaxies ranged from apparent magnitude <var>m<sub>r</sub>=12</var> to
+<var>m<sub>r</sub>=19</var> in half-magnitude steps, with a one-to-one
+mapping from <var>m<sub>r</sub></var> to Sersic half-light radius
+determined using the mean observed relation between these quantities
+for Main sample galaxies with exponential and de Vaucouleurs profiles.
+Axis ratios of <var>0.5</var> and <var>1</var> were used, with random
+position angle for the non-circular simulated galaxies.  The results
+in the <var>r</var> band are shown in the Figure, showing the
+difference between the input magnitude and the model magnitude
+returned by the SDSS photometric pipeline, as a function of
+magnitude.</p>
+
+<p>Also shown is the fractional error in the scale size
+<var>r<sub>e</sub></var>.  The biases are significant to
+<var>r=16</var> for late-type galaxies, and to <var>r=17.5</var> for
+early-type galaxies.  Also shown is the results of a separate analysis
+by by Hyde & Bernardi (unpublished) who fit deVaucouleurs models to
+SDSS images of extended elliptical galaxies, using their own sky
+subtraction algorithm, which is less likely to overestimate the sky
+level near extended sources.  Their results are quite consistent with
+the simulations.</p>
+
+<div class="fig">
+<!-- check where we're including from and insert the proper relative -->
+<!-- path to the image -->
+<!--#set var="myuri" value="$DOCUMENT_URI" -->
+<!--#if expr="$myuri = /products\/catalogs\/index.html/" -->
+<img alt="Sky misestimation near bright galaxies"
+src="./all_sersic_gmorph.png" width="480px">
+<!--#else -->
+<img alt="Sky misestimation near bright galaxies"
+src="../../products/catalogs/all_sersic_gmorph.png" width="480px">
+<!--#endif -->
+<p
+style="width:640px;text-align:justify"><em>Upper panel:</em> The error
+in the <var>r</var> band model magnitude of simulated galaxies with an
+<var>n=1</var> (exponential) profile (blue hexagons) and an
+<var>n=4</var> (de Vaucouleurs) profile (red crosses) as determined by
+the photometric pipeline, as a function of magnitude.  Fifteen
+galaxies are simulated at each magnitude for each profile.  Also shown
+are the analogous results from Hyde & Bernardi (unpublished) for three
+early-type galaxy samples: 54 nearby (<var>z<0.03</var>) early-type
+galaxies from the ENEAR catalog <a
+href="http://adsabs.harvard.edu/abs/2000AJ....120...95D">(da Costa et
+al. 2000)</a> in black; 280 brightest cluster galaxies from the C4
+catalog <a
+href="http://adsabs.harvard.edu/abs/2005AJ....130..968M">(Miller et
+al. 2005)</a> in green; and 9000 early-type galaxies from the <a
+href="http://adsabs.harvard.edu/abs/2003AJ....125.1817B">Bernardi et
+al. (2003a)</a> analysis in magenta.  <em>Lower panel:</em> The
+fractional error in the scale size <var>r<sub>e</sub></var> as a
+function of magnitude from the simulations and the Hyde & Bernardi
+analysis.  </p> </div>

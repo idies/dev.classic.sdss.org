@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorials: Getting spectra of galaxies - SDSS DR5</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorials: Getting spectra of galaxies within a range of 
+redshift and r magnitude.</h1>
+
+<ol class="tut">
+  <li>At the top of the <a href="http://skyserver.sdss.org/dr4/en/tools/search/SQS.asp">Spectro
+      Query Server</a> (SQS) form, select the maximum number of objects to output.
+      Then select the desired spectroscopy and imaging parameters
+      (&quot;minimal&quot; is what you need to retrieve data from the
+      Data Archive Server later, it outputs 
+      run, rerun, camcol, filter, field for imaging and
+      plate,mjd,fiberID for spectroscopy; &quot;typical&quot; is more
+      useful if you want to assess your results first, e.g., it
+      includes redshift for spectra).
+  <li>Specify whether to retrieve and select on target or best imaging
+      parameters.</li>
+  <li>Select whether you want to see your results in an html table in
+      the browser, or save them to disk in a csv file.</li>
+  <li>Specify position constraints (or no constraint). For a proximity 
+      search, you can either type in coordinates or upload a csv file.</li>
+  <li>Enter the Redshift min and max and the desired confidence in
+      the redshifts (zconf &gt; 0.35 is the bare minimum to avoid objects
+      with uncertain classification and hence redshift; zconf &gt; 0.65 already results
+      in a very clean sample and should be good for most applications).</li>
+  <li>Select &quot;Galaxy&quot; within Spectral Classification.</li>
+  <li>Enter the photometric constraints (in this case, min and max for R-band 
+      model magnitude).</li>
+  <li>De-select point sources if you wish to exclude objects identified by the 
+      imaging survey to be point sources. If you leave this selected, your results 
+      will include such objects later identified spectrally to be galaxies.</li>
+  <li>Select the flags that you want or do not want turned on for your
+      objects (see <a
+      href="../products/catalogs/flags.html">photometric processing
+      flags</a>; some flag checking is already applied by the <a href="../algorithms/target.html">targeting
+      pipelines</a>.</li>
+  <li>Hit &quot;Submit Request&quot;. The desired parameters for objects matching your 
+      query will then be displayed in a table if you selected html
+      above, or you will be prompted to save the results in  a csv table. </li>
+  <li>Select the option to use a DAS web form with this query to get data. </li>
+  <li>On the DAS retrieval form, select &quot;spSpec&quot; under &quot;Step 1&quot;. Steps 2 and 3 
+      should be filled in. Under &quot;Step 4&quot;, select the file format. If you have more 
+      than 10 objects, you will always get the results via
+&quot;rsync&quot;. Click &quot;Submit Request&quot;.</li>
+  <li>If you selected &quot;rsync&quot;, you will now be asked to save a link as sdss-rsync.lis 
+      on your local computer. Further down on the page is a command that you should 
+      type on your computer to execute the rsync procedure. If you did not select &quot;rsync&quot;, 
+      and your query produced 10 or fewer result files, you should be
+      prompted to select where you would like the data to be saved on
+      your computer.</li>
+</ol>
+
+<h2>Example</h2>
+
+<p>An SQS query with the following specifications: </p>
+<ul>
+  <li>Minimal Imaging and Typical Spectroscopy Parameters</li>
+  <li>Best Imaging</li>
+  <li>No position constraint</li>
+  <li>Redshift Range: 0-0.03</li>
+  <li>Redshift confidence &gt; 0.35</li>
+  <li>Spectral Classification: Galaxy</li>
+  <li>&quot;Point Sources&quot; De-selected</li>
+  <li>&quot;Child&quot; Flag Off </li>
+</ul>
+<p>produced 1790 results.</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Fri Oct  1 14:02:38 CDT 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

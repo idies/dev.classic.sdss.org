@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Data access - SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<h1>Tools for data access</h1>
+<h2>Catalog Archive Server (CAS)</h2>
+<ul>
+ <li><a href=http://skyserver.sdss.org/dr1>Catalog Archive Server (CAS)</a> The Catalog Archive Server offers efficient search tools for querying the imaging and spectro catalogs from DR1.
+</ul>
+
+<h2>Data Archive Server (DAS)</h2>
+
+DR1 data are distributed via the Data Archive Server. The DAS
+contains
+<ul>
+  <li><strong>images of the night sky</strong> ("corrected frames")
+      in fits and jpeg format</li>
+  <li><strong>calibrated object lists</strong> with photometric
+      parameters as fits binary tables</li>
+  <li><strong>reduced spectra and spectral parameters</strong> as fits
+      binary tables and ps/gif plots</li>
+</ul>
+
+<p>Files and directories within the DAS are designated by survey
+identifiers of the desired data:
+<strong>run/rerun/camcol/field</strong> for imaging;
+<strong>plate/MJD/fiberID</strong> for spectroscopy. The easiest way to
+obtain this designation is by one of the query forms provided. The DAS is
+described in detail on the <a href="../data/index.html">DAS structure
+and contents</a> page.</p>
+
+<h3>Search and Retrieve</h3>
+
+<table border="1">
+  <tbody valign="top">
+  <tr>
+    <td><a
+	href="http://das.sdss.org/DR1-cgi-bin/FOOT">Footprint&nbsp;server</a>
+	</td>
+    <td>Jpeg images and gif spectra for object lists</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://das.sdss.org/auxcgi/dr1/fc">Finding&nbsp;chart&nbsp;generator</a></td>
+    <td>Finding chart (ps or fits) with spectroscopic and photometric
+	objects</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://das.sdss.org/DR1-cgi-bin/SQS">Spectro&nbsp;Query&nbsp;Server</a></td>
+    <td>Search spectra by position, or by spectral or photometric parameters. Retrieve survey
+	files.</td>
+  </tr>
+  <tr>
+    <td><a
+	href="http://das.sdss.org/DR1-cgi-bin/IQS">Imaging&nbsp;Query&nbsp;Server</a></td>
+    <td>Search photometry catalog by position or by photometric
+	parameters. Retrieve survey files.
+	</td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Retrieve</h3>
+<table border="1">
+  <tbody valign="top">
+  
+  <tr>
+    <td><a href="http://das.sdss.org/DR1-cgi-bin/DAS">DAS&nbsp;retrieval&nbsp;form</a></td>
+    <td>Use query forms above to obtain
+	survey designation of required data to be uploaded here.
+	Small result sets will be
+	returned as .tar or .zip archive; larger sets can be
+	downloaded using rsync (see <a
+	href="../data/rsync.html">rsync help</a>). The <a
+	href="../coverage/index.html">coverage page</a> explains runs,
+	reruns etc.
+    </td>
+  </tr>
+  <tr>
+    <td>rsync&nbsp;server</td>
+    <td>Recommended way for mirroring the
+	DR1 data archive in part or whole. The rsync URL is
+	<code>rsync://dr1@rsync.sdss.org/DR1</code>. See the <a
+	href="../data/rsync.html">rsync help</a> page.</td>
+  </tr>
+  <tr>
+    <td><a href="http://das.sdss.org/DR1/data/">http&nbsp;access&nbsp;to&nbsp;DAS</a></td>
+    <td>Use your web browser or other http clients like <a
+	href="http://wget.sunsite.dk/"><code>wget</code></a>. <br>Recommended options for
+	<code>wget</code> to mirror entire directories:<br>
+	<code>--no-host-directories -l inf -r -np --continue</code>
+    </td>
+  </tr>
+<tr>
+  <td><a href="../products/spectra/getspectra.html">Spectra in bulk</a></td> 
+  <td>Get all spectroscopic data, or redshift lists by object type (galaxies, quasars, stars)</td> 
+</tr>
+  </tbody>
+</table>
+
+<!--<h2>SDSS data archives</h2>-->
+
+
+
+<hr />
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+<!-- hhmts start -->Last modified: Fri Oct 10 10:47:55 CDT 2003
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+  </body>
+</html>

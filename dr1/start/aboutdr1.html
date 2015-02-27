@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>About DR1 - SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>The SDSS Data Release 1 (DR1)</h1>
+
+<p>The DR1 data set is defined by imaging data obtained through July
+2001 and the spectroscopic observations of the targets that were
+selected from these imaging data.  The <a
+href="http://arXiv.org/abs/astro-ph/0305492">DR1 paper</a> (Abazajian
+et al., AJ, submitted) gives a brief overview of the scope and data
+quality of DR1. With this release, we are providing two access
+tools. The <a href="../access/index.html">Data Archive Server
+(DAS)</a> includes a set of links to the files produced by the imaging
+and spectroscopic pipelines, and it also includes a web form that
+allows limited ability to search the database and create catalogs. The
+<a href="http://skyserver.sdss.org/dr1/en">Catalog Archive Server
+(CAS)</a> is an SQL database of objects, loaded from the DAS files,
+that provides extremely powerful search capabilities for the
+construction of catalogs of astronomical objects.</p>
+
+<p>We discovered just before the relase that the outputs of the
+imaging pipeline contained a systematic offset between what we call
+model magnitudes and Petrosian magnitudes of galaxies. Nevertheless,
+the release went ahead because the SDSS Collaboration has published
+more than a hundred papers in refereed journals that are based on data
+files of the quality now released as DR1 (see the <a
+href="http://www.sdss.org/publications/">SDSS publication list</a>).
+The SDSS Collaboration is eager to let the astronomical community use
+the current data because the quality is superb, despite the small set
+of parameters that are problematic.  In summary, we have validated the
+DR1 data with the following primary caveats:</p>
+
+<!--model mag caveats have been moved to -->
+<!--dr1web/products/catalogs/modelmagcaveat.html so they can be -->
+<!--replicated easily in multiple pages. As side effect, must read -->
+<!--this file through web server processing the following Server-side -->
+<!--include directive to see the caveats in a browser.-->
+
+<!--#include virtual="../products/catalogs/modelmagcaveat.html"-->
+
+<p>The offset is now understood, and a complete reprocessing of the
+data is under way with a new version of the software that provides
+reliable model magnitudes.  This reprocessing will also take advantage
+of improved flat fields.  The DR1 data, reprocessed with improved
+software and better flat fields, will be part of the next data
+release, Data Release 2 (DR2), scheduled for early 2004. This approach
+will give the community faster access to a larger set of data
+processed with the final version of the pipelines than an intermediate
+release of only the DR1 data set.</p>
+
+<p>SDSS is committed to public release of the survey data products.
+Formal releases are made as the data are validated by the SDSS
+Collaboration. The <a href="../glossary/index.html#edr">Early Data
+Release</a> (EDR, <a href="../algorithms/edrpaper.html">Stoughton et
+al. 2002</a>) published the early SDSS commissioning data.  DR1
+includes a reprocessing of data in the EDR that pass our data-quality
+criteria for the official survey. <strong>We recommend that users who
+have used the EDR read the <a
+href="../algorithms/dr1changes.html">description of changes from the
+Early Data Release to Data Release 1 (DR1)</a> (see also the DR1 paper
+<a href="http://arxiv.org/abs/astro-ph/0305492">Abazajian et
+      al. 2003, AJ accepted; astro-ph/0305492</a>).</strong></p>
+
+
+
+<hr>
+<!-- hhmts start -->Last modified: Fri Sep  3 16:05:28 CDT 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

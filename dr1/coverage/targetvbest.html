@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Different Runs For Target and Best - SDSS DR1</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<h1>Instances of different runs for target and best</h1>
+
+This note is to alert DR1 users to a few differences between
+the <a href="../glossary/index.html#target"><code>Target</code></a> imaging skyVersion area coverage and the <a href="../glossary/index.html#best"><code>Best</code></a>imaging skyVersion area coverage.
+<br><p>
+Every attempt was made to make the best area cover the same
+area as the target area, and to make the chunk boundaries
+the same.  For the most part the target and best start and endMu's
+for the same chunk of sky agree to within 1'', however there are a few
+exceptions which we list below:
+<br><p>
+
+Stripe 82:
+<br><p>
+
+Target skyVersion goes from  startMu = 1176576 to endMu = 1499432
+(the unit here of startMu and endMu are int(arcseconds), and
+it can go beyond 360*3600 to avoid endMu < startMu).
+<br><p>
+
+Best skyVersion goes from startMu = 1243586 (18 degrees later)
+ to endMu = 1510917 (3 degrees later)
+<br><p>
+
+These don't match because:
+<br><p>
+
+1. we replace runs 1033/1056/94/125 with runs 2662,2738 and 3325 (somewhat
+better data), and 3325,2738 go a bit beyond 94/125, but 2662,3325 don't go
+all the way to the beginning of 1033,1056.
+<br><p>
+
+2. we needed to avoid the 'astrometrically offset by 74 arcsec' run 1056
+and thus avoid 'gaps' in the filled best skyVersion of the stripe
+82 between scanline (camCols) at the beginning of the run.  This run 1056
+exists in the 'resolved' target skyVersion, and we can't remove it
+from the target imaging data (or we lose that information), however, the
+plate which covered runs 1056 have been removed from DR1 to avoid
+having to explain the gaps in the imaging coverage.  We will probably
+get questions on the gaps in the imaging coverage anyway if people look
+at the imaging from target only, but we'll deal with that as we need to.
+<br><p>
+
+3. There wasn't a substitute for run 1056 available at the time the best
+skyVersion was constructed which covered this area.
+<br><p>
+
+Large scale structure folks should note that the plates which covered
+runs 1056 have been removed from DR1, as this is relevant for the tiling
+masks, even though the tiBoundaries file for this tilingRun will
+have the area of some of these plates in it.
+<br><p>
+
+<hr><p>
+
+Other small (<1 field) differences at the ends of stripes are:
+<br><p>
+
+stripe 37, startmu 788748:
+endMu(target)= 839942 endMu(best)=840481
+(best extends 1 more field due to roundoff, doesn't affect any plates).
+<br><p>
+
+stripe 9, startMu 614999/615000:
+Astrometric roundoff (different version of astrom run target vs. best,
+results in <<1'' roundoff in startMu for this chunk.
+<br><p>
+
+stripe 11, startMu 546385:
+endMu(target)=822557, endMu(best)=822553
+roundoff difference of endmu for last field (4'')
+<br><p>
+
+stripe 12, startMu 604610:
+endMu(target)=666827, endMu(best)=667366
+(best extends 1 more field due to roundoff, doesn't affect any plates).
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Mon Nov 11 16:05:35 CST 2002
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

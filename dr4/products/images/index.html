@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>Data products: Images - SDSS DR4</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Images</h1>
+Up: <a href="../index.html">Data Products</a> Sections: Images - <a
+href="../catalogs/index.html">Object lists</a> - <a
+href="../spectra/index.html">Spectra</a> - <a
+href="../tiling/index.html">Tiling</a>
+
+<h2>Getting and using images</h2>
+
+<p>The Data Archive Server provides the survey images, called
+"corrected frames", as <code>fpC*.fits</code> files. See the <a
+href="../../dm/flatFiles/fpC.html">fpC data model</a>.</p>
+
+<p>The <a href="../../access/index.html#CAS">Catalog Archive
+Server</a> serves 3-color jpeg images generated from the <var>g, r,
+i</var> images as finding charts, cutouts for object lists and for
+point-and-click navigation of the sky.</p>
+
+<p>The <a href="../../access/">data access</a> page contains various
+query forms to get images by coordinates, or to search for
+objects from the imaging and spectroscopic catalogs by redshift,
+object magnitude, color etc., and to retrieve the corresponding
+data from the archive.</p>
+
+<p>There is a separate set of <a
+href="../../dm/flatFiles/fpAtlas.html"><code>fpAtlas*.fits</code></a>
+files, containing the "postage-stamp" images for individual objects
+from the <a href="../catalogs/index.html">photometric object
+lists</a>. See <a href="read_atlas.html">how to read an atlas
+image</a>.</p>
+
+<ul>
+  <li>We provide a tutorial describing <a
+      href="../../tutorials/retrieveFITS.html">how to retrieve
+      fits images for a set of objects</a>. </li>
+  <li><a href="read_psf.html">How to reconstruct the PSF at an arbitrary
+      position in a frame</a></li>
+  <li><a href="read_mask.html">How to read image masks</a>
+      (These are the full binary mask files provided by the imaging
+       pipeline; we also provide an alternate set of processed 
+       mask files, see below, which may be more useful or
+       convenient for your science application.)</li>
+  <li><a href="../../algorithms/fluxcal.html#counts2mag">How to
+      apply the photometric calibration</a> to images, which are
+      in counts.
+  </li>
+  <li><a
+      href="../general/astrometry.html#calibrationEquations">How
+      to apply the astrometric calibration (beyond the WCS in the
+      fits files)</a>
+  </li>
+  <li>SDSS provides image masks listing "bad" regions of the sky (pixels
+      affected by saturation, bright stars, satellite trails, bad seeing,
+      or with locally unacceptably bad data). Look at the <a
+      href="../../algorithms/masks.html">image mask creation algorithm</a>
+      to understand their creation, and the <a
+      href="./use_masks.html">image mask instructions for use</a> for
+      details on the file format and location.
+  </li>
+</ul>
+<!--    <li><h3>Supplementary info:</h3> -->
+<!--      <ol> -->
+<!--        <li>How to reconstruct the sky that we subtracted <font color="red"> RHL! -->
+<!--          see PR <a -->
+<!--          href="http://www.astro.princeton.edu/cgi-bin/gnatsweb.pl?cmd=view&amp;database=sdss&amp;pr=4399">PR -->
+<!--          4399</a></font></li> -->
+<!--      </ol> -->
+<!--    </li> -->
+
+<h2>Caveats</h2>
+<ul>
+  <li><a name="skylev"></a><h4>Overestimation of sky levels near
+      bright galaxies</h4>
+      A study of weak lensing in the SDSS imaging data <a
+      href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2005astro.ph..1201M">(Mandelbaum
+      et al.  2005)</a> found a systematic, 5% decrease in the number
+      density of faint objects within 90&prime;&prime; of bright
+      (<var>r</var> &lt; 18) galaxies.  This was found to be due to a
+      systematic overestimation of the sky levels in the vicinity of bright
+      objects, which of course will affect all the measured photometric
+      quantities of faint objects, including the classification as stars and
+      galaxies.  The brighter the object, the larger the overestimation of
+      sky; indeed, restricting to foreground galaxies brighter than
+      <var>r</var> = 16, the number density of fainter galaxies is 10% below
+      the mean.  The effect is due to the way in which the sky levels are
+      estimated in the SDSS; they can be biased upward by the faint outer
+      isophotes of a bright galaxy (see the <a
+      href="../../algorithms/edrpaper.html">EDR paper</a> [<a
+      href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....123..485S">Stoughton
+      et al. 2002</a>]; see also the discussion in <a
+      href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002AJ....124.1810S">Strauss
+      et al. 2002</a>).  Closer than 40&prime;&prime; to the bright objects,
+      the intrinsic clustering of galaxies makes it difficult to assess the
+      problem.  This problem is most relevant for applications that involve
+      correlating positions of bright objects with faint ones, yielding a
+      spurious anti-correlation on the affected scales.  We are currently
+      investigating changes to the imaging pipeline to address this problem.
+
+  <li><a name="badcol"></a><h4>Bad CCD columns</h4> Some chips have bad CCD columns
+      which get interpolated over by the photometric pipeline, leading
+      to noticeably correlated noise. The bad columns for each run are
+      currently available in <a
+      href="../../dm/flatFiles/opBC.html">opBC*.par</a> files (which
+      are <a href="../../data/parfiles.html">ASCII parameter files</a>).  These files can be
+      found on the Data Archive Server in the <code>logs</code>
+      subdirectory of each <code>run/rerun</code> directory (e.g., <a
+      href="http://das.sdss.org/DR3/data/imaging/1740/40/logs/">http://das.sdss.org/DR3/data/imaging/1740/40/logs/</a>
+      <!-- XXX PR 5105 - RHL commented that these are in the fpM files, but there
+      is no instruction anywhere on how to read those! --></li>
+  <li><a name="redleak"></a><h4>Very red objects</h4>
+      <!--#include virtual="./u_redleak.html"-->
+  </li>
+  <li><a name="usky"></a><h4>u-band sky</h4>
+      <!--#include virtual="./u_sky.html"-->
+  </li>
+</ul>
+
+<!-- end page content-->
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Jun 29 16:31:38 CDT 2005
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

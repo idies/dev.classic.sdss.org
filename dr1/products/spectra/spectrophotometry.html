@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+
+<title>Data products: Quality of spectrophotometry - SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+ 
+<h1>The Quality of the Spectrophotometry</h1>
+   <!-- Author: M. C. Tremonti March 26 2003 -->
+Obtaining accurate spectrophotometry for fiber spectra is a challenging task 
+due to the small size of the fibers relative to the science targets.  The SDSS 
+employs some unique techniques which are described on the 
+<a href="../../algorithms/index.html">algorithms page</a>.   <br>
+  <br>
+
+Below we quantify the spectrophotometric quality of the data by comparing
+the magnitudes of stars measured in the spectroscopy and the imaging data.
+ We utilize stars for this comparison because the spectrophotometry of galaxies
+is adversely affected by the 
+<a href="../../algorithms/smear.html">smear procedure</a> and
+quasars are prone to be  variable.  
+<!--We use only data with a median 
+S/N per pixel of greater than 5, and we exclude stars of spectral type K & M
+because of their tendency to be variable. 
+-->
+Synthetic <i>g, r,</i> and <i>i </i>magnitudes are computed from
+the spectra using the 
+<a href="../../instruments/imager/index.html#filters">filter curves.</a>  
+We use the <a href="../../algorithms/photometry.html#mag_fiber">
+fiber magnitudes</a>
+measured by the photometric pipeline from the imaging data.<br>
+<br>
+<br>
+<img src="star_sphoto_mag.jpg" alt="Plot of comparing spectro and photo fiber mags" width="540" height="360">
+ <br>
+<i>Comparison of g, r, &amp; i magnitudes synthesized from the spectra with
+fiber magnitudes measured from the
+imaging data and corrected for galactic foreground reddening. </i> <br>
+<br>
+The net offset is in the sense that the spectra are too bright relative to
+the imaging.  This is because the
+spectra were calibrated to match the <i>r-</i>band fiber magnitudes of standard
+stars measured with an older version of the photometric pipeline.  Older
+versions of photo (pre v5_3) did not convolve the images to the 2" seeing
+typical of spectroscopic observations before measuring the fiber magnitudes.
+ <br>
+<br>
+A more interesting test is to compare the <i>colors</i> of stars.<br>
+<br>
+<p><img src="star_sphoto_colors.jpg" alt="Comparison of spectro and photo star colors" width="540" height="360">
+ </p>
+<i>Comparison of the (g-r) and (r-i) colors of stars synthesized from the
+spectra with colors measured from the imaging data and corrected for galactic
+foreground reddening.</i><br>
+<br>
+A slight offset is evident in the sense that the spectra are too blue by
+a few percent relative to the imaging.
+Since the spectrophotometric calibration is computed independently 
+for each half-plate
+(320 fibers) it is instructive to
+examine the variation as a function of plate number.<br>
+<br>
+<img src="star_sphoto_plate.jpg" alt="spectro - photo colors vs plate number" width="684" height="396">
+ <br>
+<i>Comparison of the (g-r) and (r-i) colors of stars in the spectra and imaging
+as a function of plate number.</i> <i>The small black points are individual
+stars; the large blue points represent the median. </i><br>
+<br>
+The discreet jump in the colors at plate 432 results from the fact that the
+standard star target priorities were changed.  Note that
+the spectrophotometry of any <i>individual </i>object is only good to ~10% 
+on average, and may occasionally be discrepant by as much as 50%.<br>
+<br>
+ <br>
+To evaluate the spectrophotometry on smaller wavelength scales, we make use
+of white dwarf spectra.  DA white dwarfs have simple hydrogen atmospheres
+that can be accurately modeled.   The strength and shape of the hydrogen
+absorption features are used to identify DA white dwarfs and to select models
+of the appropriate effective temperature and surface gravity.   The division
+of the data by the models reveals any spectrophotometric error.  <br>
+<br>
+<img src="sphoto_resid.gif" alt="Spectrophotometry residual as a function of wavelength" width="684" height="396">
+<br>
+<i>Comparison of ~200 DA white dwarf spectra to models.</i>  <i>The red line represents the median. </i><br>
+<br>
+Clearly there are some ~15% residuals in the spectrophotometry near 4200
+Angstroms.  These features originate because of a slight mis-match between
+our template F8 subdwarf and the actual standard stars observed.<br>
+<br><b>
+Future improvements in the spectrophotometric calibration of the SDSS are
+planned.</b>
+<ul>
+    
+</ul>
+         
+<hr> <!-- hhmts start -->Last modified: Fri Jun 27 13:21:31 CDT 2003
+<!-- hhmts end -->
+  <!--#include virtual="../../includes/footer_layer3.html"--> <br>
+ <br>
+<br>
+</body></html>

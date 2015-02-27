@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorial: Getting Flags and Proper Motion for a List of 
+Targets- SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorial: Getting Flags and Proper Motion for a List of 
+Targets</h1>
+
+<p>The following procedure outlines how to use the DAS Imaging Query Server 
+(IQS) to obtain flags and proper motion for a list of targets.</p>
+<p><b><font size="4">Procedure</font></b></p>
+<ol>
+  <li>Access the <a href="http://das.sdss.org/DR1-cgi-bin/IQS">Imaging Query Server interface</a>.<br>
+&nbsp;</li>
+  <li>In the Imaging parameters window, select the list of parameters you want. 
+  They are listed by alphabetical order. The list and some explanations are 
+  given in <a href="../dm/flatFiles/tsObj.html"> the tsObj file description
+  </a>. Flags are described 
+  in <a href="../products/catalogs/flags.html">the photometric flags page</a>. You can select 
+  several contiguous items by using the usual shift-click.<br>
+&nbsp;</li>
+  <li>Select <a href="../glossary/index.html#target"><code>Target</code></a> imaging to get the parameters used for the spectroscopy 
+  (positions, selection,...). Select <a href="../glossary/index.html#best"><code>Best</code></a> to get the parameters corresponding to the most recent observations and runs of the photometric pipeline. You can also select both.<br>&nbsp;
+</li>
+  <li>Select for which filters you would like to download the 
+  images, catalogues, etc.&nbsp; If you are just looking for catalog information, and not actual images, <a href="../glossary/index.html#tsobj">tsObj</a> files, etc.,  you can leave these unchecked.<br>
+&nbsp;</li>
+  <li>In the &quot;Position Constraints&quot; panel you can search a rectangular area, a 
+  circular area (Cone Search), or for the closest object only (Proximity Search).&nbsp; For the Proximity Search, your upload file (or the window containing the coordinates) must have as the first line &quot;ra,dec,sep&quot;, and the separation must be specified in arcseconds (max 10).&nbsp; If you specify both an upload file and give coordinates in the window, the upload file will be used.<br>
+&nbsp;</li>
+  <li>In the &quot;Imaging Constraints&quot; you can place a few constraints based on 
+  magnitudes, colors or flags.<br>
+&nbsp;</li>
+  <li>Submit your query</li>
+</ol>
+<p><br>
+Once you get the page with the results presented in a table, you can proceed to:</p>
+<ul>
+  <li>download the results as an ASCII comma-separated table</li>
+  <li>download the results as a FITS table</li>
+  <li>proceed to the data archive server to get images, catalogues, and more 
+  files (see below)</li>
+  <li>proceed to the FOOT web form to get small JPEG images (limited to a maximum of 10 at a time)</li>
+</ul>
+<p><br>
+If you choose to get more information on your targets, proceed to the
+<a href="http://das.sdss.org/DR1-cgi-bin/DAS">DAS web form </a>and:</p>
+<ol>
+  <li>Select the products and files you want to download (<i>Step 1 on the form</i>)</li>
+  <li>Skip steps 2 and 3 on the form (these have already been taken care of by 
+  using your first query's results)</li>
+  <li>Select your format (<i>Step 4 on the form</i>)</li>
+  <li>Submit your query.</li>
+</ol>
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar  3 15:22:43 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+
+</html>

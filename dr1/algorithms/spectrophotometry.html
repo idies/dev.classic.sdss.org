@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+     
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     
+  <link rel="stylesheet" type="text/css" href="../includes/sdss.css"><title>SDSS DR1 - Algorithms: Spectrophotometry</title></head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+ <br>
+  <!--#include virtual="../includes/header_layer2.html"-->  <!-- Start page content -->
+ <br>
+ 
+<h1>Algorithms - Spectrophotometry</h1>
+ Because the SDSS spectra are obtained through 3-arcsecond fibers during 
+non-photometric observing conditions, special techniques must be employed 
+to spectrophotometrically calibrate the data. <br>
+ <br> 
+ On each spectroscopic plate, 16 objects are targeted as spectroscopic standards.
+These objects are color-selected to be F8 subdwarfs, similar in spectral
+ type to the SDSS primary standard BD+17 4708.<br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1" width="100" align="center">
+  <tbody>
+    <tr>
+      <td valign="top"><img src="stdstar_colors.jpg" alt="standard star colors" width="576" height="360">
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">The color selection of the SDSS standard stars. Red points represent 
+stars selected as spectroscopic standards. (Most are flux standards; the
+very blue stars in the right hand plot are"hot standards"used for telluric
+absorption correction.) <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+ <br>
+The flux calibration of the spectra is handled by the Spectro2d pipeline.
+It is performed separately for each of the 2 spectrographs, hence each half-<a href="../glossary/index.html#P">plate</a> has its own calibration.<br>
+<br>
+At least 3 exposures are obtained of each plate, sometimes under very different
+sky conditions, and occasionally on multiple nights. In order to effectively
+reject bad pixels when the data is combined, the gross exposure-to-exposure
+differences must first be removed. This is accomplished by the <a href="smear.html">smear procedure</a> which is described in detail separately.
+<br>
+<br>
+The highest S/N exposure is used to derive the flux calibration. Spectro2d runs
+a PCA algorithm on the 8 spectra of flux standards and generates an 
+eigenspectrum.  This procedure eliminates bad pixels and any star spectra that 
+deviate too much from the others. The eigenspectrum is then ratioed to a model 
+F8 subdwarf.
+The result is fit with a spline to produce the flux correction. Since the
+red and blue halves of the spectra are imaged onto separate CCDs, separate
+red and blue flux calibration vectors are produced. These will resemble
+the throughput curves under photometric conditions.<br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1" width="100" align="center">
+  <tbody>
+    <tr>
+      <td valign="top"><img src="throughput.jpg" alt="throughput plot" width="507" height="384">
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">Throughput curves for the red and blue channels on the two SDSS spectrographs.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+ <br>
+Finally, the red and blue halves of each spectrum on each exposure are multiplied
+by the appropriate flux calibration vector. The spectra are then combined
+with bad pixel rejection and rebinned to a constant dispersion.<br>
+<br>
+ Comparisons of the calibrated spectra with the SDSS photometry allow us to 
+access the <a href="../products/spectra/spectrophotometry.html">spectrophotometric quality.</a><br>
+<br>
+ 
+<hr><!-- hhmts start -->Last modified: Mon April 23 14:34:30 CST 2003 <!-- hhmts end -->
+  <!--#include virtual="../includes/footer.html"--> <br>
+ <br>
+<br>
+</body></html>

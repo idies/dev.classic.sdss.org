@@ -1,0 +1,491 @@
+<HTML>
+<HEAD>
+<TITLE>Survey Interface File for Combined Spectra</TITLE>
+</HEAD>
+
+<BODY>
+
+<H1>Combined Spectra</H1>
+
+<STRONG>File Format:</STRONG>
+FITS image
+ <P>
+<STRONG>Name:</STRONG>
+<EM>spPlate-YYYY-ZZZZZ.fits</EM>,
+where <em>YYYY</em> is the plate ID and <em>ZZZZZ</em> is the MJD the plate was
+observed.  If the same mapping of this plate was observed on several nights,
+then this MJD corresponds to the last night it was observed.
+ <P>
+<STRONG>Produced by:</STRONG>
+spectro2d
+ <P>
+<STRONG>Used by:</STRONG>
+spectro1d
+ <P>
+<STRONG>Archived?</STRONG>
+Yes.  Tracked file.
+
+<H2>Description</H2>
+The combined spectrum over all exposures (potentially spanning multiple
+nights) for a given mapped plate.
+
+<P>
+In summary, this file contains the following:
+<PRE>
+<a href="#hdu0">HDU #0</a> = Flux in units of 10^(-17) erg/cm/s/Ang [FLOAT]
+<a href="#invvar">HDU #1</a> = Inverse variance (1/sigma^2) for the above [FLOAT]
+<a href="#andmask">HDU #2</a> = AND mask [32-bit INT]
+<a href="#ormask">HDU #3</a> = OR mask [32-fit INT]
+<a href="#resolution">HDU #4</a> = RMS resolution at each pixel (=FWHM/2.35) in pixels [FLOAT]
+<a href="#plugmap">HDU #5</a> = Plug-map structure from plPlugMapM file [BINARY FITS TABLE]
+<a href="#snvec">HDU #6</a> = S/N vectors for g,r,i [FLOAT]
+<a href="#synmag">HDU #7</a> = Synthetic magnitude g,r,i Vectors [FLOAT]
+<a href="#smearstuff">HDU #8</a> = SN_SCI, SN_SMEAR, and 3 legendre coefficients of smear correction (not applied) [BINARY FITS TABLE]
+</PRE>
+
+<a name="hdu0"></a>
+<H2>HDU #0 (Primary Header)</H2>
+Contains the flux in units of 10^-17 erg/s/cm^2/Ang.  The length of the
+spectra (NAXIS1) can vary, depending on the pixel binning and wavelength
+coverage.  The number of spectra (NAXIS2) is always 640.
+<pre>
+
+SIMPLE  =                    T / FIT STANDARD                                   
+BITPIX  =                  -32 / FITS BITS/PIXEL                                
+NAXIS   =                    2 / NUMBER OF AXES                                 
+NAXIS1  =                 3849 / WIDTH (TOTAL!)                                 
+NAXIS2  =                  640 / HEIGHT (TOTAL!)                                
+EXTEND  =                    T /                                                
+TAI     =        4474845874.54 / 1st row - Number of seconds since Nov 17 1858  
+RA      =            261.30167 / 1st row - Right ascension of telescope boresigh
+DEC     =            60.926492 / 1st row - Declination of telescope boresight (d
+EQUINOX =              2000.00 /                                                
+RADECSYS= 'FK5     '           /                                                
+AZ      =        212.819513333 / 1st row - Azimuth  (encoder) of tele (0=N?) (de
+ALT     =        48.0575580000 / 1st row - Altitude (encoder) of tele        (de
+AIRMASS =              1.28831 /                                                
+FOCUS   = -999999999999.999999 / 1st row - Focus piston (microns?)              
+DATE-OBS= '2000-09-05'         / 1st row - TAI date                             
+TAIHMS  = '04:27:02.14'        / 1st row - TAI time (HH:MM:SS.SS) (TAI-UT = appr
+TIMESYS = 'tai     '           / TAI, not UTC                                   
+TAI-BEG =        4474843863.00 / Exposure Start Time                            
+TAI-END =        4474846879.00 / Exposure End Time                              
+MJD     =                51792 / MJD of observation                             
+MJDLIST = '51792   '           /                                                
+VERSION = 'v3_17_5_4'          / version of IOP                                 
+CAMVER  = 'SPEC2 v4_5'         / Camera code version                            
+OBSERVER= 'sjnk    '                                                            
+OBSCOMM = 'science '                                                            
+TELESCOP= 'SDSS 2.5-M'         / Sloan Digital Sky Survey                       
+NEXP    =                   12 / Number of exposures in this file               
+EXPID00 = 'b1-51792-00006429-00006426-00006427' / ID string for exposure 0      
+EXPID01 = 'b1-51792-00006430-00006426-00006427' / ID string for exposure 1      
+EXPID02 = 'b1-51792-00006431-00006437-00006427' / ID string for exposure 2      
+EXPID03 = 'b2-51792-00006429-00006426-00006427' / ID string for exposure 3      
+EXPID04 = 'b2-51792-00006430-00006426-00006427' / ID string for exposure 4      
+EXPID05 = 'b2-51792-00006431-00006437-00006427' / ID string for exposure 5      
+EXPID06 = 'r1-51792-00006429-00006426-00006438' / ID string for exposure 6      
+EXPID07 = 'r1-51792-00006430-00006426-00006438' / ID string for exposure 7      
+EXPID08 = 'r1-51792-00006431-00006437-00006438' / ID string for exposure 8      
+EXPID09 = 'r2-51792-00006429-00006426-00006438' / ID string for exposure 9      
+EXPID10 = 'r2-51792-00006430-00006426-00006438' / ID string for exposure 10     
+EXPID11 = 'r2-51792-00006431-00006437-00006438' / ID string for exposure 11     
+EXPT_B1 =              2700.00 / b1 camera exposure time (seconds)              
+EXPT_B2 =              2700.00 / b2 camera exposure time (seconds)              
+EXPT_R1 =              2700.00 / r1 camera exposure time (seconds)              
+EXPT_R2 =              2700.00 / r2 camera exposure time (seconds)              
+EXPTIME =              2700.00 / Minimum of exposure times for all cameras      
+SPCOADD = 'Fri Jun 28 15:25:10 2002' / SPCOADD finished                         
+FLAVOR  = 'science '           / Flavor of this sequence (e.g., dome flat, etc.)
+QUALITY = 'unknown '           / night/image quality                            
+RADEG   = 2.61302400000000E+02 / Right Ascension. (degrees)                     
+DECDEG  = 6.09272200000000E+01 / Declination. (degrees)                         
+PLATEID =                  354 / Plate Id                                       
+TILEID  =                  153 / Tile Id                                        
+CARTID  =                    2 /Cartridge used in this plugging                 
+REDDEN  = '0.1291 0.0950 0.0689 0.0522 0.0370' / Median reddening vector for pla
+MAPID   =              5179001 / Map Id                                         
+NAME    = '0354-51790-01'      / Name of target; PlateId-MJD-Mapper ReRun       
+NGUIDE  =              27.0000 / Number of guider frames during exposure        
+SEEING20=              1.40667 / 20% seeing during exposure (arcsec)            
+SEEING50=              1.50333 / 50% seeing during exposure (arcsec)            
+SEEING80=              1.65667 / 80% seeing during exposure (arcsec)            
+RMSOFF20=       0.308173333333 / 20% RMS offset of guide fibers (arcsec)        
+RMSOFF50=       0.430279000000 / 50% RMS offset of guide fibers (arcsec)        
+RMSOFF80=       0.549163333333 / 80% RMS offset of guide fibers (arcsec)        
+COLBIN  =                    1 / Binning factor perpendicular to the columns    
+ROWBIN  =                    1 / Binning factor perpendicular to the rows       
+PROGRAM = 'binning 1   1 '     / Identifying name for CCD program               
+SECFOCUS= -3.0000000000000E+02 / Secondary Mirror Position as reported by TCC   
+GUIDEIMG= '/data/spectro/guider/gimg0084.fits' / Last archived guider image     
+WTIME   =        968128309.000 / weatherData(timeStamp)                         
+AIRTEMP =        16.8000000000 / weatherData(airtemp)                           
+DEWPOINT=      -0.433333333333 / weatherData(dewpoint)                          
+DEWDEP  =        17.2333333333 / weatherData(dewpointDep)                       
+DUSTA   =        85468.0000000 / weatherData(dusta)                             
+DUSTB   =        957.333333333 / weatherData(dustb)                             
+DUSTC   =        99940.0000000 / weatherData(dustc)                             
+DUSTD   =        955.333333333 / weatherData(dustd)                             
+GUSTD   = 1.32300000000000E+02 / weatherData(gustd)                             
+GUSTS   =        21.7000000000 / weatherData(gusts)                             
+HUMIDITY=        30.9333333333 / weatherData(humidity)                          
+HUMIDOUT=        30.6666666667 / weatherData(humidout)                          
+PRESSURE=        21.7000000000 / weatherData(pressure)                          
+WINDD   =        132.000000000 / weatherData(windd)                             
+WINDS   =        17.5333333333 / weatherData(winds)                             
+TEMP01  =       -93.6200000000 / CCD 01 Temperature                             
+TEMP02  =       -93.3600000000 / CCD 02 Temperature                             
+TEMP03  =       -92.5800000000 / CCD 03 Temperature                             
+TEMP04  =       -92.8400000000 / CCD 04 Temperature                             
+AZ_OFF  = 0.00000000000000E+00 / Azimuth Offset (Diamond Pointing)              
+ALT_OFF = 0.00000000000000E+00 / Altitude Offset (Diamond Pointing)             
+AUTHOR  = 'Scott Burles & David Schlegel' /                                     
+VERSIDL = '5.4     '           / Version of IDL                                 
+VERSUTIL= 'v4_9_7  '           / Version of idlutils                            
+VERSREAD= 'v4_9_8  '           / Version of idlspec2d for pre-processing raw dat
+VERS2D  = 'v4_9_8  '           / Version of idlspec2d for 2D reduction          
+VERSCOMB= 'v4_9_8  '           / Version of idlspec2d for combining multiple spe
+VERSLOG = 'Unknown '           / Version of SPECLOG product                     
+VERSFLAT= 'v1_4    '           / Version of SPECFLAT product                    
+OPBC    = 'opBC-50000.par'     /                                                
+OPCONFIG= 'opConfig-50000.par' /                                                
+OPECALIB= 'opECalib-51577.par' /                                                
+XSIGMA  =       0.947553247927 /                                                
+XSIGMIN =       0.842633000000 /                                                
+XSIGMAX =        1.11480998993 /                                                
+WSIGMA  =       0.937792500000 /                                                
+WSIGMIN =       0.898409000000 /                                                
+WSIGMAX =       0.988289000000 /                                                
+PLUGFILE= 'plPlugMapM-0354-51790-01.par' /                                      
+LAMPLIST= 'lamphgcdne.dat'     /                                                
+SKYLIST = 'skylines.dat'       /                                                
+HELIO_RV=        3.38344063555 / Heliocentric correction (added to velocities)  
+VACUUM  =                    T / Wavelengths are in vacuum                      
+SFLATTEN=                    T / Superflat has been applied                     
+PSFSKY  =                    3 / Order of PSF skysubtraction                    
+SKYCHI2 =       0.967572500439 / Mean chi^2 of sky-subtraction                  
+SCHI2MIN=       0.931639000000 /                                                
+SCHI2MAX=        1.01598000526 /                                                
+PREJECT =             0.200000 / Profile area rejection threshold               
+SPEC1_G =              19.9614 /(S/N)^2 for spec  1 at mag 20.20                
+SPEC1_R =              30.2269 /(S/N)^2 for spec  1 at mag 20.25                
+SPEC1_I =              25.6335 /(S/N)^2 for spec  1 at mag 19.90                
+SPEC2_G =              18.0590 /(S/N)^2 for spec  2 at mag 20.20                
+SPEC2_R =              28.4687 /(S/N)^2 for spec  2 at mag 20.25                
+SPEC2_I =              23.9591 /(S/N)^2 for spec  2 at mag 19.90                
+LOWREJ  =                    5 / Extraction: low rejection                      
+HIGHREJ =                    8 / Extraction: high rejection                     
+SCATPOLY=                    5 / Extraction: Order of scattered light polynomial
+PROFTYPE=                    3 / Extraction profile: 1=Gaussian                 
+NFITPOLY=                    1 / Extraction: Number of parameters in each profil
+XCHI2   =              1.38691 / Extraction: Mean chi^2                         
+XCHI2MIN=              1.20964 /                                                
+XCHI2MAX=              1.66991 /                                                
+ROFFSET1=            0.0261908 /Mean r-band mag difference (spectro - photo)    
+RSIGMA1 =            0.0648688 /Stddev of r-band mag difference (spectro - photo
+GROFF1  =             0.114613 /Mean (g-r) color difference (spectro - photo)   
+GRSIGMA1=             0.200775 /Stddev of (g-r) color difference (spectro - phot
+ROFFSET2=            0.0129974 /Mean r-band mag difference (spectro - photo)    
+RSIGMA2 =            0.0450179 /Stddev of r-band mag difference (spectro - photo
+GROFF2  =          -0.00129504 /Mean (g-r) color difference (spectro - photo)   
+GRSIGMA2=            0.0852536 /Stddev of (g-r) color difference (spectro - phot
+NWORDER =                    2 / Linear-log10 coefficients                      
+WFITTYPE= 'LOG-LINEAR'         / Linear-log10 dispersion                        
+COEFF0  =        3.57920000000 / Central wavelength (log10) of first pixel      
+COEFF1  =    0.000100000000000 / Log10 dispersion per pixel                     
+UNAME   = 'fnpc73  '           /                                                
+SMEARUSE=                    T / Smear image used?                              
+TSOBJNAM= 'tsObj-0595-52023-02.fit' / Name of tsObj file used         
+SFD_USED=                    T / SFD dust maps used?                            
+XYGRSIG1=            0.0514657 / Sigma of (g-r) offsets as a fcn of plate x/y   
+XYGRSIG2=            0.0363202 / Sigma of (g-r) offsets as a fcn of plate x/y   
+MPGRSIG1=            0.0346769 / Sigma of (g-r)_model - (g-r)_photo Spec 1      
+MPGRSIG2=            0.0280914 / Sigma of (g-r)_model - (g-r)_photo Spec 2      
+MPGROFF1=            0.0627630 / Mean of (g-r)_model - (g-r)_photo of Spec 1    
+MPGROFF2=            0.0108098 / Mean of (g-r)_model - (g-r)_photo of Spec 2    
+FBADPIX =            0.0189197 / Fraction of bad pixels                         
+FBADPIX1=            0.0178169 / Fraction of bad pixels on spectro-1            
+FBADPIX2=            0.0200191 / Fraction of bad pixels on spectro-2            
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57920000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+BUNIT   = '10E-17 erg/cm/s/Ang' /                                               
+END                                                                             
+
+</pre>
+
+<a name="hdu1"></a>
+<a name="invvar"></a>
+<H2>HDU #1</H2>
+Contains the inverse variance in units of 1/(10^-17 erg/s/cm^2/Ang)^2.
+The dimensions are the same as the primary HDU.
+<pre>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 3848 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57980000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+END                                                                             
+</pre>
+
+<a name="hdu2"></a>
+<a name="andmask"></a>
+<H2>HDU #2</H2>
+Contains the AND bit mask.
+The dimensions are the same as the primary HDU.
+<pre>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                   32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 3848 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57980000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+END                                                                             
+</pre>
+
+<P>
+There are two masks, an "AND" mask and an "OR" mask. The spectra are
+constructed from 3 or more 15-minute observations, and the "AND" mask bits
+are set if that bit is set for each and every input observation.
+The "OR" mask bits are set if that bit is set for any of the observations. 
+
+<P>
+
+<a name="maskbits">
+The mask bits are set as follows: 
+<pre>
+  0 NOPLUG           Fiber not listed in plugmap file
+  1 BADTRACE         Bad trace from routine TRACE320CRUDE
+  2 BADFLAT          Low counts in fiberflat
+  3 BADARC           Bad arc solution
+  4 MANYBADCOLUMNS   >10% pixels are bad columns
+  5 MANYREJECTED     >10% pixels are rejected in extraction
+  6 LARGESHIFT       Large spatial shift between flat and object pos'n
+  7 BADSKYFIBER      Sky Fiber shows extreme residuals
+  8 NEARWHOPPER      Within 2 fibers of a whopping fiber (inclusive)
+ 10 SMEARIMAGE       Smear available for red and blue cameras
+ 11 SMEARHIGHSN      S/N sufficient for full smear fit
+ 12 SMEARMEDSN       S/N only sufficient for scaled median fit
+ 16 NEARBADPIXEL     Bad pixel within 3 pixels of trace
+ 17 LOWFLAT          Flat field less than 0.5
+ 18 FULLREJECT       Pixel fully rejected in extraction (INVVAR=0)
+ 19 PARTIALREJECT    Some pixels rejected in extraction
+ 20 SCATTEREDLIGHT   Scattered light significant
+ 21 CROSSTALK        Cross-talk significant
+ 22 NOSKY            Sky level unknown at this wavelength (INVVAR=0)
+ 23 BRIGHTSKY        Sky level > flux + 10*(flux_err)
+                       AND sky > 1.25 * median(sky,99 pixels)
+ 24 NODATA           No data available in combine B-spline (INVVAR=0)
+ 25 COMBINEREJ       Rejected in combine B-spline
+ 26 BADFLUXFACTOR    Low flux-calibration or flux-correction factor
+ 27 BADSKYCHI        Chi^2 > 4 in sky residuals at this wavelength
+ 28 REDMONSTER       Contiguous region of bad chi^2 in sky residuals
+</pre>
+
+<a name="hdu3"></a>
+<a name="ormask"></a>
+<H2>HDU #3</H2>
+Contains the OR bit mask.
+The dimensions are the same as the primary HDU.
+<pre>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                   32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 3848 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57980000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+END                                                                             
+</pre>
+
+<a name="hdu4"></a>
+<a name="resolution"></a>
+<H2>HDU #4</H2>
+
+<p>Contains the RMS resolution at each pixel in units of pixels.  To
+get the FWHM resolution, multiply the pixel values by sqrt(8*ln(2))
+&sim; 2.35. Since the spectra are binned with constant logarithmic
+dispersion, the pixel size is fixed in velocity space at 69 km/s =
+ln(10) * <var>c</var> * 0.0001, where 0.0001 is the log10 dispersion
+per pixel (stored in the header field <code>CD1_1</code>).  To convert
+to resolution in wavelength units, multiply by the local pixel size in
+wavelength units, which is ln(10) * lambda * 0.0001 where lambda is
+the wavelength of the pixel and 0.0001 is again the log10 dispersion.</p>
+
+<p>The dimensions are the same as the primary HDU.</p>
+<pre>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                 3848 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+WAT0_001= 'system=linear'      /                                                
+WAT1_001= 'wtype=linear label=Wavelength units=Angstroms' /                     
+CRVAL1  =        3.57980000000 / Central wavelength (log10) of first pixel      
+CD1_1   =    0.000100000000000 / Log10 dispersion per pixel                     
+CRPIX1  =                    1 / Starting pixel (1-indexed)                     
+CTYPE1  = 'LINEAR  '           /                                                
+DC-FLAG =                    1 / Log-linear flag                                
+END                                                                             
+</pre>
+
+<a name="hdu5"></a>
+<a name="plugmap"></a>
+<H2>HDU #5</H2>
+Contains the entries from the plPlugMapM file used for the Spectro-2D
+reduction.  There are always 640 rows (one per object).
+Note that there are two arrays 'tsobjid' and 'tsobj_mag'
+tacked onto the end of each element of this table which contain
+the tsObj (from calibrated photo) id and fiber mags used
+in the spectrophotometry calculations for this object.
+<pre>
+XTENSION= 'BINTABLE'           /Binary table written by MWRFITS                 
+BITPIX  =                    8 /Required value                                  
+NAXIS   =                    2 /Required value                                  
+NAXIS1  =                  169 /Number of bytes per row                         
+NAXIS2  =                  640 /Number of rows                                  
+PCOUNT  =                    0 /Normally 0 (no varying arrays)                  
+GCOUNT  =                    1 /Required value                                  
+TFIELDS =                   16 /Number of columns in table                      
+COMMENT                                                                         
+COMMENT  *** Column formats ***                                                 
+COMMENT                                                                         
+TFORM1  = '5J      '           /                                                
+TFORM2  = '6A      '           /                                                
+TFORM3  = 'D       '           /                                                
+TFORM4  = 'D       '           /                                                
+TFORM5  = '5E      '           /                                                
+TFORM6  = 'E       '           /                                                
+TFORM7  = 'E       '           /                                                
+TFORM8  = 'E       '           /                                                
+TFORM9  = '19A     '           /                                                
+TFORM10 = 'D       '           /                                                
+TFORM11 = 'D       '           /                                                
+TFORM12 = 'J       '           /                                                
+TFORM13 = 'J       '           /                                                
+TFORM14 = 'J       '           /                                                
+TFORM15 = 'J       '           /                                                
+TFORM16 = 'J       '           /                                                
+TFORM17 = '5J      '           /                                                
+TFORM18 = '5J      '           /                                                
+COMMENT                                                                         
+COMMENT  *** Column Names ***                                                   
+COMMENT                                                                         
+TTYPE1  = 'OBJID   '           /                                                
+TTYPE2  = 'HOLETYPE '          /                                                
+TTYPE3  = 'RA      '           /                                                
+TTYPE4  = 'DEC     '           /                                                
+TTYPE5  = 'MAG     '           /                                                
+TTYPE6  = 'STARL   '           /                                                
+TTYPE7  = 'EXPL    '           /                                                
+TTYPE8  = 'DEVAUCL '           /                                                
+TTYPE9  = 'OBJTYPE '           /                                                
+TTYPE10 = 'XFOCAL  '           /                                                
+TTYPE11 = 'YFOCAL  '           /                                                
+TTYPE12 = 'SPECTROGRAPHID '    /                                                
+TTYPE13 = 'FIBERID '           /                                                
+TTYPE14 = 'THROUGHPUT '        /                                                
+TTYPE15 = 'PRIMTARGET '        /                                                
+TTYPE16 = 'SECTARGET '         /                                                
+TTYPE17 = 'TSOBJID'            /                                                
+TTYPE18 = 'TSOBJ_MAG '         /                                                
+COMMENT                                                                         
+COMMENT  *** End of required fields ***                                         
+COMMENT                                                                         
+END                                                                             
+</pre>
+
+<a name="hdu6"></a><a name="snvec"></a>
+<H2>HDU #6</H2>
+Contains the S/N values in the  g,r and i bands for
+each of 640 fibers on the plate (stored as a 640x3 float image)
+<pre>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                    3 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+END                                                                             
+</pre>
+
+<a name="hdu7"></a><a name="synmag"></a><H2>HDU #7</H2>
+Contains the Synthetic magnitudes in the  g,r and i bands for
+each of 640 fibers on the plate (stored as a 640x3 float image)
+<pre>
+XTENSION= 'IMAGE   '           / IMAGE extension                                
+BITPIX  =                  -32 /                                                
+NAXIS   =                    2 /                                                
+NAXIS1  =                    3 /                                                
+NAXIS2  =                  640 /                                                
+PCOUNT  =                    0 / No Group Parameters                            
+GCOUNT  =                    1 / One Data Group                                 
+END                                                                             
+</pre>
+
+<a name="hdu8"></a><a name="smearstuff"></a>
+<H2>HDU #8</H2>
+Contains the science object S/N, the smear object S/N (if this is too low,
+smear should not be applied), and the 3 legendre polynomial co-efficients
+of a correction polynomial which, if applied, represent the smear correction.
+ There are always 640 rows (one per object with 5 floats per row).
+<pre>
+XTENSION= 'BINTABLE'           /Binary table written by MWRFITS                 
+BITPIX  =                    8 /Required value                                  
+NAXIS   =                    2 /Required value                                  
+NAXIS1  =                   20 /Number of bytes per row                         
+NAXIS2  =                  640 /Number of rows                                  
+PCOUNT  =                    0 /Normally 0 (no varying arrays)                  
+GCOUNT  =                    1 /Required value                                  
+TFIELDS =                   16 /Number of columns in table                      
+COMMENT                                                                         
+COMMENT  *** Column formats ***                                                 
+COMMENT                                                                         
+TFORM1  = '1E      '           /                                                
+TFORM2  = '1E      '           /                                                
+TFORM3  = '3E      '           /                                                
+COMMENT                                                                         
+COMMENT  *** Column Names ***                                                   
+COMMENT                                                                         
+TTYPE1  = 'SCI_SN  '           /                                                
+TTYPE2  = 'SMEAR_SN'           /                                                
+TTYPE3  = 'LEGENDRE_COEFF '    /                                                
+COMMENT
+COMMENT  *** End of required fields ***                                         
+COMMENT                                                                         
+END                                                                             
+</pre>
+
+</BODY>
+</HTML>

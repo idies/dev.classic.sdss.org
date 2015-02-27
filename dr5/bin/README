@@ -1,0 +1,15 @@
+1. All pages are in the FNAL SDSS cvs repository in dr1web.
+2. Make changes, add directories and files, do whatever you need to do.
+3. When you are at a stable place, check in the changes, and set a tag:
+
+cvs rtag v1_2_3 dr1web
+
+4. Push these pages out to a web site, for example, at FNAL, do this:
+
+cd dr1web/bin
+./dr1webPublish.sh v1_2_3 /home/s1/sdssdp/WWW
+
+5. View with astonishment what you have wrought:
+
+http://das.sdss.org/sdssdp/dr1web
+

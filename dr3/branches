@@ -1,0 +1,3 @@
+Wed May 12 2004
+	cvs tag vDR2_branchroot :  setting a tag at head of DR2 web branch
+	cvs rtag -r vDR2_branchroot -b vDR2_branch drweb : make the branch

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Known problems - SDSS DR3</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<a name="top"></a>
+<h1>Known problems</h1>
+
+<p>The following is a clearinghouse of known issues and caveats with links to
+detailed descriptions or workarounds where available.</p>
+
+<h2>Data products and access</h2>
+
+<ul>
+  <li><strong>Photometric redshifts for galaxies</strong> The DR1 <a
+      href="../access/index.html#CAS">Catalog Archive Server</a> had a
+  table with photometric redshifts for galaxies, including galaxies
+      fainter than those in the spectroscopic survey. The redshifts
+      still need to be computed and loaded into the database for DR3.</li>
+  <li><strong>Coverage masks</strong> Detailed coverage masks which
+      will allow large-scale structure resarchers to easily calculate
+      power spectrum and related quantities are in preparation.</li>
+  <li><strong>IQS/SQS</strong> The <a
+      href="http://skyserver.sdss.org/dr3/en/tools/search/IQS.asp">Imaging
+Query Server (IQS)</a> and <a
+href="http://skyserver.sdss.org/dr3/en/tools/search/SQS.asp">Spectro
+      Query Server (SQS)</a> form interfaces have been re-enginered to
+      use a faster database.  They currently do not provide a direct
+      link to the <a href="http://das.sdss.org/DR3-cgi-bin/DAS">DAS data
+      download form</a>; users need to save .csv files with the
+      necessary information and upload these by hand to the DAS form.</li>
+</ul>
+
+<h2>Imaging</h2>
+
+<ul>
+  <li><a href="../products/images/index.html#badcol">Bad CCD
+      columns</a></li>
+  <li><a href="../products/images/index.html#redleak">Red leaks in
+      u-band</a></li>
+  <li><a href="../products/images/index.html#usky">Problems in u-band
+      sky determination</a></li>
+</ul>
+
+<h2>Object catalogs</h2>
+
+<ul>
+  <li><a href="../products/catalogs/index.html#isoradii">Isophotal
+      radii in DR3 are given in pixels, not arcseconds</a></li>
+  <li><a href="../algorithms/fluxcal.html#sdss2ab">SDSS and AB
+      magnitudes</a></li>
+  <li><a href="../products/catalogs/index.html#cav_skybright">Sky
+      brightness values are extinction-corrected</a></li>
+  <li><a href="../products/catalogs/index.html#cav_skyunit">Sky
+      brightness values are given in maggies, not magnitudes</a></li>
+  <li><a href="../products/catalogs/index.html#cav_objcounts">Object
+      counts in tsField files are not meaningful</a></li>
+   <li><a href="../products/catalogs/index.html#cav_psfvsap">A few runs 
+	processed with slightly older version of photo.</a> 
+
+</ul>
+
+<h2>Spectroscopy</h2>
+
+<ul>
+  <li><a href="../products/spectra/index.html#zstatus">Check redshift
+      status (zStatus) for reliability of redshifts</a></li>
+  <li><a href="../products/spectra/index.html#extinct">Treatment of galactic
+      extinction correction in spectra</a></li>
+  <li><a href="../products/spectra/index.html#badplates">Plates with
+      not-quite-perfect spectrophotometry</a></li>
+  <li><a
+      href="../products/spectra/index.html#specphotomismatch">Mismatches
+      between spectra and photometric data</a></li>
+  <li><a href="../products/spectra/index.html#galveldisp">Reliability
+      of galaxy velocity dispersion measurements</a></li>
+  <li><a href="../products/spectra/index.html#bonusplates">Bonus
+      plates with coverage extending beyond formal survey
+      area</a></li>
+  <li><a href="../products/spectra/radvelocity.html">Accuracy of
+      stellar radial velocities</a></li>
+</ul>
+      
+
+<hr>
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+<!-- hhmts start -->Last modified: Fri Sep 10 15:23:11 CDT 2004
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+</html>

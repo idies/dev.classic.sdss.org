@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorials: Getting spectra of galaxies - SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorials: Getting spectra of galaxies within a range of 
+redshift and r magnitude.</h1>
+
+<ol>
+  <li>At the top of the <a
+      href="http://das.sdss.org/DR1-cgi-bin/SQS">Spectro Query
+      Server</a> (SQS) form, select the number of objects to output.
+      Then select the desired spectroscopy and imaging parameters (&quot;minimal&quot; outputs 
+      run, rerun, camcol, filter, and field for imaging and plate,mjd,fiberID, and 
+      spRerun for spectroscopy). Specify target or best imaging.</li>
+  <li>Specify position constraints (default no constraint). For a proximity 
+      search, you can either type in coordinates or load a csv file from the local 
+      computer.</li>
+  <li>Enter the Redshift min and max and the desired confidence in these values.</li>
+  <li>Select &quot;Galaxy&quot; within Spectral Classification.</li>
+  <li>Choose Target or Best under Imaging Constraints</li>
+  <li>Enter the photometric constraints (in this case, min and max for R-band 
+      magnitude).</li>
+  <li>De-select point sources if you wish to exclude objects identified by the 
+      imaging survey to be point sources. If you leave this selected, your results 
+      will include such objects later identified spectrally to be galaxies.</li>
+  <li>Select the flags that you want or do not want turned on for your objects.</li>
+  <li>Hit &quot;Submit Request&quot;. The desired parameters for objects matching your 
+      query should then be displayed on a table, with options to save this as a csv 
+      or fits table. </li>
+  <li>Select the option to use a DAS web form with this query to get data. </li>
+  <li>On the DAS retrieval form, select &quot;spSpec&quot; under &quot;Step 1&quot;. Steps 2 and 3 
+      should be filled in. Under &quot;Step 4&quot;, select the file format. If you have more 
+      than 10 objects, you will always get the results via
+&quot;rsync&quot;. Click &quot;Submit Request&quot;.</li>
+  <li>If you selected &quot;rsync&quot;, you will now be asked to save a link as sdss-rsync.lis 
+      on your local computer. Further down on the page is a command that you should 
+      type on your computer to execute the rsync procedure. If you did not select &quot;rsync&quot;, 
+      and your query produced 10 or fewer result files, you should be
+      prompted to select where you would like the data to be saved on
+      your computer.</li>
+
+</ol>
+<h2>Example</h2>
+
+<p>An SQS query with the following specifications: </p>
+<ul>
+  <li>Minimal Imaging and Spectroscopy Parameters</li>
+  <li>Best Imaging</li>
+  <li>No position constraint</li>
+  <li>Redshift Range: 0-0.03</li>
+  <li>Spectral Classification: Galaxy</li>
+  <li>&quot;Point Sources&quot; De-selected</li>
+  <li>&quot;Child&quot; Flag Off </li>
+</ul>
+<p>produced 5 results. It took a few seconds to download the data using 
+rsync.</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar  3 15:22:43 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

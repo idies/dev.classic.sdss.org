@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>QSO catalog - SDSS DR5</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Second edition of the SDSS Quasar Catalog</h1>
+
+<p>The DR1 quasar catalog is described in Schneider et al. 2003, AJ
+accepted (scheduled to appear in the December 2003 issue and available
+at <a
+href="http://arxiv.org/abs/astro-ph/0308443">astro-ph/0308443</a>). The
+catalog contains 16,713 objects from DR1 that have <var>i</var>-band
+absolute magnitudes brighter than -22 and contain at least one broad
+emission line. The catalog was created by inspecting all spectra that
+were either targeted as quasar candidates, or classified as a quasar
+by the <a href="../../algorithms/redshift_type.html">spectroscopic
+pipelines</a>.</p>
+
+<h3>SDSS Quasar Catalog redshifts supersede those in other DR1 data
+products</h3>
+
+<p>Because of the re-inspection of the spectra, the DR1 Quasar
+Catalog provides the most reliable classifications and redshifts of
+SDSS quasars. The classifications in the catalog supersede those
+found in other DR1 data products accessible from the <a
+href="../../access/">DR1 data access page</a>, as well as from
+the EDR quasar catalog (see below). The improved classifications will
+be fed back into other data products for future data
+releases.</p>
+
+<h3>The DR1 Quasar Catalog is not a statistical sample</h3>
+
+<p>There are two reasons:</p>
+<ol>
+  <li>It includes objects from all categories of <a
+      href="../../algorithms/target.html">target selection</a> in SDSS, not just those
+      selected as quasar candidates.</li>
+  <li><p>While the catalog does contain target selection flags
+      which make it easy to remove non-quasar candidates, the
+      quasars in the catalog were all selected during the
+      commissioning period. This period saw 12 different
+      versions of the target selection software; none of the
+      quasars in the catalog were selected using the <a
+      href="../../algorithms/target.html#qso">final quasar target selection algorithm</a> described in
+      <a href="http://www.journals.uchicago.edu/AJ/journal/issues/v123n6/201557/201557.html">Richards et al. 2002</a>, which
+      was the 13th.</p>
+      <p>The catalog contains both the
+      <code>TARGET</code> selection flags used to select spectroscopic
+      targets, and the <code>BEST</code> selection flags obtained by
+      applying the final target selection version (sometimes to better
+      photometric data obtained later during the survey - see <a
+      href="">target and best coverage</a>). However, in addition to
+      <em>dropping</em>
+      catalog entries which were not selected by the final version,
+      one has to account for missing quasar candidates, i.e., those identified by
+      the final target selection algorithm but without
+      spectroscopic observations.</p>
+  </li>
+</ol>
+
+<p>These caveats aside, the selection of UV excess quasars has
+remained reasonably uniform. These constitute 80% of the objects in
+the DR1 Catalog. Changes to the target selection algorithm were
+primarily aimed at improving the effectiveness of the identification
+of <var>z</var>&gt; 2.5 quasars.</p>
+
+<h3>Download the DR1 Quasar Catalog</h3>
+
+<p>The catalog is available in the following formats:</p>
+
+<ul>
+  <li>ASCII table
+      <ul>
+	<li><a href="./dr1qso.dat">dr1qso.dat</a> (5.1 MB)</li>
+	<li><a href="./dr1qso.dat.gz">dr1qso.dat.gz</a> (gzipped, 1.1MB)</li>
+      </ul>
+  </li>    
+  <li><a href="http://fits.gsfc.nasa.gov/">fits</a> binary table
+      <ul>
+	<li><a href="./dr1qso.fits">dr1qso.fits</a> (3.4 MB)</li>
+	<li><a href="./dr1qso.fits.gz">dr1qso.fits.gz</a> (gzipped, 1.2MB)</li>
+      </ul>
+  </li>    
+</ul>
+
+<p>The catalog files have been generated on August 28, 2003.</p>
+
+<h3>EDR quasar catalog</h3>
+
+<p>For historical reference, the EDR quasar catalog is available at
+the <a href="http://archive.stsci.edu/sdss/quasars/">MAST EDR site</a>.</p>
+
+      
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Fri Aug 29 11:48:55 CDT 2003
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>
+
+

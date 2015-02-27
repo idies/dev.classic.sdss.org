@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Reading object lists and checking flags - SDSS DR5</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<!-- Start page content -->
+<h1>Reading SDSS object lists and checking flags</h1>
+
+The catalogs of detected objects in the SDSS imaging data are output
+in a series of so-called tsObj files.  The SDSS sky is divided up into
+a series of <i>stripes</i>, overlapping great circles on the sky 2.5
+degrees wide.  Each stripe is observed as a pair of <i>strips</i>,
+each of which contains six <i>scanlines</i>, images in five bands from
+each of the columns of CCDs in the imaging camera.  The scanlines are
+13 arcmin wide, and overlap by roughly one arcminute when the two
+strips of a stripe are interleaved.  Each scanline is divided up, for
+processing purposes, into <i>frames</i>, consisting of 1361X2048
+pixels (10'X13'), and the catalogs of objects from each frame,
+together with all their attributes, are output in these tsObj files. 
+<p>
+  The tsObj files are fits binary tables.  One can read them using <a
+  href="http://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html">standard
+FITS IO libraries</a>.  Alternatively, one can use routines in IDL,
+SM, MIDAS, and IRAF to read them (see <a
+href="../../tutorials/fitsfiles.html">software for reading fits files
+and images</a>).  What follows is an SM implementation to read a
+series of tsObj files; it should be easily translatable, e.g., into C
+code.  <p>
+  Each <i>run</i> of the SDSS imaging camera is given a sequential
+  number; it covers a given strip.  The correspondence between run
+  number and strip number is given in the <a
+href="../../coverage/index.html#tables">SDSS coverage tables</a>. If
+you have a right ascension
+  and declination, you can use <a
+  href="http://das.sdss.org/DR4-cgi-bin/FOOT">the SDSS footprint server</a> to find the
+  corresponding run, camera column, and field which covers it.  A tsObj file is named by the run
+  number, a rerun number (i.e., an internal processing number), the
+  camera column number (i.e., which of the six scanlines), and a
+  sequential number indicating the frame in question; thus:<br />
+
+  tsObj-000756-1-20-0400.fit (run 756, camera column 1, rerun 20,
+frame 400). </p>
+
+<p>
+  The full data model for the tsObj file is given in the <a
+href="../../dm/flatFiles/tsObj.html">tsObj data model</a>.  It
+consists of a single HDU.  The header includes
+  information on the mean seeing and sky brightness of the frame in
+  all five bands, and flags indicating whether the fit to the point
+  spread function was good, as well as whether the data were
+  considered to be good, acceptable, bad (usually because of poor
+  seeing) or hole (processing timed out, because of a very bright star
+  or globular cluster).   There are roughly 2 kilobytes of attributes
+  per object, as described in detail in the <a
+  href="../../algorithms/edrpaper.html#sw-photo">section on the "frames"
+pipeline of the EDR paper</a>.</p>
+
+<p>We provide <a href="./read_tsObj.sm">example SM code describing
+an algorithm to pull out a clean sample of stars from the data</a> (see
+the <a href="http://www.astro.princeton.edu/~rhl/sm/">SM homepage</a>
+if you don't have SM).  Note the extensive use of binary flag bits for
+all aspects of describing the data, from labelling objects as
+spectroscopic targets, to giving information on the details of the
+photometric pipeline processing of the object.  Examples are given
+here on reading the target flags, as well as deriving aperture
+magnitudes from the data.</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Mar 17 12:18:03 CST 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

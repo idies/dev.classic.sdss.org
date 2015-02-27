@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorial: Retrieving FITS Images of Objects - SDSS DR2</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorial: Retrieving FITS Images of Objects</h1>
+
+<p>This procedure describes how to download a set of FITS images corresponding 
+to a list of objects that you provide. The input file, which you will 
+provide, contains the ra and dec of each object in your object list. The 
+Imaging Query Server is used to retrieve object information and the DAS 
+Retrieval Form is used to retrieve the actual FITS image files. </p>
+
+<ol>
+  <li>Prepare a three-column comma-separated value (CSV) list of your objects. The first two columns should 
+      contain the ra and dec coordinates of your objects. The last column 
+      should be set to 1 (which is a separation parameter in arcsec). E.g.,<pre>
+      ra,dec,sep
+      4.2142,-1.2248,1
+      227.6103,61.1158,1
+      205.9245,67.0318,1
+      199.3531,0.0437,1      </pre>
+  </li>
+  <li>Access the <a
+      href="http://skyserver.sdss.org/dr2/en/tools/search/IQS.asp">SDSS
+      Imaging Query Server (IQS)</a></li>
+  <li>Under Parameters to Return, select the desired parameters for your query 
+      from the scroll box. For example:
+      <ul>
+	<li>to get images, select the following parameters: run, rerun, camcol, field, rowc, colc. 
+	    These define an image and object position in the frame.</li>
+	<li>if you select &quot;minimal&quot;, the following parameters are returned:
+	    <ul style="list-style-type:circle">
+	      <li>run</li>
+	      <li>rerun</li>
+	      <li>camcol</li>
+	      <li>field</li>
+	      <li>colc_u</li>
+	      <li>colc_g</li>
+	      <li>colc_r</li>
+	      <li>rowc_u</li>
+	      <li>rowr_g</li>
+	      <li>rowr_r</li>
+	      <li>psfmag_u</li>
+	      <li>psfmag_g (psf magnitudes of your objects)</li>
+	      <li>psfmag_r</li>
+	    </ul>
+	    where colc and rowc define your object positions in the ugr filter images.</li>
+      </ul>
+      You should be aware that one FITS image is 2048x1361 pixels, where 1 
+      pixel = 0.4 arcsec. You should also be able to use <a
+      href="http://hea-www.harvard.edu/RD/ds9/">ds9</a> or other display
+      software to see your FITS file.</li>
+  <li>Under &quot;Filter names to return (for use by the DAS)&quot;, select
+      which filter you want your image to be in.</li>
+  <li>Under Parameters to Return, select &quot;Best Imaging&quot;
+      (note that although you can retrieve &quot;Target Imaging&quot;
+      <em>parameters</em>, we only provide the &quot;best&quot; <em>images</em>).</li>
+  <li>Under Position Constraints, click on the Proximity Search button.</li>
+  <li>Cut and paste the CSV file into the Proximity Search scroll box found under the heading &quot;List of ra, dec, [sep].&quot;</li>
+  <li>Click on &quot;Submit Request&quot; at the top of the web form to submit your query.</li>
+  <li>Look at the results in the html table, or save the resulting CSV
+      file.</li>
+  <li>Access the <a href="http://das.sdss.org/DR2-cgi-bin/DAS">DAS
+      Retrieval Form</a>.
+      <ul>
+	<li>Under Step 1 on the DAS form, click the fpC box under Data Products in 
+	    order to retrieve corrected frames containing images of the objects in your 
+	    list. </li>
+	<li>Under Step 3, upload the CSV file.</li>
+	<li>Under Step 4, select your desired output file type.</li>
+	<li>Under Step 5, click on &quot;Submit Query&quot; to submit your query to the file 
+	    server.</li>
+	<li>If the generation of an rsync download file takes more than 20 minutes,
+	    the web server will time out the connection. However, the
+	    file will still be generated.</li>
+	<li>Follow the instructions on the page to download your data.</li>
+      </ul>
+  </ol>
+  <hr>
+<!-- hhmts start -->Last modified: Thu Mar 25 12:56:36 CST 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+
+
+</body>
+
+</html>

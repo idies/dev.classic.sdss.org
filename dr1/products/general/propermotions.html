@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Proper Motion quality overview - SDSS DR1 </title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+<h1>Data products: General - How good are the proper motions?</H1>
+
+<p>  The proper motions are calculated during target selection.  Target selection
+ provides proper motions by matching each SDSS object against USNOA2.0.  By
+ the rules of target selection, each SDSS object must be processed
+ independently of other SDSS objects, which forces us to a very simple
+ matching algorithm.  The closest object within 30 arcsec is taken as the match,
+ and proper motions are calculated using that match. Compare the
+description of the <a
+href="./astrometry.html">astrometric quality</a> and
+the <a href="../../algorithms/astrometry.html">astrometry
+algorithm</a></p>
+
+<p> The accuracy of the matching (that is, how many SDSS objects were matched to
+ the correct USNOA2.0 object) has been calculated by comparison with
+ a more sophisticated matching algorithm.  The following table summarizes the
+ results for a single scan (scan 752):</p>
+<CENTER>
+<TABLE BORDER=1>
+<TR><TH>  inner </TH><TH> outer </TH><TH> Stars </TH><TH> nGood </TH></TR
+<TR><TH> (asec) </TH><TH> (asec)</TH><TH>      % </TH><TH>     % </TH></TR>
+<TR><TD>      0 </TD><TD>     1 </TD><TD>  82.1 </TD><TD>  99.9 </TD></TR>
+<TR><TD>      1 </TD><TD>     2 </TD><TD>  14.3 </TD><TD>  97.1</TD></TR>
+<TR><TD>      2 </TD><TD>     3 </TD><TD>   2.3 </TD><TD>  82.1</TD></TR>
+<TR><TD>      3 </TD><TD>     4 </TD><TD>   0.8 </TD><TD>  69.6</TD></TR>
+<TR><TD>      4 </TD><TD>     5 </TD><TD>   0.4 </TD><TD>  64.6</TD></TR>
+<TR><TD>      5 </TD><TD>     6 </TD><TD>   0.2 </TD><TD>  60.8</TD></TR>
+</TABLE>
+</CENTER>
+ The columns in the table are:<br>
+<TABLE><border=1>
+<TR><TD>   inner </TD><TD>        - minimum matching radius (arcsec) </TD></TR>
+<TR><TD>   outer     </TD><TD>    - maximum matching radius (arcsec) </TD></TR>
+<TR><TD>   nStars   </TD><TD>     - Percentage of all stars matched by target selection over
+                  this range of radii. </TD></TR>
+<TR><TD>   nGood    </TD><TD>     - Percentage of stars in this matching annulus which were
+                   correctly matched against USNOA2.0. </TD></TR>
+</TABLE>
+<p>
+ Thus, 99.9% of all objects which matched within 1 arcsec were correctly
+ matched.  The number drops only slightly to 97.1% for objects
+ matched between 1 and 2 arcsec.  Thus, out to proper motions of
+ 4-5 arcsec/century (depending on the epoch of the POSS plates), representing
+ 96% of the stars, the contamination of false detections is only 2-3% for those
+ objects with measurable proper motions (greater than about 1.5 arcsec/century).
+ The contamination increases to about 35% for the fastest moving 1% of the
+ objects.</p>
+<p> The accuracy of the SDSS positions are better than 100 mas, those of USNOA2.0
+ about 150 mas, and the difference in epoch about 50 years.  Thus, a proper
+ motion of 1.44 arcsec/century is a 4 sigma detection.</p>
+      
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Tue Mar 18 18:03:50 CST 2003
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

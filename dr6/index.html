@@ -1,0 +1,377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SDSS Data Release 6</title>
+<link rel="stylesheet" type="text/css" href="./includes/sdss.css">
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="./includes/header_toplayer.html"-->
+
+<p>The Sloan Digital Sky Survey (see <a
+href="http://www.sdss.org">www.sdss.org</a> for general information)
+will map one-quarter of the entire sky and perform a redshift survey
+of galaxies, quasars and stars. The DR6 is the sixth major data
+release and provides <a href="./products/index.html">images, imaging
+catalogs, spectra, and redshifts</a> for download. It is the first
+data release of SDSS-II, an extension of the original SDSS consisting
+of three subprojects: Legacy, <a
+href="./start/aboutsegue.html">SEGUE</a> and a Supernova survey.  The
+first public data release from the Supernova Survey is available at <a
+href="http://www.sdss.org/drsn1/DRSN1_data_release.html">www.sdss.org/drsn1/DRSN1_data_release.html</a></p>
+
+<p><a href="./start/aboutdr6.html">About DR6</a> explains what is new
+in DR6, and lists remaining or new caveats and subtleties in the data.</p>
+
+<p>Please refer to the <a href="./coverage/credits.html">credits
+page</a> for our sources of funding, participating institutions, and
+how to acknowledge the use of SDSS data in your publications. Please
+also note how to refer to SDSS sources in your publications using the
+proper <a href="./coverage/IAU.html">IAU nomenclature for SDSS
+sources</a>.</p>
+
+<h2>Imaging</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td>Footprint area</td>
+    <td>
+      <table border="1">
+	<tr>
+	  <td>Total cataloged in CAS</td><td>9583 sq. deg.</td>
+	</tr>
+	<tr>
+	  <td>Legacy</td><td>8417 sq. deg.</td>
+	</tr><tr>
+	  <td>SEGUE</td><td>1592 sq. deg. of images in DAS<br />1166
+  sq. deg. of catalogs in CAS</td>
+	</tr><tr>
+	  <td><a href="http://www.sdss.org/drsn1/DRSN1_data_release.html">Supernova Survey</a></td><td>~300 sq. deg., repeated &gt;40
+	    times</td>
+	</tr><tr>
+	  <td><a href="./start/aboutdrsup.html">M31 / Perseus
+	      scan</a></td><td>26 sq. deg.</td>
+	</tr><tr>
+	  <td><a
+  href="http://photo.astro.princeton.edu/oriondatarelease/">Low
+  galactic latitude fields (&quot;Orion&quot; runs)</a></td>
+	  <td>832 sq. deg.</td>
+	</tr>
+      </table>
+    </td>
+  </tr><tr>
+    <td>Imaging catalog</td>
+    <td>287 million unique objects (SEGUE: 57 million, Legacy: 230 million)</td>
+  </tr><tr>
+    <td>Data volume</td>
+    <td>
+      <table border="1">
+	<tr>
+	  <td>images</td><td>10.0 TB</td>
+	</tr><tr>
+	  <td>catalogs (<a href="./access/index.html#DAS">DAS</a>, fits format)</td><td>2 TB</td>
+	</tr><tr>
+	  <td>catalogs (<a href="./access/index.html#CAS">CAS</a>, SQL database)</td><td>4 TB</td>
+	</tr>
+      </table>
+    </td>
+  </tr><tr>
+    <td>Average wavelengths and magnitude limits <br />
+	(95% detection repeatability for point sources)</td>
+    <td>
+	<table border="1">
+	  <tr>
+	    <td><var>u</var></td>
+	    <td><var>g</var></td>
+	    <td><var>r</var></td>
+	    <td><var>i</var></td>
+	    <td><var>z</var></td>
+	  </tr>
+	  <tr>
+	    <td>3551&Aring;</td>	
+	    <td>4686&Aring;</td>
+	    <td>6165&Aring;</td>
+	    <td>7481&Aring;</td>
+	    <td>8931&Aring;</td>
+	  </tr>
+	  <tr>
+	    <td>22.0</td>	
+	    <td>22.2</td>
+	    <td>22.2</td>
+	    <td>21.3</td>
+	    <td>20.5</td>
+	  </tr>
+      </table>
+    </td>
+  </tr><tr>
+    <td>PSF width</td>
+    <td>1.4&quot; median in <var>r</var></td>
+  </tr><tr>
+    <td>Pixel size</td>
+    <td>0.396&quot;</td>
+  </tr><tr>
+    <td>Exposure time for each pixel</td>
+    <td>53.9 s</td>
+  </tr><tr>
+    <td>Photometric calibration</td>
+    <td>
+	<table>
+	  <tr>
+	    <td>
+	<table border="1">
+	  <caption>Regular CAS and DAS</caption>
+	  <tr>
+	    <td><var>r</var></td>       
+	    <td><var>u-g</var></td>
+	    <td><var>g-r</var></td>
+	    <td><var>r-i</var></td>
+	    <td><var>i-z</var></td>
+	  </tr><tr>
+	    <td>2%</td>
+	    <td>3%</td>
+	    <td>2%</td>
+	    <td>2%</td>
+	    <td>3%</td>
+	  </tr>
+	</table>
+	</td>
+	<td>
+	<table border="1">
+	  <caption>Only Ubercal table in CAS</caption>
+	  <tr>
+	    <td><var>r</var></td>       
+	    <td><var>u-g</var></td>
+	    <td><var>g-r</var></td>
+	    <td><var>r-i</var></td>
+	    <td><var>i-z</var></td>
+	  </tr><tr>
+	    <td>1%</td>
+	    <td>2.2%</td>
+	    <td>1.5%</td>
+	    <td>1.5%</td>
+	    <td>1.5%</td>
+	  </tr>
+	</table>
+	</td>
+	</tr>
+	</table>
+    </td>
+  </tr><tr>
+    <td>Astrometry</td>
+    <td>&lt; 0.1&quot; rms absolute per coordinate</td>
+  </tr>
+  </table>
+
+<h2>Spectroscopy</h2>
+<table border="1" width="100%">
+    <tr>
+      <td>Spectroscopic area</td>
+      <td>
+	  <table border="1">
+	    <tr><td>Total</td>
+	    <td>7425 sq. deg.</td>
+	  </tr><tr>
+	    <td>Legacy</td>
+	    <td>6860 sq. deg.</td>
+	  </tr><tr>
+	    <td>SEGUE</td>
+	    <td>565 sq. deg.</td>
+	  </tr>
+        </table>
+      </td>
+    </tr><tr>
+      <td>Wavelength coverage</td>
+      <td>3800-9200&Aring;</td>
+    </tr><tr>
+      <td>Resolution</td>
+      <td>1800-2200</td>
+    </tr><tr>
+      <td>Signal-to-noise</td>
+      <td>&gt;4 per pixel at <var>g</var>=20.2</td>
+    </tr><tr>
+      <td>Redshift accuracy</td>
+      <td>30 km/sec rms for main galaxy sample (from repeat observations)</td>
+    </tr><tr>
+      <td>Target magnitude limits for main samples</td>
+      <td>Galaxies: Petrosian <var>r</var> &lt;17.77<br />
+	  Quasars: PSF <var>i</var> &lt;19.1 (20.2 for objects likely
+	  at z&gt;2.3)</td>
+    </tr><tr>
+      <td>Spectroscopic catalog</td>
+      <td>
+	  <table border="1">
+	    <colgroup>
+	      <col>
+	      <col span="3" align="right">
+	    </colgroup>
+	    <tr>
+	      <th>Class</th>
+	      <th align="center">N(total)</th>
+	      <th align="center">N(main)</th>
+	      <th align="center">N(SEGUE)</th>
+	    </tr><tr>
+	      <td>All</td>
+	      <td>1,271,680</td>
+	      <td>1,163,520</td>
+	      <td>108,160</td>
+	    </tr><tr>
+	      <td>Galaxies</td>
+	      <td>790,860</td>
+	      <td>790,220</td>
+	      <td>640</td>
+	    </tr><tr>
+	      <td>Quasars (z &lt;2.3)</td>
+	      <td>90,108</td>
+	      <td>89,458</td>
+	      <td>650</td>
+	    </tr><tr>
+	      <td>Quasars (z &ge;2.3)</td>
+	      <td>13,539</td>
+	      <td>12,892</td>
+	      <td>647</td>
+	    </tr><tr>
+	      <td>M stars and later</td>
+	      <td>69,052</td>
+	      <td>64,895</td>
+	      <td>4,157</td>
+	    </tr><tr>
+	      <td>Other stars</td>
+	      <td>218,019</td>
+	      <td>126,351</td>
+	      <td>91,668</td>
+	    </tr><tr>
+	      <td>Sky spectra</td>
+	      <td>68,770</td>
+	      <td>59,843</td>
+	      <td>8,927</td>
+	    </tr><tr>
+	      <td>Unknown</td>
+	      <td>21,332</td>
+	      <td>19,861</td>
+	      <td>1,471</td>
+      </tr>
+          </table>
+	  640 spectra are observed simultaneously on one
+	  <em>plate</em>. There are:
+	  <ul>
+	    <li>1520 Legacy (&quot;main-survey&quot;) plates,<li>
+	    <li>64 repeat observations (&quot;extra plates&quot;) of 55 distinct
+	  Legacy plates,</li>
+	    <li>234 observations of 226 distinct <a
+	  href="./products/spectra/special.html#nonSEGUE">special plates</a>, and</li>
+	    <li> 169 observations of 162 distinct <a
+		href="./products/spectra/special.html#SEGUE">special plates
+		taken under SEGUE</a>. </li>
+	  </ul>
+      </td>
+  </tr><tr>
+    <td>Data volume</td>
+    <td>
+	<table border="1">
+	  <tr>
+	    <td>calibrated spectra (&quot;2d&quot;)</td><td>80 GB</td>
+	  </tr><tr>
+	    <td>spectra, redshifts, line measurements (&quot;1d&quot;)</td><td>230 GB</td>
+	  </tr>
+        </table>
+    </td>
+    </tr>
+</table>
+
+<h2>Previous data releases</h2>
+
+<p>For reference, we provide links to earlier data releases. The
+current data release always provides both the largest sky coverage and
+the highest-quality data and reductions.</p>
+
+<ul>
+  <li><a href="http://www.sdss.org/dr1/">Data Release 1 (DR1)</a></li>
+  <li><a href="http://www.sdss.org/dr2/">Data Release 2 (DR2)</a></li>
+  <li><a href="http://www.sdss.org/dr3/">Data Release 3 (DR3)</a></li>
+  <li><a href="http://www.sdss.org/dr4/">Data Release 4 (DR4)</a></li>
+  <li><a href="http://www.sdss.org/dr5/">Data Release 5 (DR5)</a></li>
+</ul>
+
+<hr>
+<address>
+<!-- Warning the parse_this is used in bin/webPublish.sh -->
+This is version <!-- parse_this -->  v6_20081024_0621 . <!-- Done with reporting the version. -->
+This page was last modified on $Date: 2008/06/11 19:48:56 $ (UT).
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+
+<p>If you are using Netscape 4.x and see oversized fonts, please look at the <a href="./coverage/credits.html#website">workaround on the Credits page</a>.</p></address>
+</td>
+</tr>
+</table>
+<img alt="" src="./images/spacer.gif" width="314" height="1" border="0"></td>
+<td width="304" valign="top" align="center" bgcolor="#dddddd">
+    <table cellpadding="8" cellspacing="0" border="0" width="132">
+      <tr>
+	<td class="newsBox"><strong>News</strong>
+	    <p>  <a href="./news/index.html">BUG</a> in spectroscopic 
+		synthetic magnitudes: 
+                mag_0,mag_1, mag_2 (they are u,g,r not g,r,i)
+                in DR6  CAS and in spSpec DAS headers
+
+	    <p> The DR6 paper (<a
+	    href="http://adsabs.harvard.edu/abs/2008ApJS..175..297A">Adelman-McCarthy,
+	    J.K. et al. 2008, ApJS, 175, 297-313</a>) has appeared in
+	    print.</p>
+	    <!-- <a href="./news/index.html">More details...</a> -->
+	</td>
+      </tr>
+    <tr>
+<td><a href="./dr6photo_big.gif"> <img src="./dr6photo.gif"  alt="Imaging Sky Image" border="0"> </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">SDSS DR6
+		Imaging Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table>
+	  <br>
+	  <a href="./dr6spectro_big.gif">
+	  <img src="./dr6spectro.gif" alt="Spectral Sky Image"
+	  border="0">
+	  </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">SDSS DR6 Spectral Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table>
+	 	<br> 
+      <a href="./seguephoto_big.gif">
+	  <img src="./seguephoto.gif"  alt="Imaging Sky Image"
+	  border="0">
+	  </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">SEGUE DR6
+		Imaging Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table>
+	  <br>
+	  <a href="./seguespectro_big.gif">
+	  <img src="./seguespectro.gif" alt="Spectral Sky Image"
+	  border="0">
+	  </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">SEGUE DR6 Spectral Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table></td>
+	  
+    </tr></table>
+    <img alt="" src="./images/spacer.gif" width="304" height="1" border="0"></td>
+<td width="5" class="colorborder"><img alt="" src="./images/spacer.gif" width="5" height="1" border="0"></td>
+</tr><tr>
+  <td class="footer">&nbsp;</td>
+  <td width="5" class="colorborder"><img alt="" src="./images/spacer.gif" width="5" height="1" border="0"></td>
+  <td colspan="2" class="footer">&nbsp;&nbsp;Submit your questions to 
+  <a href="http://www.lib.uchicago.edu/e/crerar/using/sloan.html">
+  the SDSS helpdesk</a>&nbsp;&nbsp;</td>
+  <td width="5" class="colorborder"><img alt="" src="./images/spacer.gif" width="5" height="1" border="0"></td>
+</tr></table>
+
+</body>
+</html>
+

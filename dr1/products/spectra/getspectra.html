@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Data products: Getting Spectra - SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Getting all spectra and corresponding imaging data</h1>
+
+<p><a href="./index.html">Back to Spectra</a></p>
+
+<p>For your convenience, there is a variant of the spectroscopic data
+set which has all spectra and corresponding object lists entries and
+atlas images. It consists of the following set of file for each plate
+of 640 fibers:</p>
+
+<ul>
+  <li>spDiag-$mjd-$plate.par: the spectro1d summary</li>
+  <li>spSpec-$mjd-$plate-$fiber.fit: the catalog of spectral lines per spectrum</li>
+  <li>spPlate-$plate-$mjd.fits: the image of reduced spectra (1 spectrum per row)</li>
+  <li>plPlugMapM-$plate-$mjd-$mapping.par: the mapping of targets to fibers</li>
+  <li>spObj-$plate-$mjd-$rerun.fit: joined tsObj and spDiag and
+      plPlugMap data for all fibers, hdu 1 = best, hdu 2 = target</li>
+  <li>spAtlas-$plate-$mjd-$fiber.fit: best and target atlas images for all 5 colors for all fibers</li>
+</ul>
+
+<p>The data model for a <a
+href="../../dm/flatFiles/spObj.html"><code>spObj-*.fit</code></a> file
+is nearly the same as that for a <a
+href="../../dm/flatFiles/tsObj.html"><code>tsObj</code></a> file,
+except that a <code>tsObj</code> file contains all imaging information
+for all objects (bright and faint) in a particular 0.033
+sq. deg. imaging field, while a <code>spObj</code> file contains all
+imaging information for all fibers on a particular spectroscopic
+plate, with an area of 7 sq. deg. spanning many imaging fields.</p>
+
+<p>You can access these files, as well as catalogs of just the
+redshifts, in bulk at the following locations:</p>
+
+<ul>
+  <li><h3>The full set of plates</h3>
+      <ul>
+	<li>one subdirectory per plate: <a
+	    href="http://das.sdss.org/DR1/data/spectro/ss_20/">http://das.sdss.org/DR1/data/spectro/ss_20</a><br />
+	    An example of what is in these directories:
+	    <a href="http://das.sdss.org/DR1/data/spectro/ss_20/0666/">plate 666</a></li>
+	<li>one tar.gz file of ~85MB per plate: <a
+	    href="http://das.sdss.org/DR1/data/spectro/ss_tar_20/">http://das.sdss.org/DR1/data/spectro/ss_tar_20</a>
+	    <br /><strong>We recommend to use these.</strong> Most easily
+	    retrieved using
+	    <a href="http://www.gnu.org/software/wget/wget.html">wget</a>
+	    or <a href="../../data/rsync.html">rsync</a>, with the
+	    following command:
+	    <pre>rsync -vtrLPR rsync://dr1@rsync.sdss.org/DR1/spectro/ss_tar_20/ ./</pre>
+	    The password is <code>dr1</code>. Also see our <a
+	    href="../../data/rsync.html">rsync help page</a>.
+	</li>
+      </ul>
+  </li>
+  <li><h3>Just the redshifts</h3>
+      There are 4 catalogs by spectroscopic classification:
+      <ul>
+	<li>Classified as galaxies:
+	    <a href="http://das.sdss.org/DR1/data/spectro/ss_tar_20/gals-dr1.fit.gz">
+	    gals-dr1.fit.gz</a>, 276M</li>
+	<li>Classified as quasars:
+		<a href="http://das.sdss.org/DR1/data/spectro/ss_tar_20/qsos-dr1.fit.gz">
+	    qsos-dr1.fit.gz</a>, 37M<br />
+	    <strong>Note</strong> that the vetted <a
+	    href="../value_added/qsocat_dr1.html">DR1 quasar
+	    catalog</a> presented by Schneider et al. 2003 is now
+	    available. The information contained in that catalog
+	    supersedes the information contained in all other DR1 data
+	    sources. <strong>We strongly recommend</strong> using that
+	    catalog instead of the list given here.
+	</li>
+	<li>Classified as stars:
+	    <a href="http://das.sdss.org/DR1/data/spectro/ss_tar_20/stars-dr1.fit.gz">
+	    stars-dr1.fit.gz</a>, 44M</li>
+	<li>No classification possible, and sky fibers:
+	    <a href="http://das.sdss.org/DR1/data/spectro/ss_tar_20/unks-dr1.fit.gz">
+	    unks-dr1.fit.gz</a>, 15M</li>
+      </ul>
+      There are 3 catalogs with those spectra targeted as part of one
+      of the <a href="../../glossary/index.html#tilable">tiled</a>
+      samples:
+      <ul>
+	<li> Spectroscopic galaxies targeted as main galaxies:
+	    <a href="http://das.sdss.org/DR1/data/spectro/ss_tar_20/main_gals-dr1.fit.gz">
+	    main_gals-dr1.fit.gz</a>, 229M</li>
+	<li> Spectroscopic galaxies targeted as Luminous Red Galaxies (LRGs):
+	    <a href="http://das.sdss.org/DR1/data/spectro/ss_tar_20/main_lrgs-dr1.fit.gz">
+	    main_lrgs-dr1.fit.gz</a>, 27M</li>
+	<li> Spectroscopic quasars targeted as main survey quasars:
+	    <a href="http://das.sdss.org/DR1/data/spectro/ss_tar_20/main_qsos-dr1.fit.gz">
+	    main_qsos-dr1.fit.gz</a>, 23M
+	</li>
+      </ul>
+  </li>
+  <li><h3>What about objects not observed due to fiber collisions?</h3>
+	You will want the <a href="../tiling/index.html">tiling information</a>.</li>
+</ul>
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Oct 15 13:20:21 CDT 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

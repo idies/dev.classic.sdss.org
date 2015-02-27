@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+  <title>SDSS DR3 - Data products: Spectra - Quality of stellar radial
+velocities</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+
+<h1>Quality of stellar radial velocities</h1>
+Up to  <a href="./index.html">Spectra</a>
+
+<p>Spectra for approximately 48,000 Galactic stars of all common
+spectral types are available with DR3.  Radial velocities (RVs) are
+stored as redshifts (multiply z by the speed of light to get the RV in
+km/s) and were measured by cross-correlation to a set of stellar
+templates.  Also tablulated are measures of individual common spectral
+absorption and emission lines, such as Ca II K (3933), the Balmer
+series of Hydrogen, and Na (5896), and the offsets of these individual
+lines from their vacuum rest wavelengths may also be
+used to estimate a radial velocity (lines are tabulated with a
+significance indicator, nSigma, and generally speaking, only lines
+above a threshold, such as nSigma > 7, should be considered reliable).
+DR3 includes measures of the centers and depths of the Ca triplet
+lines (8500, 8544, 8664), useful for determining radial velocities of
+some type M stars. Note that the <a
+href="http://www.sdss.org/dr1/products/spectra/index.html#rverrors">DR1
+radial velocity measurements of stars had systematic errors</a> which
+have been corrected in DR2/DR3.</p>
+
+<p>The current DR3 dispersion solutions for individual objects have
+been demonstrated to be good to better than 5 km/s, including
+correction for such effects as flexure of the telescope.  This
+dispersion error has been determined by examining multiple
+observations of the same astrophysical object on a variety of plates
+under a variety of observing conditions and showing that RVs were
+reproducible to this accuracy.  The identity of the actual template
+star (which may be examined) are tabulated below.  The 'Template
+Number' corresponding to the highest cross correlation peak match for
+any spectrum may be found under the keyword 'BESTTEMP' in the PDU
+header of a SDSS spSpec-$mjd-$plate-$fiberid.fit file.  An estimate of
+the difference between the RV as determined from cross correlation
+with a template and that determined by the median offset of all strong
+(nSigma &gt; 7) individual absorption lines is tabulated in the column
+RVshift (in km/s).  This figure may be used as an estimate of the
+possible remaining systematics in Radial velocities for stars of a
+given Spectra Type.  In particular, estimates for White Dwarf and
+spectral type M and L star Radial velocities are not accurately quoted
+for DR3.  Interested scientists are encouraged to compute their own
+RVs off of the extracted spectra, keeping in mind that the wavelengths
+measured of individual lines measured are on a vacuum system. 
+The absolute calibration of the wavelength system is based on
+to the positions of known night sky lines obtained with the spectra.  
+This calibration has been checked by obtaining a special plate of 
+known radial velocity standards in the cluster M67, and the 
+velocities are in agreement with an absolute error of less than 4 km/s. 
+The relative rms velocity error is magnitude (signal-to-noise) dependent,
+but repeated observations of the same stars have shown the errors to
+be about 5 km/s (one sigma rms) for stars brighter than about g = 18.2 mag,
+degrading to errors of 25 km/s for stars with g = 20.3 mag.</p>
+
+<table border="1"> 
+  <tr>
+    <th>Template number</th><th>Sp Type</th><th>Plate</th><th>MJD</th><th>FiberID</th><th>RVshift</th><th>Notes</th>
+  </tr>
+  <tr>
+    <td> 1</td><td>sdO</td><td>593</td><td>52026</td><td>265</td><td> +41</td><td></td>
+  </tr><tr>
+    <td> 2</td><td>sdB</td><td>301</wd><td>51942</td><td>431</td><td> +5</td><td></td>
+  </tr><tr>
+    <td> 3</td><td>sdB</td><td>390</td><td>51900</td><td>115</td><td> -19</td><td></td>
+  </tr><tr>
+    <td> 4</td><td>BHB</td><td>480</td><td>51989</td><td>112</td><td> -27</td><td></td>
+  </tr><tr>
+    <td> 5</td><td>A</td><td>300</td><td>51666</td><td>128</td><td> -13</td><td></td>
+  </tr><tr>
+    <td> 6</td><td>early F</td><td>289</td><td>51990</td><td>5</td><td> +10</td><td></td>
+  </tr><tr>
+    <td> 7</td><td>early G</td><td>306</td><td>51637</td><td>295</td><td> +7</td><td></td>
+  </tr><tr>
+    <td> 8</td><td>late F</td><td>273</td><td>51957</td><td>304</td><td> +11</td><td></td>
+  </tr><tr>
+    <td> 9</td><td>G</td><td>310</td><td>51990</td><td>356</td><td> +7</td><td></td>
+  </tr><tr>
+    <td> 10</td><td>G/K</td><td>396</td><td>51816</td><td>605</td><td> -4.6</td><td></td>
+  </tr><tr>
+    <td> 11</td><td>early M</td><td>402</td><td>51793</td><td>204</td><td> +1.3</td><td></td>
+  </tr><tr>
+    <td> 12</td><td>M</td><td>367</td><td>51997</td><td>593</td><td> +2.1</td><td></td>
+  </tr><tr>
+</table>
+
+
+<p>
+<hr>
+<!-- hhmts start -->Last modified: Mar 10 2004
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body>
+</html>

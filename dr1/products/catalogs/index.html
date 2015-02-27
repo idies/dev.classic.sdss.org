@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>SDSS DR1 - Data products: Object lists</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+<h1>Calibrated object lists</h1>
+Up: <a href="../index.html">Data Products</a> Sections: <a
+href="../general/index.html">General</a> - <a
+href="../images/index.html">Images</a> - Object lists - <a
+href="../spectra/index.html">Spectra</a> - <a
+href="../tiling/index.html">Tiling</a>
+
+<h2>Getting and using object lists</h2>
+
+<p><strong>You need to look at the <a href="./flags.html">object
+      flags</a> in the object lists to obtain meaningful
+      results.</strong></p>
+
+<p>Calibrated object lists are stored in two file types:
+<ul>
+  <li><p><a
+      href="../../dm/flatFiles/tsObj.html"><code>tsObj*.fits</code></a>
+      containing the object lists themselves. There is one file
+      per <a
+      href="../../glossary/index.html#field">field</a>. The files
+      are binary fits tables with one row per object.
+      <h4>Notes</h4>
+      <ul>
+	<li>The primary header of <code>tsObj</code> files contains
+	    some parameters applying to the entire field, such as the
+	    seeing (but also see the PSF parameters in the
+	    <code>tsField</code> file below).</li>
+	<li>The reported magnitudes are corrected for atmospheric
+	    extinction (compare <a
+	    href="../../algorithms/fluxcal.html#counts2mag">converting
+	    counts to magnitudes)</a>, but not for Galactic
+	    extinction. The Galactic extinction
+	    for each object as derived from <a
+	    href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1998ApJ...500..525S">Schlegel,
+	    Finkbeiner, and Davis (1998)</a> dust maps is reported as
+	    <code>reddening</code>. The <a
+	    href="../../algorithms/target.html">target selection algorithms</a>
+	    use magnitudes corrected for both kinds of extinction.</li>
+      </ul>
+      
+      </p>
+      
+      <p><a href="./read_tsObj.html">How to read tsObj files</a>
+      includes an <a href="./read_tsObj.sm">illustrative SM
+      script to filter tsObj files</a> and
+      explanations of which flags to check.</p></li>
+  <li><a
+      href="../../dm/flatFiles/tsField.html"><code>tsField*.fits</code></a>
+      files, with one row of
+      parameters relevant to the entire field. This includes the
+      average PSF profile, e.g.</li>
+</ul>
+<p>The <a
+      href="../../dm/flatFiles/fpAtlas.html"><code>fpAtlas*.fits</code></a>
+      files contain "postage-stamp"
+      images, the set of pixels determined to belong to each object.
+      See <a href="../images/read_atlas.html">how to read an atlas
+      image</a>.  </p>
+
+<p>The <a href="../../access/">data access</a> page contains
+      various query forms to search the object lists by coordinates,
+      magnitude, color etc., and to retrieve data from the archive.</p>
+<!-- Reiko's notes need to be polished XXX
+eblending issues, like piecing together bright galaxy children</li>-->
+    <!--    <a href="../../algorithms/fluxcal.html#sdss2ab"> -->
+	<!--        Transformation of Sloan photometry into something -->
+	<!--        different</a> -->
+	
+<h2>Caveats</h2>
+
+<h3>Primary caveats for DR1 beta</h3>
+
+<p>The following points apply to the current DR1 beta, produced with
+version 5_3 of the photometric pipeline. The next data release will
+contain data which have been reduced with version 5_4, which fixes
+the bug in 5_3 which leads to these caveats. See <a
+href="../../start/aboutdr1.html">About DR1</a>.</p>
+
+<!--#include virtual="./modelmagcaveat.html"-->
+
+<h3>Caveats: subtleties and minor bugs in DR1</h3>
+
+<a name="cav_skybright"></a>
+<h4>Sky brightness values are extinction-corrected</h4>
+
+<p>The various measures of sky brightness reported in the
+<code>tsField</code> files are corrected for atmospheric extinction in
+the same way as calibrated object magnitudes in <code>tsObj</code>
+files. To do a correct <a
+href="../../algorithms/fluxcal.html#counts2mag">conversion from
+magnitudes to counts and vice versa</a>, you need to treat object and
+sky magniutdes in the same way.</p>
+
+<a name="cav_objcounts"></a>
+<h4>Object counts</h4>
+
+<p>The <code>nobjects</code> etc. entries in <code>tsField</code>
+files are currently meaningless. </p>
+
+<a name="cav_astrom_not_r"></a>
+<h4>Astrometry</h4>
+
+<p>A bug was found in the reported right ascension and declination
+(and all other celestial coordinates, such as l and b,
+of course) for those rare sources
+that are not detected in the <var>r</var> band.  For example, this bug affects extremely
+red objects (brown dwarfs and high-redshift quasars) that are detected only
+in the <var>z</var>-band.  The <var>r</var>-band
+astrometric solution was applied to the
+centroid position in the band in which the object in question was detected. 
+As there is typically a few arcsecond offset between the bands,
+this results in a few arcsecond error in the position.  The error can be corrected by 
+examining the fields <code>offsetRA</code> and
+<code>offsetDec</code>.  First, note which band is flagged
+<code>CANONICAL_BAND</code> (if this band is the <var>r</var> band,
+which is the case the majority of the time, there is no error).</p>
+
+<p>To obtain the correct position for these objects,  
+  determine <code>offsetRA/cos(dec)</code> and <code>offsetDec</code>
+for this band, and <strong>subtract</strong> these quantities from the
+nominal ra and dec.</p>
+
+<a name="cav_redobj"></a>
+<h4>Very red objects</h4>
+
+<p>The <var>u</var> magnitudes of very red stars, with spectral types
+later than about M0 (<var>u-i</var> &gt; 4), are affected by
+camera-column and imaging-run dependent systematic variations of order
+0.1 mag, as determined, e.g., from changes in the stellar locus of
+these very red stars in color-color diagrams.  The cause of these
+<var>u</var>-band systematics is not fully understood at present, but
+may be due to a <var>u</var>-band red leak problem which appears to be
+larger than original design specifications (due to the effects of the
+dewar vacuum shifting the wavelengths of the interference coatings
+used to reject red leak for the <var>u</var> filters).  This issue of
+<var>u</var>-band systematics for very red stars is being actively
+investigated, and we will post our findings at this web site once we
+have a fuller understanding of the problem.</p>
+
+<a name="cav_posang"></a>
+<h4>Position angles</h4>
+
+<p>The position angle fields in the DR1 dataset (those
+processed through photo v5_3 and target v4_5 or lower),
+have position angles modulo 360 degrees rather than the
+proper standard of modulo 180 degrees (or in the range
+[-90,90] degrees).  Please convert the position angles
+to mod 180 or to [-90,90] yourself as needed.
+This affect the fields: <code>iso_phi, phi_exp, phi_deV</code>
+(isophotal position angle, exponential disk fit position angle,
+deVauc. fit position angle, all in each of 5 bands) in the
+calibrated imaging outputs (<code>tsObj</code> files).  </p>
+
+<a name="cav_skysub"></a>
+<h4>Sky determination</h4>
+
+<p>There are known problems in the determination of the
+background sky at the level of a few hundredths of a DN.  This seems
+tiny, but gives noticeable non-uniformities in the Petrosian
+photometry in the u band of large (&gt;10'') galaxies.  We think we
+have found a fix, but as of this writing, it is not yet tested.  </p>
+
+<a name="cav_brightgal"></a>
+<h4>Deblending of bright galaxies</h4>
+
+<p>The SDSS image deblender works completely automatically, and needs
+to work both for the case of a saturated star superposed on the disk
+of a face-on spiral galaxy, a small cluster of faint stars, and an
+asteroid moving next to a galaxy.  It is known to occasionally
+incorrectly deblend galaxies brighter than <var>r=16th</var>
+magnitude, giving unphysical deblends in a few percent of the galaxies
+in the UZC (<a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1999PASP..111..438F">Falco
+et al, 1999, PASP, 111, 438</a>).  At the brightest magnitudes, this
+fraction probably increases substantially.  Further improvements to
+the software, to be included in DR2, are known to reduce this error
+rate substantially.  Similarly, there are quite a few false negatives:
+typically poorly deblended saturated stars that manifest themselves as
+bright galaxies.  Again, this should be much improved in DR2, but in
+the meantime, visual inspection will be needed for any astronomer
+wishing to put together a complete catalog of bright galaxies, or to
+obtain photometry for galaxies brighter than <var>r=16</var>, from the
+SDSS outputs.</p>
+
+
+<hr>
+<!-- hhmts start -->Last modified: Tue May 27 16:23:45 CDT 2003
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

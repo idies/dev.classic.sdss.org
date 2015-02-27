@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SDSS Data Release 1</title>
+<link rel="stylesheet" type="text/css" href="./includes/sdss.css">
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="./includes/header_toplayer.html"-->
+
+<p>The Sloan Digital Sky Survey (see <a
+href="http://www.sdss.org">www.sdss.org</a> for general information)
+will map one-quarter of the entire sky and perform a redshift survey
+of galaxies, quasars and stars.  The DR1 is the first major data
+release and provides <a href="./products/general/index.html">images,
+imaging catalogs, spectra, and redshifts</a> for download.</p>
+
+<p>As of September 27 2004, <a href="http://www.sdss.org/dr3/">Data
+Release 3 (DR3)</a> is available, with more sky coverage and better
+reductions. We strongly encourage you to use DR3 data. The DR1 site
+will be kept online for some time for historical reference.</p>
+
+<p>We discovered during testing of the DR1 data set that the
+photometric pipeline suffered from a bug in the computation of model
+magnitudes and scale radii. <a href="./start/aboutdr1.html">About
+DR1</a> explains the effect of the bug. DR3 contains a reprocessing of
+the DR1 data with a new version of the photometric pipeline.</p>
+
+<p>Please refer to the <a href="./coverage/credits.html">credits
+page</a> for our sources of funding, participating institutions, how
+to acknowledge the use of SDSS data in your publications. Please also
+note how to refer to SDSS sources in
+your publications using the proper <a href="./coverage/IAU.html">IAU
+nomenclature for SDSS sources</a>.</p>
+
+<h2>Imaging</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td>Footprint area</td>
+    <td>2099 sq. deg.</td>
+  </tr><tr>
+    <td>Imaging catalog</td>
+    <td>53 million unique objects</td>
+  </tr><tr>
+    <td>Data volume</td>
+    <td>
+	<table border="1">
+	  <tr>
+	    <td>images</td><td>2.338 TB</td>
+	  </tr><tr>
+	    <td>catalogs</td><td>0.462 TB</td>
+	  </tr>
+        </table>
+    </td>
+  </tr><tr>
+    <td>Magnitude limits (95% detection repeatability for point sources)</td>
+    <td>
+	<table border="1">
+	  <tr>
+	    <td><var>u</var></td>
+	    <td><var>g</var></td>
+	    <td><var>r</var></td>
+	    <td><var>i</var></td>
+	    <td><var>z</var></td>
+	  </tr>
+	  <tr>
+	    <td>22.0</td>	
+	    <td>22.2</td>
+	    <td>22.2</td>
+	    <td>21.3</td>
+	    <td>20.5</td>
+	  </tr>
+      </table>
+    </td>
+  </tr><tr>
+    <td>PSF width</td>
+    <td>1.4" median in <var>r</var></td>
+  </tr><tr>
+    <td>Photometric calibration</td>
+    <td>
+	<table border="1">
+	  <tr>
+	    <td><var>r</var></td>       
+	    <td><var>u-g</var></td>
+	    <td><var>g-r</var></td>
+	    <td><var>r-i</var></td>
+	    <td><var>i-z</var></td>
+	  </tr><tr>
+	    <td>2%</td>
+	    <td>3%</td>
+	    <td>2%</td>
+	    <td>2%</td>
+	    <td>3%</td>
+	  </tr>
+	</table>
+    </td>
+  </tr><tr>
+    <td>Astrometry</td>
+    <td>&lt; 0.1" rms absolute per coordinate</td>
+  </tr>
+  </table>
+
+<h2>Spectroscopy</h2>
+<table border="1" width="100%">
+    <tr>
+      <td>Spectroscopic area</td>
+      <td>1360 sq. deg. (Note: we earlier erroneously reported 1556
+	  sq. deg. as spectroscopic area.)</td>
+    </tr><tr>
+      <td>Resolution</td>
+      <td>1800</td>
+    </tr><tr>
+      <td>Signal-to-noise</td>
+      <td>&gt;4 per pixel at <var>g</var>=20.2</td>
+    </tr><tr>
+      <td>Redshift accuracy</td>
+      <td>30 km/sec rms (from repeat observations)</td>
+    </tr><tr>
+      <td>Target magnitude limits for main samples</td>
+      <td>Galaxies: Petrosian <var>r</var> &lt;17.77<br />
+	  Quasars:  PSF <var>i</var> &lt;19.1</td>
+    </tr><tr>
+      <td>Spectroscopic catalog</td>
+      <td>186,250 objects, classified into<br />
+	  <table>
+	    <tr>
+      <td >134,000 Galaxies</td>
+    </tr><tr>
+      <td >17,700 Quasars (redshift &lt;2.3)</td>
+    </tr><tr>
+      <td >980 Quasars (redshift &gt;2.3)</td>
+    </tr><tr>
+      <td >17,600 Stars</td>
+    </tr><tr>
+      <td >4500 M stars and later</td>
+    </tr><tr>
+      <td >9700 Sky spectra</td>
+    </tr><tr>
+      <td >1770 Unknown class</td>
+	  </tr>
+	  </table>
+  </tr><tr>
+    <td>Data volume</td>
+    <td>
+	<table border="1">
+	  <tr>
+	    <td>calibrated spectra ("2d")</td><td>0.014 TB</td>
+	  </tr><tr>
+	    <td>spectra, redshifts, line measurements ("1d")</td><td>0.039 TB</td>
+	  </tr>
+        </table>
+    </td>
+    </tr>
+</table>
+
+
+<hr>
+<address>
+<!-- Warning the parse_this is used in bin/dr1webPublish.sh -->
+This is version <!-- parse_this -->  v20041013_1341 . <!-- Done with reporting the version. -->
+<!-- Created: Tue Jul 30 21:49:21 DST 2002 -->
+
+<br>
+<p>If you are using Netscape 4.x and see oversized fonts, please look at the <a href="./coverage/credits.html#website">workaround on the Credits page</a>.</p></address>
+<!--Begin rest of page: this could be done by including the standard footer, -->
+<!--but this one is  more complicated than the rest so I leave it here -->
+<!--for the time being.-->
+<!--Think about putting the images into the main table frame.-->
+</td>
+</tr>
+</table>
+<img alt="" src="./images/spacer.gif" width="314" height="1" border="0"></td>
+<td width="304" valign="top" align="center" bgcolor="#dddddd">
+    <table cellpadding="8" cellspacing="0" border="0" width="132">
+      <tr>
+	<td><strong>News:</strong>
+	    DR3 is available.
+	    <a href="./news/index.html">More...</a>
+	</td>
+      </tr>
+    <tr>
+      <td><a href="./dr1photo_big.gif">
+	  <img src="dr1photo.gif"  alt="Imaging Sky Image"
+	  border="0">
+	  </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">SDSS DR1
+		Imaging Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table>
+	  <br>
+	  <a href="./dr1spectro_big.gif">
+	  <img src="dr1spectro.gif" alt="Spectral Sky Image"
+	  border="0">
+	  </a>
+	  <table cellpadding="2" cellspacing="0" border="0" width="272"><tr>
+	    <td class="infoBoxes">SDSS DR1 Spectral Sky Coverage (Aitoff
+		projection of Equatorial
+		coordinates)</td>
+	  </tr></table></td>
+	  
+    </tr></table>
+    <img alt="" src="./images/spacer.gif" width="304" height="1" border="0"></td>
+<td width="5" class="colorborder"><img alt="" src="./images/spacer.gif" width="5" height="1" border="0"></td>
+</tr><tr>
+  <td class="footer">&nbsp;</td>
+  <td width="5" class="colorborder"><img alt="" src="./images/spacer.gif" width="5" height="1" border="0"></td>
+  <td colspan="2" class="footer">&nbsp;&nbsp;Send your questions to <a href="mailto:sdss-helpdesk@fnal.gov" class="mailto">sdss-helpdesk@fnal.gov</a>&nbsp;&nbsp;</td>
+  <td width="5" class="colorborder"><img alt="" src="./images/spacer.gif" width="5" height="1" border="0"></td>
+</tr></table>
+
+</body>
+</html>
+

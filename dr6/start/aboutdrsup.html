@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>About DRsup - SDSS DRsup</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>The SDSS Data Release 6 Supplemental (DR6sup)</h1>
+
+<p>The original description of the original DRsup, along with that of
+DR5 to which it originally referred, are described in the <a
+href="./dr5.pdf">DR5 paper, Adelman-McCarthy et al. 2007, ApJ
+Supplements, in press [pdf, 1 MB]</a>. The DR6 paper is in preparation.</p>
+      
+<h2>What DR6sup contains</h2>
+
+<p>As described in <a
+href="http://www.sdss.org/dr6/start/aboutdr5.html">about DR5</a>,
+there are a number (about 361) "special" and "extra" plates in DR5, a
+fraction of which do not have imaging data associated with them in the
+DR5 CAS database.  The purpose of DR supplemental is to make this
+imaging data (FITS binary table catalogs of objects along with
+corrected frames and auxillary flat file data) available to users
+through a DAS-style interface.</p>
+
+<p>We are now making available images and associated catalogs from
+three categories of special runs.  They are: </p>
+<ul>
+  <li>A series of repeat runs (65 in all on both N and S strips) of
+      the Equatorial Stripe in the Southern Galactic Cap (Stripe
+      82);</li>
+  <li>Scans through M31 and the Perseus Cluster;</li>
+  <li>Scans taken at low Galactic latitude as part of the <a
+      href="./aboutsegue.html">SEGUE</a> project; these runs were used
+      to target stars on <a
+      href="http://www.sdss.org/dr5/products/spectra/special.html">
+      special plates</a>.</li>
+</ul>
+
+<p>It is intended that DRsup offers access to the SDSS 
+imaging runs associated with these plates.</p>
+
+<p>Here is the <a
+  href="../coverage/tssup.html">list of imaging
+  runs available through DRsup</a>.</p>
+
+<p>While only a subset of these runs are searchable in the CAS SQL
+database (a subset of the SEGUE runs is available by querying the
+<code>SEGUEDR6</code> database), they are available as part of a DAS
+(Data Archive Server) for DRsup, this is a flat-file web-based file
+server which allows retrieval via 'browser-tools' such as IE, Firefox
+or command-line interfaces such as 'wget' or 'curl'.</p>
+
+<p> Each DAS interface has a parallel DRsup
+interface, including a <a
+href="http://das.sdss.org/DRsup-cgi-bin/FOOT">FOOTprint</a> server (is
+a given coordinate included in the DRsup) and a <a
+href="http://das.sdss.org/DRsup-cgi-bin/DAS">DRsup retrieval
+form</a>.</p>
+
+<p>
+<a href="http://das.sdss.org/DRsup/data/imaging">This is the list of DR6sup runs web-links</a>
+<p>
+
+<h3> User caution!</h3>
+
+<p>Much of the data in DRsup is imaging at low Galactic latitude |b| &lt;
+25 degrees, and as such, there are highly crowded fields, and regions
+of high extinction.  These data were processed with the standard SDSS
+photo pipelines.  Since these pipelines were not designed to work in
+such crowded regions, the quality of the photometry in these areas is
+not guaranteed to be accurate to the SDSS quoted limits of 2% in color
+and r magnitude, nor is each and every crowded frame fully deblended;
+i.e.  many fields are incompletely cataloged.  </p>
+
+
+<p>Additionally, for the repeat stripe 82 scans, some scans were taken
+in less than ideal seeing or photometric transparency, and the user is
+cautioned to regard the quoted errors on objects with care. No attempt
+was made to adjust the quoted errors to account for extinction,
+crowded field photometry, slight non-photometric conditions or bad
+seeing (FWHM &gt; 2.0 arcsec).  </p>
+
+<!--<p>Quality plots and tables are available on a run-by-run and
+field-by-field basis for <a
+href="http://das.sdss.org/DRsup/data/imaging/QA/summaryQA_analyzePC.html">DRsup</a>.
+One may use the plots linked on the DRsup QA page to further determine
+the quality of individual runs and fields within the runs.  See: <a
+href="../products/qa/index.html">Photometry
+QA</a> for more information on interpreting runQA.</p>-->
+
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Jun 27 18:15:47 CEST 2007
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

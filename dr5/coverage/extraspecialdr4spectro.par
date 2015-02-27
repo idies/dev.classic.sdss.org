@@ -1,0 +1,24 @@
+#List of extraspecial plates in DR4 (duplicates of specials)
+# Number of plates: 9
+
+typedef struct {
+        int plate;
+        int mjd;
+        int tile; 
+        float ra;
+        float dec;
+        char programName[20];
+        int programType;
+        char release[20];
+
+} DRPLATEMJD;
+
+DRPLATEMJD 712 52179 462 51.245 6.879E-3 south22 2 extraspecial
+DRPLATEMJD 803 52264 9208 47.734 3.511E-3 annis29 1 extraspecial
+DRPLATEMJD 804 52266 9209 49.687 0.015 annis29 1 extraspecial
+DRPLATEMJD 810 52326 9215 53.523 0.031 photoz29 1 extraspecial
+DRPLATEMJD 1028 52562 9243 322.403 0.105 lowz45 1 extraspecial
+DRPLATEMJD 1034 52525 9249 333.677 -0.019 lowz45 1 extraspecial
+DRPLATEMJD 1037 52826 9252 339.473 -0.02 lowz45 1 extraspecial
+DRPLATEMJD 1155 52559 9346 35 0 fstar51 1 extraspecial
+DRPLATEMJD 1664 52965 9490 42 0 seguetest83 1 extraspecial

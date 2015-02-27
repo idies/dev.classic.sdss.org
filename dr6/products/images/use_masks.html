@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+<title>Data producst: Using the Mask Files - SDSS DR6</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+
+<h1>Description of mask csv files</h1>
+
+<p>The masks are originally output as csv files, which are simple 
+ASCII files with comma-separated columns.  The mask csv files
+are then loaded into the Catalog Archive Server, which 
+will be the best means of accessing and using the imaging
+masks.  However, here we also give a brief description of the
+mask csv files, as they are also available to download and use.</p>
+
+<p>The mask csv's are available from the web, under the
+DR5 root imaging directories for the
+<a href="http://das.sdss.org/DR5/data/imaging/inchunk_target/"> target </a>
+and 
+<a href="http://das.sdss.org/DR5/data/imaging/inchunk_best/"> best </a>
+reruns.  The csv files are located in the "stripe*/mask" subdirectories,
+and are named "mask-$run-$camcol.csv", i.e. one file for each of the 
+6 camera columns of each imaging run.</p>
+
+<p>The format of the csv files is detailed on the SDSS data model page,
+in the entry for 
+<a href="../../dm/flatFiles/sqlMask.html">sqlMask</a>.
+As mentioned before, the masks are in the form of convex polygons, and
+the RA and DEC coordinates of the vertices of each mask are given
+in the "area" column, which consists of the list of vertex coordinates 
+enclosed in quotes.  Alternatively, each mask may also be more roughly
+approximated by the bounding circle, whose center is given by the
+"ra" and "dec" columns, and whose radius by the "radius" column.</p>
+
+<p>The polygon masks have been truncated as needed to the <a href="../../glossary/index.html#primary">PRIMARY</a> survey area for 
+each survey field/filter (but note the bounding circles have not been).  
+So for a given filter, the masks will not overlap between different 
+survey fields.  This does not hold true for masks from different filters, 
+because of details in the filter-dependent astrometric solutions.
+Moreover, note that within a given field and filter, masks of the 
+same type should not overlap each other, but masks of different types 
+may.  Hence one may need to resolve such overlaps when combining 
+masks of different types (such as BRIGHT_STAR and BLEEDING), for example,
+if one wants to compute the total masked area.</p>
+
+<p>For those who are unfamiliar with convex polygons and their
+related computational algorithms, one resource is 
+<a href="http://www.pms.informatik.uni-muenchen.de/lehre/compgeometry/Gosper/TOC.html"> J. Gosper's M.Sc. thesis </a>.  In particular, the description
+of 
+<a href="http://www.pms.informatik.uni-muenchen.de/lehre/compgeometry/Gosper/convex_hull/convex_hull.html"> 2D convex hull algorithms </a> may be useful
+for merging overlapping masks (i.e. by finding the convex hull which 
+includes all the masks to be merged).  Also, the section on 
+<a href="http://www.pms.informatik.uni-muenchen.de/lehre/compgeometry/Gosper/computational_geometry_overview/computational_geometry.html#theory"> theory </a>
+provides descriptions of useful algorithms for finding the area of a convex
+polygon and for determining whether a given point lies within a particular 
+convex polygon.</p>
+
+<p>Details about the mask creation can be found in the <a
+href="../../algorithms/masks.html">algorithms page on masks</a>.</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Wed Jun 21 18:40:21 BST 2006
+<!-- hhmts end -->
+<!--#include virtual="../../includes/footer_layer3.html"-->
+</body> </html>

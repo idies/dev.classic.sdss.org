@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorial: Retrieving FITS Images of Objects - SDSS DR1</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorial: Retrieving FITS Images of Objects</h1>
+
+This procedure describes how to download a set of FITS images corresponding 
+to a list of objects that you provide.&nbsp; The input file, which you will 
+provide, contains the ra and dec of each object in your object list.&nbsp; The 
+Imaging Query Server is used to retrieve object information and the DAS 
+Retrieval Form is used to retrieve the actual FITS image files.&nbsp; </p>
+
+<ol>
+  <li>Prepare a three-column comma-separated value (CSV) list of your objects. The first two columns should 
+  contain the ra and dec coordinates of your objects.&nbsp; The last column 
+  should be set to 1 (which is a separation parameter in arcsec).<p>ra,dec,sep<br>
+  4.2142,-1.2248,1<br>
+  227.6103,61.1158,1<br>
+  205.9245,67.0318,1<br>
+  199.3531,0.0437,1<br>
+&nbsp;</li>
+  <li>Access the <a href="http://das.sdss.org/DR1-cgi-bin/IQS">Imaging Query Server</a> interface.<br>
+&nbsp;</li>
+  <li>Under Parameters to Return, select the desired parameters for your query 
+  from the scroll box.&nbsp; For example:<ul type="disc"></li>
+    <li>to get images, select the following parameters:&nbsp; run, rerun, camcol, field, rowc, colc.&nbsp; 
+    These define an image and object position in the frame.</li>
+    <li>if you select &quot;minimal&quot;, the following parameters are returned:&nbsp;
+    <ul type="circle"><li>
+    run</li><li>
+    rerun</li><li>
+    camcol</li><li>
+    field</li><li>
+    colc_u</li><li>
+    colc_g</li><li>
+    colc_r</li><li>
+    rowc_u</li><li>
+    rowr_g</li><li>
+    rowr_r</li><li>
+    psfmag_u</li><li>
+    psfmag_g&nbsp;&nbsp; (psf magnitudes of your objects)</li><li>
+    psfmag_r</li></ul>
+    <p></p>
+    where colc and rowc define your object positions in the ugr filter images.&nbsp; </li>
+    </li>
+  </ul>
+    You should be aware that one FITS image is 2048x1361 pixels, where 1 
+    pixel = 0.4 arcsec.&nbsp; You should also be able to use  <a href="http://hea-www.harvard.edu/RD/ds9/">ds9</a> or other display
+    software to see your FITS file.<br>
+&nbsp;</li>
+  <li>Under &quot;Filter names to return (for use by the DAS)&quot;, select
+      which filter you want your image to be in.<BR>
+&nbsp;</li>
+  <li>Under Parameters to Return, select either &quot;Target Imaging&quot;, &quot;Best 
+  Imaging&quot;, or both.<br>
+&nbsp;</li>
+  <li>Under Position Constraints, click on the Proximity Search button.<br>
+&nbsp;</li>
+  <li>Cut and paste the CSV file into the Proximity Search scroll box found under the heading &quot;List of ra, dec, [sep].&quot;<br>
+&nbsp;</li>
+  <li>Click on &quot;Submit Request&quot; at the top of the web form to submit your query.<br>
+&nbsp;</li>
+  <li>A new www page will be opened for you.<br>
+&nbsp;</li>
+  <li>Save the resulting CSV file.  Currently (check the .CSV file to make
+sure), the needed &quot;,filter&quot; keyword is not added to the .CSV file
+header, even though the requested filter is included on each data line.
+If this is still true, edit your .CSV file and add &quot;filter&quot;
+(without the quotes) to the end of the header line and proceed.<BR>
+&nbsp;</li>
+  <li>Access the <a href="http://das.sdss.org/DR1-cgi-bin/DAS">DAS Retrieval Form</a>.<br>
+&nbsp;<ul>
+    <li>Under Step 1 on the DAS form, click the fpC box under Data Products in 
+    order to retrieve corrected frames containing images of the objects in your 
+    list.&nbsp; <br>
+&nbsp;</li>
+    <li>Under Step 3, upload the edited CSV file.<br>
+&nbsp;</li>
+    <li>Under Step 4, select your desired output file type.<br>
+&nbsp;</li>
+    <li>Under Step 5, click on &quot;Submit Query&quot; to submit your query to the file 
+    server.<br>
+&nbsp;</li>
+  </ul>
+  </li>
+  <li>Follow the instruction on the www page you'll receive, to download your 
+  requested files.</li>
+</ol>
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar  3 15:22:43 CST 2003
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+
+
+</body>
+
+</html>

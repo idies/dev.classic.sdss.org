@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html> <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>List of fields that are meant to be missing - SDSS DR1</title>
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+<h1>List of "missing" fields that are not meant to be in DR1</h1>
+
+<p>Usually, the range of <a href="../glossary/index.html#field">field</a> numbers within a <a href="../glossary/index.html#run">run</a> is identical for all
+six camera columns. But this is not always the case.  If you have
+discovered that some fields are missing for some camera columns of
+some runs, check this list for the exceptions. The "symptom" is a
+mis-match of startfield and/or endfield in the <a href="../glossary/index.html#chunk">chunk</a> file across 1 or
+more columns.</p>
+
+<p>Note: If any of the terms on this page do not mean anything to you, you can
+safely ignore this page.</p>
+
+<pre>
+Note: SF=startfield, EF=endfield
+
+                   TSSEG  |    DAS Directories        |      Issue
+RUN  RR  COL      SF   EF |   corr    objcs    Zoom   | "appears missing"
+======================================================================================
+1045 20  1        41  194 |  41-194   41-194   41-194 | Col 1 Fields 11-40
+1045 20  2        85  194 |  85-194   85-194   85-194 | Col 2 Fields 11-84
+1045 20  3-6      11  194 |  11-194   11-194   11-194 |
+--------------------------------------------------------------------------------------
+1458 20  1-4,6   301  692 | 301-692  301-692  301-692 |
+1458 20  5       358  692 | 358-692  358-692  358-692 | Col 5 Fields 301-357
+--------------------------------------------------------------------------------------
+1869 21  1        69   99 |   44-99   44-99    44-99  |
+1869 21  2-6      44   69 |   44-69   44-69    44-69  | Col 2-6 Fields 70-79
+--------------------------------------------------------------------------------------
+1889  1  1,4-6    40  122 |  40-122   40-122    NA    | Col 1, 4-6 Fields 123-131
+1889  1  1,4-6   162  170 | 162-170  162-170    NA    |
+1889  1  2,3      40  132 |  40-132   40-132    NA    | 
+1889  1  2,3     160  170 | 160-170  160-170    NA    | 
+--------------------------------------------------------------------------------------
+1893 20  ALL      11   23 |  11-23    11-23    11-23  | Col 1, 4-6 Fields 49-123
+1893 20  2        49  123 |  11-123   11-123   11-123 | 
+--------------------------------------------------------------------------------------
+1907 21  ALL      42  194 |  42-194   42-194   42-194 | Col 1-5 Fields 195-214
+1907 21  6       194  214 | 194-214  194-214  194-214 | 
+--------------------------------------------------------------------------------------
+1992 20  1-4      12  133 |  12-133   12-133   12-133 | Col 1-4 Fields 134-190
+1992 20  5        12  190 |  12-190   12-190   12-190 |
+1992 20  6        32  133 |  32-133   32-133   32-133 | Col 6 Fields 12-31, 134-190
+--------------------------------------------------------------------------------------
+2075  0  1,4-6    30   69 |  30-69    30-69     NA    | 
+2075  0  2,3      40   67 |  40-67    40-67     NA    | Col 2-3 Fields 30-39, 68-69
+======================================================================================
+
+
+OTHER ITEMS 
+======================================================================================
+2248 20  1-5      28  197 |  28-197   28-197   28-197 | Cols 1-5 Field 275
+2248 20  1-5     197  274 | 197-274  197-274  197-274 |
+2248 20  6        28  197 |  28-197   28-197   28-197 |
+2248 20  6       197  275 | 197-275  197-275  197-275 | (Col 6 has 1 additional field)
+======================================================================================
+</pre>
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Tue Nov 12 12:05:18 CST 2002
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Velocity dispersion measurements - SDSS DR2</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Algorithms: Velocity dispersion measurements</h1>
+
+<P>The observed velocity dispersion <var>sigma</var> is the result of
+the superposition of many individual stellar spectra, each of which
+has been Doppler shifted because of the star's motion within the
+galaxy.  Therefore, it can be determined by analyzing the integrated
+spectrum of the whole galaxy - the galaxy integrated spectrum will
+be similar to the spectrum of the stars which dominate the light of
+the galaxy, but with broader absorption lines due to the motions of the
+stars.  The velocity dispersion is a fundamental parameter because it is
+an observable which better quantifies the potential well of a galaxy.</p>
+
+<h2>Selection criteria</h2>
+
+<p>Estimating velocity dispersions for galaxies which have integrated
+spectra which are dominated by multiple components showing different
+stellar populations and different kinematics (e.g. bulge and disk
+components) is complex.  Therefore, the SDSS estimates the velocity
+dispersion only for spheroidal systems whose spectra are dominated by
+the light of red giant stars. With this in mind, we have selected
+galaxies which satisfy the following criteria:<p>
+
+<ul>
+ <li>classified as galaxy (specClass EQ 'SPEC_GALAXY')</li>
+ <li>redshift obtained from cross-correlation with template (zStat EQ 'XCORR_HIC')</li>
+ <li>no warnings from the spectroscopic pipeline (zWarning AND ('Z_WARNING_NO_SPEC' OR 
+     'Z_WARNING_NO_BLUE' OR 'Z_WARNING_NO_RED' OR 'Z_WARNING_LOC') EQ 0)  </li>
+ <li>PCA classification (eClass LT -0.02) typical of 
+     early-type galaxy spectra (Connolly & Szalay 1999)</li>
+ <li>redshift &lt; 0.4</li>
+</ul>
+
+<p>Because the aperture of an SDSS spectroscopic fiber (3 arcsec) 
+samples only the inner parts of nearby galaxies, and because the spectrum 
+of the bulge of a nearby late-type galaxy can resemble that of an 
+early-type galaxy, our selection includes spectra of bulges of nearby 
+late-type galaxies. Note that weak emission lines, such as 
+H<sub><var>alpha</var></sub> and/or O II, could still be present in the selected spectra. </p>
+
+
+<h2>Method</h2>
+
+<p>A number of objective and accurate methods for making velocity
+dispersion measurements have been developed (Sargent et al. 1977;
+Tonry & Davis 1979; Franx, Illingworth & Heckman 1989; Bender 1990;
+Rix & White 1992).  These methods are all based on a comparison
+between the spectrum of the galaxy whose velocity dispersion is to be
+determined, and a fiducial spectral template. This can either be the
+spectrum of an appropriate star, with spectral lines unresolved at the
+spectra resolution being used, or a combination of different stellar
+types, or a high S/N spectrum of a galaxy with known velocity
+dispersion.</p>
+
+<p>Since different methods can give significantly different results, 
+thereby introducing systematic biases especially for low S/N spectra, 
+we decided to use two different techniques for measuring the velocity 
+dispersion.  Both methods find the minimum of
+<pre>  chi<sup>2</sup> = sum { [G - B * S]<sup>2</sup> }</pre>
+where G is the galaxy, S the star and B is the gaussian broadening 
+function (* denotes a convolution).
+<ol>
+  <li> The "Fourier-fitting" method 
+      (Sargent et al. 1977; Tonry & Davis 1979; Franx, Illingworth & Heckman 
+      1989; van der Marel & Franx 1993). 
+      Because a galaxy's spectrum is that of a mix of stars convolved with 
+      the distribution of velocities within the galaxy, Fourier space is the 
+      natural choice to estimate the velocity dispersions---this first method 
+      makes use of this:
+      <pre> chi<sup>2</sup>  = sum { [G~(k) - B~(k,<var>sigma</var>) S~(k)]<sup>2</sup> /Var<sub>k</sub><sup>2</sup>},</pre>
+      where G~, B~ and S~ are the Fourier Transforms of G, B and S, 
+      respectively, and Var<sub>k</sub><sup>2</sup> = <var>sigma</var><sub>G</sub>~<sup>2</sup> + <var>sigma</var><sub>S</sub>~<sup>2</sup> B~(k,<var>sigma</var>).
+      (Note that in Fourier space, the convolution is a multiplication.)</li>
+
+  <li>The "Direct-fitting" method (Burbidge, Burbidge & Fish 1961; Rix
+      & White 1992).  Although the Fourier space seems to be the natural
+      choice to estimate the velocity dispersions, there are several
+      advantages to treating the problem entirely in pixel space.  In
+      particular, the effects of noise are much more easily incorporated in
+      the pixel-space based "Direct-fitting" method which minimizes
+      <pre> chi<sup>2</sup> = sum { [G(n) - B(n,<var>sigma</var>) S(n)]<sup>2</sup> /Var<sub>n</sub><sup>2</sup>}.</pre>
+      Because the S/N of the SDSS spectra are relatively low, we assume that the 
+      observed absorption line profiles in early-type galaxies are
+      Gaussian. </li>
+</ol>
+
+<p>It is well known that the two methods have their own particular
+biases, so we carried out numerical simulations to calibrate these
+biases.  In our simulations, we chose a template stellar spectrum
+measured at high S/N, broadened it using a Gaussian with rms
+<var>sigma</var><sub>input</sub>, added Gaussian noise, and compared the input
+velocity dispersion with the measured output value.  The first
+broadening allows us to test how well the methods work as a function
+of velocity dispersion, and the addition of noise allows us to test
+how well the methods work as a function of S/N.  Our simulations show
+that the systematic errors on the velocity dispersion measurements
+appear to be smaller than ~ 3% but estimates of low velocity
+dispersions (<var>sigma</var>&lt; 100 km s<sup>-1</sup>) are more biased (~ 5%).</p>
+
+<h3>Measurements</h3>
+
+<p>The SDSS uses 32 K and G giant stars in M67 as stellar
+templates. The <a href="#templates">velocity dispersion templates</a>
+are available for download below.  The SDSS velocity dispersion
+estimates are obtained by fitting the restframe wavelength range
+4000-7000 &Aring;, and then averaging the estimates provided by the
+"Fourier-fitting" and "Direct-fitting" methods.  The error on the
+final value of the velocity dispersion is determined by adding in
+quadrature the errors on the two estimates (i.e., the Fourier-fitting
+and Direct-fitting).  The typical error is between
+delta(log<var>sigma</var>) ~ 0.02 dex and 0.06 dex, depending on the
+signal-to-noise of the spectra.  The scatter computed from repeated
+observations is ~ 0.04 dex, consistent with the amplitude of the
+errors on the measurements.</p>
+
+<p>Estimates of <var>sigma</var> are limited by the instrumental dispersion 
+and resolution. The instrumental dispersion of the SDSS 
+spectrograph is 69 km s<sup>-1</sup> per pixel, and the resolution is 
+~ 90 km s<sup>-1</sup>.  In addition, the instrumental dispersion may 
+vary from pixel to pixel, and this can affect measurements of <var>sigma</var>.
+These variations are estimated for each fiber by using arc lamp 
+spectra (upto 16 lines in the range 3800-6170 &Aring; and 39 lines 
+between 5780-9230 &Aring;). A simple linear fit provides a good description of 
+these variations.  This is true for almost all fibers, and allows us to 
+remove the bias such variations may introduce when estimating galaxy 
+velocity dispersions.</p>
+
+<a name="templates"></a>
+<h2>Velocity dispersion templates for download</h2>
+
+<p>We offer the velocity dispersion templates for download here. There
+are two sets of templates, 32 template stars (giant stars in M67)
+which are used in the &quot;Fourier-fitting&quot; method, and 7
+principal component analysis (PCA) Eigentemplates used in the
+&quot;Direct-fitting&quot; method. We offer the templates in two
+formats:</p>
+
+<ul>
+  <li>An IDL save file <a
+      href="./veldisptemplates.idl">veldisptemplates.idl</a>. Save the
+      file, and type <code>restore, 'veldisptemplates.idl'</code> at
+      the IDL prompt. The file includes:<pre>
+      EIG             DOUBLE    = Array[1944, 7]  -> flux of the PCA template
+      EIGLAMBDA       FLOAT     = Array[1944]     -> wavelength of the PCA template
+      STARFLUX        FLOAT     = Array[3918, 32] -> flux of the 32 M67 giant stars
+      STARSIG         FLOAT     = Array[3918, 32] -> fluxerr
+      STARWAVE        FLOAT     = Array[3918, 32] -> wavelength
+      </pre>
+  </li>
+  <li>Two fits tables with the templates as a function of wavelength,
+      one for each set:
+      <ul>
+	<li><a href="eigtemplates.fits">eigtemplates.fits</a>, the PCA
+	    Eigentemplates</li>
+	<li><a href="startemplates.fits">startemplates.fits</a>, the
+	    stellar templates</li>
+      </ul>
+  </li>
+</ul>
+
+<a name="caveats"></a>
+<h2>Caveats</h2>
+
+<p>The velocity dispersion measurements distributed with SDSS spectra use
+      template spectra convolved to a maximum sigma of 420
+      km/s. Therefore, velocity dispersion sigma &gt; 420 km/s are not
+      reliable and must not be used. There is a <a
+      href="../products/spectra/test_vdisp_1d_20.ps">postscript file showing
+      the quality of velocity dispersion error estimates</a>.<p>
+
+<p>We recommend the user to not use SDSS velocity dispersion 
+     measurements for:</p>
+<ul>
+   <li> spectra with median per-pixel S/N&lt; 10</li>
+   <li> velocity dispersion estimates smaller than about 70 km s<sup>-1</sup> 
+      given the typical S/N and the instrumental resolution of the 
+      SDSS spectra</li>
+</ul>
+<p>Also note that the velocity dispersion measurements output by the
+     SDSS spectro-1D pipeline are not corrected to a standard relative 
+     circular aperture.
+     (The SDSS spectra measure the light within a fixed aperture of radius 
+      1.5 arcsec.  Therefore, the estimated velocity dispersions of more 
+      distant galaxies are affected by the motions of stars at larger 
+      physical radii than for similar galaxies which are nearby.  If the 
+      velocity dispersions of early-type galaxies decrease with radius, 
+      then the estimated velocity dispersions (using a fixed aperture) of 
+      more distant galaxies will be systematically smaller than those of 
+      similar galaxies nearby.)</p>
+
+<hr>
+<!-- hhmts start -->Last modified: Sun Mar 14 20:42:15 CST 2004
+<!-- hhmts end -->
+
+<!--#include virtual="../includes/footer.html"-->
+</body> </html>

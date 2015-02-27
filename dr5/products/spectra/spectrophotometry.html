@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../../includes/sdss.css">
+
+<title>Data products: Spectra - Quality of spectrophotometry - SDSS DR5</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../../includes/header_layer3.html"-->
+<!-- Start page content -->
+ 
+<h1>The Quality of the Spectrophotometry</h1>
+   <!-- Author: M. C. Tremonti March 26 2003 -->
+
+<p>Obtaining accurate spectrophotometry for fiber spectra is a
+challenging task due to the small size of the fibers relative to the
+science targets.  The SDSS employs some unique techniques which are
+described on the <a href="../../algorithms/index.html">algorithms
+page</a>.  There have been substantial improvements to the algorithms
+which photometrically calibrate the spectra published in DR2 and
+beyond which are also described in detail on that page.</p>
+
+<p>We have quantified the improvements in the spectrophotometry from
+DR1 to DR2 and beyond in two ways.  The net effect of these changes to the
+<code>Spectro2d</code> pipeline is a substantial improvement in the
+spectrophotometric quality of both point and extended sources.  We
+have evaluated this in two ways: by comparing <var>r</var> magnitudes
+synthesized from the spectra to <code>photo</code> fiber magnitudes,
+and by comparing the spectra of hot DA white dwarfs to models.</p>
+
+<div class="fig">
+<img alt="Comparison of synthetic magnitudes and colors from
+	spectra with photometric fiber magnitudes"
+src="spectrophotometry_1.jpeg"> <p
+style="width:640px;text-align:justify">Comparison of synthetic
+<var>r</var> magnitudes from the spectra with <code>photo</code> fiber
+magnitudes for stars (left) and galaxies (right).  We have included
+all objects in DR2/DR3 with S/N per pixel &gt;5.</p> </div>
+
+<div class="fig">
+<img alt="Comparison of synthetic magnitudes and colors from
+	spectra with photometric fiber magnitudes"
+	src="spectrophotometry_2.jpeg"> <p
+style="width:640px;text-align:justify">Comparison of synthetic
+<var>g-r, r-i</var> colors synthesized from the spectra with
+<code>photo</code> fiber magnitudes.  We have included all objects in
+DR2/DR3 with S/N per pixel &gt;5.</p> </div>
+
+<p>The first of the two figures above compares <var>r</var> fiber
+magnitudes with those synthesized from the spectra of all DR2/DR3
+objects with spectral S/N per pixel greater than 5.  For point sources
+alone, this rms difference is 0.040 magnitudes, a 45% improvement over
+DR1.  For extended sources, the effect of the smears was to give a
+systematic offset between spectroscopic and fiber magnitudes of up to
+a magnitude; with the reductions used in DR2 and beyond, this trend is
+gone.  The slight offset of the mean from zero is a seeing effect. We
+cannot make this comparison for extended sources in DR1 because their
+fluxes are calibrated to match the total light in the smear aperture
+which can be greater than that in the fiber aperture by as much as a
+magnitude.</p>
+
+<p>The lower of the two figures above compares the <var>g-r</var> and
+<var>r-i</var> colors derived from the spectra and photometry; the
+scatter is ~40% lower in DR2 and beyond than in DR1. The few percent
+offset of the colors from zero is an indication that there are small
+residual errors in our spectrophotometry, perhaps due to errors in the
+theoretical models used to calibrate the standard stars, or to <a
+href="../../algorithms/fluxcal.html#sdss2ab">offsets between our
+photometric system and a true AB system</a>.</p>
+	
+<p>To evaluate our spectrophotometry over smaller scales, of order
+100&Aring;, we compared the calibrated spectra of a sample of 166 hot DA
+white dwarfs drawn from the <a href="../value_added/wdcat/dr1/">DR1
+White Dwarf Catalog</a> (Kleinman et al. 2004) to theoretical models.
+DA white dwarfs are useful for this comparison because they have
+simple hydrogen atmospheres that can be accurately modeled (e.g., <a
+href="http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1997ApJ...488..375F">Finley, Koester, & Basri 1997</a>).</p>
+
+<p>The figure below shows the results of dividing each spectrum by its
+best fit model. The median of the curves shows a net residual of order
+2% at the bluest wavelengths.  This is a major improvement over DR1
+where the residuals were of order 15% at 4300&Aring; due to the
+mismatch between the observed standard stars and the assumed model.</p>
+
+<div class="fig">
+<img alt="Comparison of White Dwarf spectra and models"
+	src="hotDA_check_dr2.jpeg">
+<p style="width:580px;text-align:justify">Comparison of white dwarf spectra and models.  The grey lines
+	represent 166 individual spectra divided by their best fit model.  The
+	heavy red line is the median.  The equivalent median residuals in
+	DR1 were of order 15% at 4300&Aring;; they are now of order a
+	few percent.</p>
+</div>
+
+
+         
+<hr> <!-- hhmts start -->Last modified: Tue Jul 26 21:57:00 CDT 2005
+<!-- hhmts end -->
+  <!--#include virtual="../../includes/footer_layer3.html"--> <br>
+ <br>
+<br>
+</body></html>

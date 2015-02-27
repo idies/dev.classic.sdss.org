@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- Page template for SDSS DR1 web pages.-->
+<!-- Things you have to modify:-->
+<!--  -the second part of the page title, after "SDSS DR1 - "-->
+<!--  -page content, starting with a <h1> tag. This should not refer -->
+<!--   to SDSS or DR1 (the page header and title already do).-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../includes/sdss.css">
+<title>Tutorial: Obtaining Spectra based on Color Constraints- SDSS DR2</title>
+</head>
+
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+<!--#include virtual="../includes/header_layer2.html"-->
+
+<!-- Start page content -->
+<h1>Tutorial: Obtaining Spectra based on Color Constraints</h1>
+
+<h2>How to Find all Objects with Spectra that Satisfy a 
+Given Set of Color Constraints and then Get the Spectra.</h2>
+
+<p>This query, in particular, finds spectra for all objects at the hot
+end of the WD cooling sequence. For a simple example, this list is
+defined as objects with g-r &lt;-0.15 and u-g &lt;0.4.&nbsp; Normally,
+when querying based on filter or color magnitudes, you should also
+make sure all the appropriate <a
+href="../products/catalogs/flags.html">photo QA flags</a> are set
+properly (to indicate the object's photometry is trustworthy), but in
+this case, since all these objects have spectra, we will assume they
+were targeted and allocated a fiber based on good photometric
+magnitudes, so we don't bother to check the QA flags.</p> <p><b><font
+size="4">Procedure</font></b></p>
+
+<ol class="tut">
+  <li>Go to the SDSS Data Release 2 website: <a href="http://www.sdss.org/dr2">
+  http://www.sdss.org/dr2</a></li>
+  <li>Click on <a href="../access/index.html">Data Access</a> in the left navigation bar.</li>
+  <li>Select "html" as output format if you want to look at your query
+      results in your browser, or "csv" to save them in a
+      &quot;comma-separated values&quot; file which you can use to
+      retrieve spectra from the Data Archive Server later</li>
+  <li>Click on <a href="http://skyserver.sdss.org/dr2/en/tools/search/SQS.asp">Spectro Query Server</a>.</li>
+  <li>At the first line, enter 0 to have your query return an unlimited number 
+  of output rows/objects.</li>
+  <li>Select &quot;minimal&quot; under &quot;Spectroscopy Parameters&quot; under &quot;Parameters to 
+  Return&quot;. This will return the MJD, plate, and fiberID that you will need to 
+  actually get the spectra from the DAS. (You may ALSO want to select &quot;radec&quot; if 
+  you want to get the object coordinates returned as well. For now, the 
+  assumption is that you only have &quot;minimal&quot; selected.)</li>
+  <li>If you want to retrieve not just spectra, but also imaging data
+      for the objects, select "minimal" under imaging parameters as well.</li>
+  <li>Select the Best radio button between the parameter listboxes.</li>
+  <li>Under Position Constraints, make sure &quot;No Position Constraint&quot; is 
+  selected.</li>
+  <li>Enter 0.4 in the &quot;u-g max&quot; box.</li>
+  <li>Enter -0.15 in the &quot;g-r max&quot; box.</li>
+  <li>Unselect &quot;Extended Sources&quot; and make sure &quot;Point Sources&quot; is selected in 
+  the &quot;Object Type&quot; section of the form.</li>
+  <li>Verify that nothing else is selected.</li>
+  <li>Click on &quot;Submit Request&quot;. Depending on database load,
+      this query takes about half a minute to run and returns 3493 objects.</li>
+</ol>
+<p><br>
+<b>To get the actual spectra for these objects:</b></p>
+
+<p>The DR2 SQS forms do not yet have a direct link to the Data Archive
+Server, therefore the procedure is slightly different from DR1 for the
+time being.</p>
+
+<ol class="tut">
+  <li>Select csv output and save the csv file to disk.</li>
+  <li>Go to the <a href="http://das.sdss.org/DR2-cgi-bin/DAS/">DR2 DAS
+      retrieval form</a></li>
+  <li>Under data product, select spSpec. (You might also want spPlotGif if you 
+      want to see simple GIFs of each spectrum.) The spSpec selection
+      will get you the FITS file for each spectrum.</li>
+  <li>If your file contains at least the "minimal" imaging parameters
+      and a filter name, select fpC and bestTsObj to get the images
+      and object catalogs containing your objects. (Warning: This will cause
+      the query to run for a long time! You may want to retrieve the
+      imaging data in a separate request.)</li>
+  <li>Select the result csv file from above for upload under step 3.</li>
+  <li>Since you have a lot of files here, you will get your data via
+      rsync whatever option  is selected in step 4.</li>
+  <li>Click on &quot;Submit Request&quot; in Step 5 of the web form.</li>
+  <li>If you selected just spectra, your results should come up in
+      about 15 minutes.  If the retrieval takes more than 20 minutes,
+      the web server will time out the connection. You can still get
+      your data by accessing the directory whose name is given on the
+      results page - append that directory name to http://das.sdss.org
+  and point your browser there.</li>
+  <li>Follow the instructions on the page (or if the web server timed
+      out, download sdss-rsync.lis and follow the instructions in the
+      <a href="../data/rsync.html">rsync HOWTO</a>) to rsync the
+      data over to your local disk.</li>
+  <li>See the tutorial on <A HREF="../products/spectra/read_spSpec.html">&quot;Displaying SDSS Spectra&quot;</A> to learn how to display your 
+  new SDSS spectra.</li>
+</ol>
+
+<!-- This is the old stuff, it can replace the above once the SQS -->
+<!-- provides a direct DAS link -->
+<!-- <ol> -->
+<!--   <li>On your return page from the above query, click on &quot;Use this result to  -->
+<!--   obtain files with the DAS Web Form.&quot;&nbsp; This will take you to a WWW form  -->
+<!--   from which you can download the spectra for all the objects you just found.<br> -->
+<!-- &nbsp;</li> -->
+<!--   <li>Under data product, select spSpec. (You might also want spPlotGif if you  -->
+<!--   want to see simple GIFs of each spectrum.) The spSpec selection will get you  -->
+<!--   the FITS file for each spectrum.<br> -->
+<!-- &nbsp;</li> -->
+<!--   <li>Since you have a lot of files here, you have to verify the &quot;rsync&quot; option  -->
+<!--   is selected in step 4.<br> -->
+<!-- &nbsp;</li> -->
+<!--   <li>Click on &quot;Submit Request&quot; in Step 5 of the web form.<br> -->
+<!-- &nbsp;</li> -->
+<!--   <li>In about a minute your results should come up.<br> -->
+<!-- &nbsp;</li> -->
+<!--   <li>Follow the instructions on the page (or in the <a href="../data/rsync.html">rsync HOWTO</a>) to rsync the  -->
+<!--   data over to your local disk.<br> -->
+<!-- &nbsp;</li> -->
+<!--   <li>See the tutorial on <A HREF="../products/spectra/read_spSpec.html">&quot;Displaying SDSS Spectra&quot;</A> to learn how to display your  -->
+<!--   new SDSS spectra.</li> -->
+<!-- </ol> -->
+
+<!-- end page content-->
+<hr>
+<!-- hhmts start -->Last modified: Mon Mar 15 01:34:13 CST 2004
+<!-- hhmts end -->
+<!--#include virtual="../includes/footer.html"-->
+
+</body>
+
+</html>
